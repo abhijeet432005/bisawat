@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.grid-wrapper {
+    width: 100%;
+    justify-content: center;
+    display: grid;
+    /* grid-template-columns: repeat(7, 1fr); */
+    gap: 1rem;
+    /* grid-template-rows: repeat(2, 1fr); */
+    grid-template-areas:
+        "two three"
+        "one four"
+        "five six";
+}
+
+.grid-wrapper .card {
+    background-color: black;
+    border-radius: 1rem;
+    width: 10rem;
+    height: 15rem;
+    overflow: hidden;
+}
+
+.grid-wrapper .card-1 {
+    grid-area: one;
+}
+
+.grid-wrapper .card-2 {
+    grid-area: two;
+}
+
+.grid-wrapper .card-3 {
+    grid-area: three;
+}
+
+.grid-wrapper .card-4 {
+    grid-area: four;
+}
+
+.grid-wrapper .card-5 {
+    grid-area: five;
+}
+
+.grid-wrapper .card-6 {
+    grid-area: six;
+}
+
+
+
+/* grid wrapper 2 */
+
+
+
+.grid-wrapper-2 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    grid-template-areas:
+        ". two three three four . six"
+        ". two three three . five five"
+        "one . . . . . .";
+}
+
+.grid-wrapper-2 .card {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.grid-wrapper-2 .card-1 {
+    grid-area: one;
+}
+
+.grid-wrapper-2 .card-2 {
+    grid-area: two;
+}
+
+.grid-wrapper-2 .card-3 {
+    grid-area: three;
+}
+
+.grid-wrapper-2 .card-4 {
+    grid-area: four;
+}
+
+.grid-wrapper-2 .card-5 {
+    grid-area: five;
+}
+
+.grid-wrapper-2 .card-6 {
+    grid-area: six;
+}
+
+
+@media (min-width: 768px) {
+
+    .grid-wrapper {
+        width: 100%;
+        justify-content: center;
+        display: grid;
+        /* grid-template-columns: repeat(7, 1fr); */
+        gap: 2rem;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+            ". two three three four . six"
+            "one two three three . five five";
+    }
+
+    .grid-wrapper .card {
+        background-color: black;
+        border-radius: 1rem;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .grid-wrapper .card-1 {
+        width: 10vw;
+        height: 15vh;
+        grid-area: one;
+    }
+
+    .grid-wrapper .card-2 {
+        width: 12vw;
+        height: 20vh;
+        grid-area: two;
+        margin-top: 2rem;
+    }
+
+    .grid-wrapper .card-3 {
+        width: 20vw;
+        height: 40vh;
+        grid-area: three;
+    }
+
+    .grid-wrapper .card-4 {
+        width: 15vw;
+        height: 25vh;
+        grid-area: four;
+    }
+
+    .grid-wrapper .card-5 {
+        width: 15vw;
+        height: 25vh;
+        grid-area: five;
+    }
+
+    .grid-wrapper .card-6 {
+        width: 10vw;
+        height: 15vh;
+        grid-area: six;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .grid-wrapper .card {
+        background-color: black;
+        border-radius: 1rem;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .grid-wrapper .card-1 {
+        width: 10vw;
+        height: 15vh;
+        grid-area: one;
+    }
+
+    .grid-wrapper .card-2 {
+        width: 12vw;
+        height: 20vh;
+        grid-area: two;
+        margin-top: 2rem;
+    }
+
+    .grid-wrapper .card-3 {
+        width: 20vw;
+        height: 40vh;
+        grid-area: three;
+    }
+
+    .grid-wrapper .card-4 {
+        width: 15vw;
+        height: 25vh;
+        grid-area: four;
+    }
+
+    .grid-wrapper .card-5 {
+        width: 15vw;
+        height: 25vh;
+        grid-area: five;
+    }
+
+    .grid-wrapper .card-6 {
+        width: 10vw;
+        height: 15vh;
+        grid-area: six;
+    }
+
+
+
+    /* grid wrapper 2 */
+
+
+
+    .grid-wrapper-2 {
+        width: 100%;
+        display: grid;
+        gap: 2rem;
+        justify-content: center;
+        grid-template-columns: repeat(4, 0fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+            "one one two three"
+            "four five two six"
+        ;
+    }
+
+    .grid-wrapper-2 .card {
+        background-color: black;
+        border-radius: 1rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .grid-wrapper-2 .card-1 {
+        width: auto;
+        height: 15rem;
+        grid-area: one;
+    }
+
+    .grid-wrapper-2 .card-2 {
+        width: 15rem;
+        height: auto;
+        grid-area: two;
+    }
+
+    .grid-wrapper-2 .card-3 {
+        width: 15rem;
+        height: 15rem;
+        grid-area: three;
+    }
+
+    .grid-wrapper-2 .card-4 {
+        width: 15rem;
+        height: 15rem;
+        grid-area: four;
+    }
+
+    .grid-wrapper-2 .card-5 {
+        width: 15rem;
+        height: 15rem;
+        grid-area: five;
+    }
+
+    .grid-wrapper-2 .card-6 {
+        width: 15rem;
+        height: 15rem;
+        grid-area: six;
+    }
+}
