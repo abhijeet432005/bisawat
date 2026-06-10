@@ -30,7 +30,7 @@ const Image_pin = () => {
         trigger: section,
         start: "top top",
         end: "+=300%",
-        scrub: 3,
+        scrub: 1,
         pin: true,
         anticipatePin: 1,
       },
