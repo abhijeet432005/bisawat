@@ -3,7 +3,7 @@ import CountUp from "./Counter/Countup";
 
 const TrustNumbers = () => {
   return (
-    <div className="w-full flex justify-center items-center py-20">
+    <div className="w-full flex justify-center items-center">
       <div className="w-[90%] md:w-[80%] gap-[2rem] flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="left">
           <h1 className="text-4xl md:text-5xl capitalize">Trust & proven</h1>

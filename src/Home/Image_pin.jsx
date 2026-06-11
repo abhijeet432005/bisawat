@@ -64,7 +64,7 @@ const Image_pin = () => {
   return (
     <div
       ref={sectionRef}
-      className="w-full h-screen bg-gray-100 rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12"
+      className="w-full h-screen bg-gray-100 rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12 my-10 md:my-20"
     >
       {/* Left text — all slides stacked, only one visible at a time */}
       <div className="left-text relative w-40 h-12 overflow-hidden">
