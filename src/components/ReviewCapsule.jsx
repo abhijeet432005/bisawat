@@ -5,15 +5,15 @@ const ReviewCapsule = () => {
     >
       {/* Outer glow wrapper */}
       <div
-        className="relative w-full max-w-2xl rounded-full"
+        className="relative w-4xs  md:w-2xl rounded-full"
         style={{ filter: "drop-shadow(0 0 32px rgba(66,133,244,0.45))" }}
       >
         {/* Pill */}
         <div
-          className="relative flex items-center justify-between rounded-full px-3 py-2 overflow-hidden"
+          className="relative flex items-center justify-between rounded-full px-2 py-2 overflow-hidden"
           style={{
             background: "linear-gradient(135deg, #5b9cf6 0%, #3b82f6 40%, #2563eb 100%)",
-            minHeight: "80px",
+            minHeight: "60px",
           }}
         >
           {/* Noise texture overlay */}
@@ -32,13 +32,13 @@ const ReviewCapsule = () => {
           />
 
           {/* Text */}
-          <span className="text-white font-bold text-xl relative z-10 tracking-tight pl-2">
+          <span className="text-white font-bold text-sm  md:text-lg relative z-10 tracking-tight pl-2">
             4.9/5 Star rating on Google reviews
           </span>
 
           {/* Google badge */}
           <div
-            className="relative z-10 bg-white rounded-full flex flex-col items-center justify-center px-6 py-2.5 ml-6 flex-shrink-0"
+            className="relative z-10 bg-white rounded-full flex flex-col items-center justify-center px-4 py-2 ml-6 flex-shrink-0"
             style={{
               boxShadow: "0 2px 12px rgba(0,0,0,0.12)",
               minWidth: "120px",
