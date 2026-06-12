@@ -20,7 +20,11 @@ const BeforeAfter = ({ beforeSrc, afterSrc }) => {
       <div
         ref={wrapRef}
         onMouseMove={(e) => setPos(e.clientX)}
-        className="relative w-[70%] aspect-video rounded-2xl overflow-hidden cursor-ew-resize select-none"
+        onTouchMove={(e) => {
+          e.preventDefault();
+          setPos(e.touches[0].clientX);
+        }}
+        className="relative w-[90%] md:w-[70%] aspect-video rounded-2xl overflow-hidden cursor-ew-resize select-none touch-none"
       >
         <img src={beforeSrc} className="absolute inset-0 w-full h-full object-cover" />
         <img
@@ -49,7 +53,7 @@ const BeforeAfter = ({ beforeSrc, afterSrc }) => {
       </div>
 
       {/* Labels */}
-      <div className="w-[70%] flex justify-between items-center gap-4 px-1">
+      <div className="w-[90%] md:w-[70%] flex justify-between items-center gap-4 px-1">
         <div className="flex items-center gap-2 text-sm text-gray-500">
           <span className="w-10 h-[1px] bg-gray-300 inline-block" />
           Before

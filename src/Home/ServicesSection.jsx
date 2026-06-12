@@ -91,7 +91,7 @@ const ServicesSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-20 bg-white px-3">
+    <section ref={sectionRef} className="w-full py-20 bg-white px-3 overflow-hidden">
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-10">
         <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 py-1.5 rounded-full mb-5 uppercase">
