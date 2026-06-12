@@ -94,7 +94,7 @@ const ServicesSection = () => {
     <section ref={sectionRef} className="w-full py-20 bg-white px-3 overflow-hidden">
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-10">
-        <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 py-1.5 rounded-full mb-5 uppercase">
+        <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 py-1.5 px-4 rounded-full mb-5 uppercase">
           Services
         </span>
         <h2 className="text-5xl font-semibold text-[#0d1b2a] leading-tight">
@@ -139,7 +139,7 @@ const ServicesSection = () => {
               </div>
 
               <div className="mt-6">
-                <h3 className="text-4xl font-bold text-[#0d1b2a] leading-snug">
+                <h3 className="text-2xl md:text-4xl font-bold text-[#0d1b2a] leading-snug">
                   {service.title}
                 </h3>
               </div>

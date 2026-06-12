@@ -12,7 +12,7 @@ img {
     display: grid;
     /* grid-template-columns: repeat(2, 10rem); */
     gap: 1rem;
-    /* grid-template-rows: repeat(3, 1fr); */
+    /* grid-template-rows: repeat(2, 1fr); */
     grid-template-areas:
         "two two ."
         "one three ."
