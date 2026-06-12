@@ -41,7 +41,7 @@ const ServicesSection = () => {
   const [active, setActive] = useState(0);
 
   useGSAP(() => {
-    gsap.set(".service-card-2, .service-card-3, .service-card-4", { y: 700 });
+    gsap.set(".service-card-2, .service-card-3, .service-card-4", { y: 900 });
 
     const mm = gsap.matchMedia();
 
@@ -71,11 +71,13 @@ const ServicesSection = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".services-card-container",
-          start: "25% 35%",
+          start: "25% 30%",
           end: "+=300%",
           scrub: 1,
           pin: true,
+          pinSpacing: true,
           anticipatePin: 1,
+
         },
       });
 
@@ -89,10 +91,10 @@ const ServicesSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-20 bg-white px-7">
+    <section ref={sectionRef} className="w-full py-20 bg-white px-3">
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-10">
-        <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 px-4 py-1.5 rounded-full mb-5 uppercase">
+        <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 py-1.5 rounded-full mb-5 uppercase">
           Services
         </span>
         <h2 className="text-5xl font-semibold text-[#0d1b2a] leading-tight">
@@ -112,7 +114,7 @@ const ServicesSection = () => {
       </div>
 
       {/* Stacked cards */}
-      <div className="services-card-container max-w-5xl mx-auto relative min-h-[600px] md:min-h-[440px]">
+      <div className="services-card-container max-w-5xl mt-30 md:mt-0 mx-auto relative min-h-[600px] md:min-h-[440px]">
 
         {services.map((service, i) => (
           <div
@@ -121,7 +123,7 @@ const ServicesSection = () => {
             style={{ background: "#FAFAFA" }}
           >
             {/* Left */}
-             <div className="flex flex-col justify-between p-8 w-full md:w-[55%] h-[55%] md:h-auto">
+             <div className="flex flex-col justify-between p-8 w-full md:w-[55%] h-[350px] md:h-auto">
               {/* Step numbers */}
               <div className="flex items-center gap-4">
                 {services.map((_, j) => (
@@ -161,7 +163,7 @@ const ServicesSection = () => {
             </div>
 
             {/* Right — image */}
-            <div className="w-full md:w-[45%] h-[45%] md:h-auto p-3 pt-0 md:pt-3">
+            <div className="w-full md:w-[45%] h-[2500px] md:h-auto p-3 pt-0 md:pt-3">
               <div className="w-full h-full rounded-4xl overflow-hidden">
                 <img
                   src={service.image}
