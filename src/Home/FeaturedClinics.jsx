@@ -32,7 +32,7 @@ const clinics = [
   },
 ];
 
-const GAP = 40;
+
 const INITIAL_INDEX = 1;
 const ACTIVE_SCALE = 1.08;
 
@@ -58,6 +58,7 @@ export default function FeaturedClinics() {
   const total       = clinics.length;
 
   const isMobile = containerW > 0 && containerW < 640;
+  const GAP = isMobile ? 30 : 40;
   const CARD_W = containerW > 0 ? (isMobile ? containerW * 0.78 : containerW * 0.38) : 0;
   const CARD_H = isMobile ? 300 : 400;
 
