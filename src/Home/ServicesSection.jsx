@@ -41,11 +41,12 @@ const ServicesSection = () => {
   const [active, setActive] = useState(0);
 
   useGSAP(() => {
+    document.documentElement.style.overflowY = "scroll";
+
     gsap.set(".service-card-2, .service-card-3, .service-card-4", { y: 900 });
 
     const mm = gsap.matchMedia();
 
-    // Desktop — pin entire section including header (current behavior)
     mm.add("(min-width: 768px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -64,20 +65,22 @@ const ServicesSection = () => {
         .add(() => setActive(2), 1.9)
         .to(".service-card-4", { y: 0, duration: 1 }, 2)
         .add(() => setActive(3), 2.9);
+
+      return () => {
+        tl.kill();
+      };
     });
 
-    // Mobile — header scrolls naturally, only card container pins
     mm.add("(max-width: 767px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".services-card-container",
-          start: "25% 30%",
+          start: "top 15%",
           end: "+=300%",
           scrub: 1,
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
-
         },
       });
 
@@ -87,11 +90,24 @@ const ServicesSection = () => {
         .add(() => setActive(2), 1.9)
         .to(".service-card-4", { y: 0, duration: 1 }, 2)
         .add(() => setActive(3), 2.9);
+
+      return () => {
+        tl.kill();
+      };
     });
+
+    return () => {
+      mm.revert();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      document.documentElement.style.overflowY = "";
+    };
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-20 bg-white px-3 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="w-full py-20 bg-white px-3 overflow-hidden"
+    >
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-10">
         <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 py-1.5 px-4 rounded-full mb-5 uppercase">
@@ -115,7 +131,6 @@ const ServicesSection = () => {
 
       {/* Stacked cards */}
       <div className="services-card-container max-w-5xl mt-30 md:mt-0 mx-auto relative min-h-[600px] md:min-h-[440px]">
-
         {services.map((service, i) => (
           <div
             key={i}
@@ -123,7 +138,7 @@ const ServicesSection = () => {
             style={{ background: "#FAFAFA" }}
           >
             {/* Left */}
-             <div className="flex flex-col justify-between p-8 w-full md:w-[55%] h-[350px] md:h-auto">
+            <div className="flex flex-col justify-between p-8 w-full md:w-[55%] h-[350px] md:h-auto">
               {/* Step numbers */}
               <div className="flex items-center gap-4">
                 {services.map((_, j) => (
@@ -151,10 +166,15 @@ const ServicesSection = () => {
               <div className="flex items-center gap-3">
                 <button
                   className="flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-full"
-                  style={{ background: "linear-gradient(135deg, #6ab0f5 0%, #3b82f6 60%, #2563eb 100%)" }}
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #6ab0f5 0%, #3b82f6 60%, #2563eb 100%)",
+                  }}
                 >
                   Book Now
-                  <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center text-xs">📅</span>
+                  <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center text-xs">
+                    📅
+                  </span>
                 </button>
                 <button className="text-sm font-semibold text-[#0d1b2a] px-5 py-2.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 transition-colors">
                   See Pricing
@@ -174,7 +194,6 @@ const ServicesSection = () => {
             </div>
           </div>
         ))}
-
       </div>
     </section>
   );

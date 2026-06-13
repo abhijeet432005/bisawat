@@ -16,12 +16,11 @@ const Image_pin = () => {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
+    document.documentElement.style.overflowY = "scroll";
+
     const section = sectionRef.current;
 
-    // Hide imgs 2-4 below
     gsap.set(".img-2, .img-3, .img-4", { y: 600 });
-
-    // Hide text slides 2-4 below (left and right)
     gsap.set(".left-text .slide:not(:first-child)", { y: 80, opacity: 0 });
     gsap.set(".right-text .slide:not(:first-child)", { y: 80, opacity: 0 });
 
@@ -33,7 +32,7 @@ const Image_pin = () => {
         scrub: 1,
         pin: true,
         anticipatePin: 1,
-        pinSpacing: true
+        pinSpacing: true,
       },
     });
 
@@ -60,6 +59,12 @@ const Image_pin = () => {
           i + 0.9,
         );
     });
+
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      document.documentElement.style.overflowY = "";
+    };
   }, []);
 
   return (

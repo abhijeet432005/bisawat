@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const patients = [
   {
@@ -105,12 +106,22 @@ export default function PatientStories() {
   };
 
   // init — set clipPath to fully visible on mount
-  useEffect(() => {
+  useGSAP(() => {
     gsap.set(imgRef.current, {
       clipPath: "inset(0% 0% 0% 0%)",
       scale: 1,
       filter: "blur(0px)",
     });
+
+    return () => {
+      gsap.killTweensOf([
+        imgRef.current,
+        nameRef.current,
+        ageRef.current,
+        badgeRef.current,
+        quoteRef.current,
+      ]);
+    };
   }, []);
 
   const prev = () => goTo(Math.max(0, active - 1));

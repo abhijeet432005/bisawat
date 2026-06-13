@@ -29,42 +29,42 @@ const Hero = () => {
             <img
               src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVudGlzdHxlbnwwfHwwfHx8MA%3D%3D"
               alt="image"
-              srcset=""
+              srcSet=""
             />
           </div>
           <div className="card-2 card">
             <img
               src="https://plus.unsplash.com/premium_photo-1682097288491-7e926a30cd0b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZGVudGlzdHxlbnwwfHwwfHx8MA%3D%3D"
               alt="image"
-              srcset=""
+              srcSet=""
             />
           </div>
           <div className="card-3 card">
             <img
               src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGRlbnRpc3R8ZW58MHx8MHx8fDA%3D"
               alt="image"
-              srcset=""
+              srcSet=""
             />
           </div>
           <div className="card-4 card">
             <img
               src="https://images.unsplash.com/photo-1564420228450-d9a5bc8d6565?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGRlbnRpc3R8ZW58MHx8MHx8fDA%3D"
               alt="image"
-              srcset=""
+              srcSet=""
             />
           </div>
           <div className="card-5 card">
             <img
               src="https://images.unsplash.com/photo-1698749778813-ad5f2814e50f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGRlbnRpc3R8ZW58MHx8MHx8fDA%3D"
               alt="image"
-              srcset=""
+              srcSet=""
             />
           </div>
           <div className="card-6 card">
             <img
               src="https://plus.unsplash.com/premium_photo-1674998806375-58edc35ddf3b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGRlbnRpc3R8ZW58MHx8MHx8fDA%3D"
               alt="image"
-              srcset=""
+              srcSet=""
             />
           </div>
         </div>
