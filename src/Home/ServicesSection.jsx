@@ -51,7 +51,7 @@ const ServicesSection = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top top",
+          start: "top -15%",
           end: "+=300%",
           scrub: 1,
           pin: true,
@@ -59,11 +59,11 @@ const ServicesSection = () => {
         },
       });
 
-      tl.to(".service-card-2", { y: 0, duration: 1 }, 0)
+      tl.to(".service-card-2", { y: 50, duration: 1 }, 0)
         .add(() => setActive(1), 0.9)
-        .to(".service-card-3", { y: 0, duration: 1 }, 1)
+        .to(".service-card-3", { y: 100, duration: 1 }, 1)
         .add(() => setActive(2), 1.9)
-        .to(".service-card-4", { y: 0, duration: 1 }, 2)
+        .to(".service-card-4", { y: 150, duration: 1 }, 2)
         .add(() => setActive(3), 2.9);
 
       return () => {
@@ -75,7 +75,7 @@ const ServicesSection = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".services-card-container",
-          start: "top 15%",
+          start: "top 10%",
           end: "+=300%",
           scrub: 1,
           pin: true,
@@ -106,7 +106,7 @@ const ServicesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-20 bg-white px-3 overflow-hidden"
+      className="w-full md:h-[120vh] py-20 bg-white px-3 overflow-hidden"
     >
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-10">
@@ -130,7 +130,7 @@ const ServicesSection = () => {
       </div>
 
       {/* Stacked cards */}
-      <div className="services-card-container max-w-5xl mt-30 md:mt-0 mx-auto relative min-h-[600px] md:min-h-[440px]">
+      <div className="services-card-container max-w-5xl mx-auto relative min-h-[600px] md:min-h-[440px]">
         {services.map((service, i) => (
           <div
             key={i}
