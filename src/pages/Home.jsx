@@ -8,11 +8,15 @@ import ReviewCapsule from "../components/ReviewCapsule";
 import ServicesSection from "../Home/ServicesSection";
 import FAQSection from "../components/FAQSection";
 import BookingSection from "../components/BookingSection";
+import FeaturedClinics from "../Home/FeaturedClinics";
+import PatientStories from "../Home/PatientStories";
 
 const Home = () => {
   return (
     <div className="overflow-hidden">
       <Hero />
+      <PatientStories />
+      <FeaturedClinics />
       <FAQSection />
       <BookingSection />
       <ServicesSection />
