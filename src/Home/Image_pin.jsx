@@ -54,7 +54,7 @@ const Image_pin = () => {
   return (
     <div
       ref={sectionRef}
-      className="w-full h-screen bg-gray-100 md:rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12 my-10 md:my-20"
+      className="w-full min-h-[100vh] bg-gray-100 md:rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12 my-10 md:my-20"
     >
       <div className="left-text relative w-40 h-12 overflow-hidden">
         {slides.map((s, i) => (
