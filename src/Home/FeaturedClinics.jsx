@@ -77,9 +77,9 @@ export default function FeaturedClinics() {
   const total = clinics.length;
 
   const isMobile = containerW > 0 && containerW < 640;
-  const GAP = isMobile ? 30 : 20;
+  const GAP = isMobile ? 17 : 20;
   const CARD_W =
-    containerW > 0 ? (isMobile ? containerW * 0.78 : containerW * 0.48) : 0;
+    containerW > 0 ? (isMobile ? containerW * 0.85 : containerW * 0.48) : 0;
   const CARD_H = isMobile ? 300 : 450;
 
   const getTranslateX = useCallback(
