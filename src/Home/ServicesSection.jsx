@@ -77,8 +77,8 @@ const ServicesSection = () => {
     mm.add("(max-width: 767px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current, // ← ref instead of class string
-          start: "top -10%",
+          trigger: containerRef.current, // ← ref instead of class string
+          start: "top 2%",
           end: "+=300%",
           scrub: 1,
           pin: true,
@@ -129,13 +129,13 @@ const ServicesSection = () => {
       </div>
 
       <div
-        ref={containerRef}
-        className="services-card-container max-w-5xl mx-auto relative min-h-[500px] md:min-h-[440px]"
+        // ref={containerRef}
+        className="services-card-container max-w-5xl mx-auto relative min-h-[500px] md:min-h-[440px] flex flex-col gap-5"
       >
         {services.map((service, i) => (
           <div
             key={i}
-            className={`service-card-${i + 1} absolute inset-0 flex flex-col md:flex-row rounded-4xl overflow-hidden`}
+            className={`service-card-${i + 1} md:absolute inset-0 flex flex-col md:flex-row rounded-4xl overflow-hidden`}
             style={{ background: "#FAFAFA" }}
           >
             <div className="flex flex-col justify-between p-8 w-full md:w-[55%] h-[300px] md:h-auto">
