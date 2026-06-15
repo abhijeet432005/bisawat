@@ -43,7 +43,6 @@ const Image_pin = () => {
         anticipatePin: 1,
         pinSpacing: true,
         invalidateOnRefresh: true,
-        pinType: "transform",
         refreshPriority: 0,
       },
     });
@@ -66,7 +65,7 @@ const Image_pin = () => {
     <div
       ref={sectionRef}
       style={{ willChange: "transform" }}
-      className="w-full h-[100svh] bg-gray-100 md:rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12"
+      className="w-full min-h-[100svh] bg-gray-100 md:rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12"
     >
       <div className="left-text relative w-40 h-12 overflow-hidden">
         {slides.map((s, i) => (
