@@ -1,29 +1,37 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useRef } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const slides = [
   { left: "Fresh Start", right: "Begin Here" },
-  { left: "Bold Move", right: "Take Risks" },
-  { left: "Deep Dive", right: "Go Further" },
+  { left: "Bold Move",   right: "Take Risks" },
+  { left: "Deep Dive",   right: "Go Further" },
   { left: "Full Circle", right: "You're Here" },
 ];
 
 const Image_pin = () => {
   const sectionRef = useRef(null);
 
-  useGSAP(() => {
+  // ── sync before paint — no flash of unhidden images ──────
+  useLayoutEffect(() => {
     const section = sectionRef.current;
-
-    // scope all selectors to this section only
+    if (!section) return;
     const q = gsap.utils.selector(section);
 
     gsap.set(q(".img-2, .img-3, .img-4"), { y: 600 });
-    gsap.set(q(".left-text .slide:not(:first-child)"), { y: 80, opacity: 0 });
+    gsap.set(q(".left-text .slide:not(:first-child)"),  { y: 80, opacity: 0 });
     gsap.set(q(".right-text .slide:not(:first-child)"), { y: 80, opacity: 0 });
+  }, []);
+
+  // ── ScrollTrigger after layout ────────────────────────────
+  useGSAP(() => {
+    document.documentElement.style.overflowY = "scroll";
+
+    const section = sectionRef.current;
+    const q = gsap.utils.selector(section);
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -35,6 +43,7 @@ const Image_pin = () => {
         anticipatePin: 1,
         pinSpacing: true,
         invalidateOnRefresh: true,
+        pinType: "transform",
         refreshPriority: 0,
       },
     });
@@ -47,14 +56,17 @@ const Image_pin = () => {
         .to(q(`.right-text .slide:nth-child(${i + 2})`), { y: 0, opacity: 1, duration: 0.5 },  i + 0.9);
     });
 
-    // cleanup only this timeline — don't kill other components' ScrollTriggers
-    return () => tl.kill();
+    return () => {
+      tl.kill();
+      document.documentElement.style.overflowY = "";
+    };
   }, []);
 
   return (
     <div
       ref={sectionRef}
-      className="w-full min-h-[100vh] bg-gray-100 md:rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12 my-10 md:my-20"
+      style={{ willChange: "transform" }}
+      className="w-full h-[100svh] bg-gray-100 md:rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12"
     >
       <div className="left-text relative w-40 h-12 overflow-hidden">
         {slides.map((s, i) => (
