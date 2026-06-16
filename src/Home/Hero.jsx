@@ -141,7 +141,7 @@ const Hero = () => {
           alt=""
           className="min-w-[28rem] md:w-[45vw] h-[110vh]"
         />
-        <div className="overlay h-10 w-full absolute bottom-26 md:bottom-27" />
+        <div className="overlay h-10 w-full absolute bottom-25 md:bottom-27" />
       </div>
 
       <div className="overlay h-150 w-full absolute bottom-0" />
