@@ -81,7 +81,7 @@ const Hero = () => {
         </div>
 
         {/* RIGHT — review + copy + button */}
-        <div className="w-[25rem] flex flex-col justify-start gap-5 bg-white/5 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-2 rounded-2xl h-fit">
+        <div className=" w-fit md:w-[25rem] flex flex-col justify-start gap-5 bg-white/5 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-4 md:p-2 rounded-2xl h-fit">
           <div className="hero-review review w-full flex items-center justify-between gap-3 text-white">
             <div className="flex items-center">
               <div className="flex -space-x-6">
@@ -105,7 +105,7 @@ const Hero = () => {
           </div>
 
           <div className="hero-body text-white">
-            <p>
+            <p className=" text-wrap max-w-xs md:w-auto">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam ab
               officia consectetur exercitationem quia ipsa cupiditate enim
               recusandae? Optio nulla ea quibusdam ratione ipsum minima
