@@ -8,49 +8,50 @@ gsap.registerPlugin(ScrollTrigger);
 const services = [
   {
     title: "Teeth Whitening",
-    description:
-      "Brighten your smile safely with professional treatments designed for lasting, confident results.",
-    image:
-      "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
+    description: "Brighten your smile safely with professional treatments designed for lasting, confident results.",
+    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
   },
   {
     title: "Dental Implants",
-    description:
-      "Restore missing teeth with natural-looking implants that blend seamlessly with your smile.",
-    image:
-      "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80",
+    description: "Restore missing teeth with natural-looking implants that blend seamlessly with your smile.",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80",
   },
   {
     title: "Orthodontics",
-    description:
-      "Straighten your teeth with modern braces and aligners tailored to your unique dental needs.",
-    image:
-      "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80",
+    description: "Straighten your teeth with modern braces and aligners tailored to your unique dental needs.",
+    image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80",
   },
   {
     title: "Emergency Care",
-    description:
-      "Fast, compassionate emergency dental services available when you need them most.",
-    image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
+    description: "Fast, compassionate emergency dental services available when you need them most.",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
   },
 ];
 
 const ServicesSection = () => {
   const sectionRef = useRef(null);
-  const containerRef = useRef(null);
   const [active, setActive] = useState(0);
 
   useGSAP(() => {
-    const q = gsap.utils.selector(sectionRef.current); // ← scoped selector
-
-    gsap.set(q(".service-card-2, .service-card-3, .service-card-4"), {
-      y: 900,
-    });
-
+    const q = gsap.utils.selector(sectionRef.current);
     const mm = gsap.matchMedia();
 
+    // header reveal — both breakpoints
+    gsap.from(q("h2, .header-p"), {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+      },
+    });
+
     mm.add("(min-width: 768px)", () => {
+      gsap.set(q(".service-card-2, .service-card-3, .service-card-4"), { y: 900 });
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -75,63 +76,50 @@ const ServicesSection = () => {
     });
 
     mm.add("(max-width: 767px)", () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current, // ← ref instead of class string
-          start: "top 2%",
-          end: "+=300%",
-          scrub: 1,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: 1,
-        },
+      const cards = q(".service-card-1, .service-card-2, .service-card-3, .service-card-4");
+
+      gsap.set(cards, { y: 40, opacity: 0 });
+
+      const triggers = [];
+      cards.forEach((card) => {
+        const st = ScrollTrigger.create({
+          trigger: card,
+          start: "top 88%",
+          toggleActions: "play none none reverse",
+          animation: gsap.to(card, {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            ease: "power3.out",
+          }),
+        });
+        triggers.push(st);
       });
 
-      tl.to(q(".service-card-2"), { y: 0, duration: 1 }, 0)
-        .add(() => setActive(1), 0.9)
-        .to(q(".service-card-3"), { y: 0, duration: 1 }, 1)
-        .add(() => setActive(2), 1.9)
-        .to(q(".service-card-4"), { y: 0, duration: 1 }, 2)
-        .add(() => setActive(3), 2.9);
-
-      return () => tl.kill();
+      return () => triggers.forEach((st) => st.kill());
     });
 
-    // ← only revert matchMedia, never kill all ScrollTriggers globally
     return () => mm.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="w-full py-10 md:py-20 bg-white px-3 overflow-hidden"
+      className="w-full py-20 md:h-[100svh] bg-white px-3 overflow-hidden"
     >
       <div className="flex flex-col items-center text-center mb-10">
-        <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 py-1.5 px-4 rounded-full mb-5 uppercase">
-          Services
-        </span>
-        <h2 className="text-5xl font-semibold text-[#0d1b2a] leading-tight">
+        <h2 className="text-5xl text-[#0d1b2a] leading-tight capitalize">
           The most popular{" "}
-          <span
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            className="font-normal italic"
-          >
-            services
-          </span>
+          <span className="font-normal font-[italic-font]">services</span>
         </h2>
-        <p className="text-gray-400 mt-4 text-base leading-relaxed max-w-md">
+        <p className="header-p text-gray-400 mt-4 text-base leading-relaxed max-w-md">
           From Essential Dentistry to Emergency Dental Services,
           <br />
           our Team is well-versed in all things oral care.
         </p>
       </div>
 
-      <div
-        // ref={containerRef}
-        className="services-card-container max-w-5xl mx-auto relative min-h-[500px] md:min-h-[440px] flex flex-col gap-5"
-      >
+      <div className="services-card-container max-w-5xl mx-auto relative min-h-[500px] md:min-h-[440px] flex flex-col gap-5">
         {services.map((service, i) => (
           <div
             key={i}
@@ -150,7 +138,7 @@ const ServicesSection = () => {
                 ))}
               </div>
               <div className="mt-6">
-                <h3 className="text-2xl md:text-4xl font-bold text-[#0d1b2a] leading-snug">
+                <h3 className="text-2xl md:text-4xl text-[#0d1b2a] leading-snug">
                   {service.title}
                 </h3>
               </div>
@@ -161,14 +149,10 @@ const ServicesSection = () => {
                 <button
                   className="flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-full"
                   style={{
-                    background:
-                      "linear-gradient(135deg, #6ab0f5 0%, #3b82f6 60%, #2563eb 100%)",
+                    background: "linear-gradient(135deg, #6ab0f5 0%, #3b82f6 60%, #2563eb 100%)",
                   }}
                 >
                   Book Now
-                  <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center text-xs">
-                    📅
-                  </span>
                 </button>
                 <button className="text-sm font-semibold text-[#0d1b2a] px-5 py-2.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 transition-colors">
                   See Pricing

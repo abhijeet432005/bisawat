@@ -1,6 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const patients = [
   {
@@ -52,30 +56,130 @@ const patients = [
 export default function PatientStories() {
   const [active, setActive] = useState(0);
   const [animating, setAnimating] = useState(false);
-  const [displayed, setDisplayed] = useState(0); // what's currently shown
+  const [displayed, setDisplayed] = useState(0);
 
+  const sectionRef = useRef(null);
+  const headingRef = useRef(null);
+  const btnRef = useRef(null);
+  const thumbsRef = useRef(null);
+  const rightRef = useRef(null);
   const imgRef = useRef(null);
   const nameRef = useRef(null);
   const ageRef = useRef(null);
   const quoteRef = useRef(null);
   const badgeRef = useRef(null);
+  const thumbRefs = useRef([]);
+  const activeRef = useRef(0);
+  const splitRef = useRef(null);
 
+  const total = patients.length;
   const current = patients[displayed];
 
-  const goTo = (index) => {
-    if (index === displayed || animating) return;
-    setAnimating(true);
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
 
-    // swap content INSTANTLY before any animation — no blank frame
-    setDisplayed(index);
-    setActive(index);
+  // thumb blur-in
+  useEffect(() => {
+    thumbRefs.current.forEach((el) => {
+      if (!el) return;
+      const img = el.querySelector("img");
+      if (!img) return;
+      gsap.fromTo(
+        img,
+        { filter: "blur(16px)" },
+        { filter: "blur(0px)", duration: 1, ease: "power4.out" },
+      );
+    });
+  }, [active]);
 
-    const tl = gsap.timeline({
-      onComplete: () => setAnimating(false),
+  const thumbIndices = [(active + 1) % total, (active + 2) % total];
+
+  useGSAP(() => {
+    splitRef.current = new SplitText(headingRef.current, {
+      type: "lines",
+      mask: "lines",
     });
 
-    // 1. image starts fully visible (new image already loaded),
-    //    wipe in from top immediately — no wipe-out needed
+    // pehle se hide karo sab
+    gsap.set(splitRef.current.lines, { y: "105%" });
+    gsap.set(btnRef.current, { y: 20, opacity: 0 });
+    gsap.set(rightRef.current, { x: 80, opacity: 0 });
+    gsap.set(thumbRefs.current, { y: 30, opacity: 0 });
+
+    gsap.set(imgRef.current, {
+      clipPath: "inset(0% 0% 0% 0%)",
+      scale: 1,
+      filter: "blur(0px)",
+    });
+
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top 70%",
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+        tl.to(splitRef.current.lines, {
+          y: "0%",
+          duration: 1,
+          stagger: 0.12,
+        })
+          .to(
+            btnRef.current,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              ease: "back.out(1.5)",
+            },
+            "<=0.5"
+          )
+          .to(
+            rightRef.current,
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.9,
+            },
+            "<=0.1",
+          )
+          .to(
+            thumbRefs.current,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.5,
+              stagger: 0.1,
+            },
+            "<=0.1",
+          );
+      },
+    });
+
+    return () => {
+      splitRef.current?.revert();
+      gsap.killTweensOf([
+        imgRef.current,
+        nameRef.current,
+        ageRef.current,
+        badgeRef.current,
+        quoteRef.current,
+      ]);
+    };
+  }, []);
+
+  const goTo = (index) => {
+    if (animating) return;
+    const normalised = ((index % total) + total) % total;
+    if (normalised === displayed) return;
+
+    setAnimating(true);
+    setDisplayed(normalised);
+    setActive(normalised);
+
+    const tl = gsap.timeline({ onComplete: () => setAnimating(false) });
+
     tl.fromTo(
       imgRef.current,
       { clipPath: "inset(0% 0% 100% 0%)", scale: 1.08, filter: "blur(10px)" },
@@ -87,16 +191,12 @@ export default function PatientStories() {
         ease: "power3.out",
       },
     )
-
-      // 2. name + age + badge stagger in
       .fromTo(
         [nameRef.current, ageRef.current, badgeRef.current],
         { y: 14, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.35, ease: "power3.out", stagger: 0.06 },
         "<0.1",
       )
-
-      // 3. quote slides in
       .fromTo(
         quoteRef.current,
         { y: 16, opacity: 0 },
@@ -105,53 +205,80 @@ export default function PatientStories() {
       );
   };
 
-  // init — set clipPath to fully visible on mount
-  useGSAP(() => {
-    gsap.set(imgRef.current, {
-      clipPath: "inset(0% 0% 0% 0%)",
-      scale: 1,
-      filter: "blur(0px)",
-    });
+  const prev = () => goTo(activeRef.current - 1);
+  const next = () => goTo(activeRef.current + 1);
 
-    return () => {
-      gsap.killTweensOf([
-        imgRef.current,
-        nameRef.current,
-        ageRef.current,
-        badgeRef.current,
-        quoteRef.current,
-      ]);
-    };
-  }, []);
-
-  const prev = () => goTo(Math.max(0, active - 1));
-  const next = () => goTo(Math.min(patients.length - 1, active + 1));
+  const NavButtons = ({ mobile = false }) => (
+    <div
+      className={`flex items-center gap-2 ${mobile ? "justify-center md:hidden" : "hidden md:flex mb-1"}`}
+    >
+      <button
+        onClick={prev}
+        disabled={animating}
+        className={`${mobile ? "w-12 h-12" : "w-9 h-9"} rounded-full border flex items-center justify-center disabled:opacity-25 transition-opacity flex-shrink-0`}
+        style={{ borderColor: "#1a3a2a", color: "#1a3a2a" }}
+      >
+        <svg
+          className="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      <button
+        onClick={next}
+        disabled={animating}
+        className={`${mobile ? "w-12 h-12" : "w-9 h-9"} rounded-full flex items-center justify-center text-white disabled:opacity-25 transition-opacity flex-shrink-0`}
+        style={{ backgroundColor: "#1a3a2a" }}
+      >
+        <svg
+          className="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        >
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+    </div>
+  );
 
   return (
     <section
-      className="w-full py-10 min-h-screen flex justify-center items-center"
+      ref={sectionRef}
+      className="w-full py-10 min-h-screen flex justify-center items-center relative mt-10"
       style={{ backgroundColor: "#f0ede8" }}
     >
+      <div className="stories-overlay-2 absolute top-0 h-10 md:h-15 w-full" />
+
       <div className="w-[90%] md:w-[95%] flex flex-col md:flex-row md:justify-between gap-10 md:gap-8">
-        {/* ── LEFT ── */}
+        {/* LEFT */}
         <div
           className="flex flex-col w-full md:w-[50%] flex-shrink-0"
           style={{ minHeight: "500px" }}
         >
           <div className="flex-shrink-0">
             <h2
-              className="text-4xl md:text-5xl font-bold leading-tight mb-6"
+              ref={headingRef}
+              className="text-4xl md:text-5xl leading-tight mb-6"
               style={{ color: "#1a3a2a" }}
             >
               <span
                 className="italic"
-                style={{ color: "#b8942a", fontFamily: "Georgia, serif" }}
+                style={{ color: "#b8942a", fontFamily: "font-italic" }}
               >
                 Patient Stories{" "}
               </span>
               That Speak for Themselves
             </h2>
             <button
+              ref={btnRef}
               className="text-sm font-medium text-white px-5 py-2.5 rounded-full"
               style={{ backgroundColor: "#1a3a2a" }}
             >
@@ -162,19 +289,16 @@ export default function PatientStories() {
           <div className="flex-1" />
 
           {/* Thumbs + desktop nav */}
-          <div className="flex-shrink-0">
+          <div ref={thumbsRef} className="flex-shrink-0">
             <div className="flex items-end gap-3">
-              {[0, 1].map((slot) => {
-                const nonActive = patients
-                  .map((_, i) => i)
-                  .filter((i) => i !== active);
-                const pIdx = nonActive[slot];
+              {thumbIndices.map((pIdx, slot) => {
                 const p = patients[pIdx];
                 return (
                   <div
                     key={slot}
+                    ref={(el) => (thumbRefs.current[slot] = el)}
                     onClick={() => goTo(pIdx)}
-                    className="relative rounded-2xl overflow-hidden cursor-pointer w-[8rem] h-[10rem]  md:w-[10rem] md:h-[12rem]"
+                    className="relative rounded-2xl overflow-hidden cursor-pointer w-[8rem] h-[10rem] md:w-[12rem] md:h-[14rem]"
                   >
                     <img
                       src={p.thumb}
@@ -189,64 +313,29 @@ export default function PatientStories() {
                       }}
                     />
                     <div className="absolute bottom-0 left-0 px-3 py-3">
-                      <p className="text-white text-xs font-semibold leading-tight">
+                      <p className="text-white text-xs md:text-[1rem] font-semibold leading-tight">
                         {p.name}
                       </p>
-                      <p className="text-white/70 text-xs">{p.age}</p>
+                      <p className="text-white/70 text-xs md:text-[1rem]">
+                        {p.age}
+                      </p>
                     </div>
                   </div>
                 );
               })}
-
-              {/* Desktop nav */}
-              <div className="hidden md:flex items-center gap-2 mb-1">
-                <button
-                  onClick={prev}
-                  disabled={active === 0 || animating}
-                  className="w-9 h-9 rounded-full border flex items-center justify-center disabled:opacity-25 transition-opacity flex-shrink-0"
-                  style={{ borderColor: "#1a3a2a", color: "#1a3a2a" }}
-                >
-                  <svg
-                    className="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  >
-                    <polyline points="15 18 9 12 15 6" />
-                  </svg>
-                </button>
-                <button
-                  onClick={next}
-                  disabled={active === patients.length - 1 || animating}
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-white disabled:opacity-25 transition-opacity flex-shrink-0"
-                  style={{ backgroundColor: "#1a3a2a" }}
-                >
-                  <svg
-                    className="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  >
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </button>
-              </div>
+              <NavButtons />
             </div>
           </div>
         </div>
 
-        {/* ── RIGHT — fixed card, no movement ── */}
+        {/* RIGHT */}
         <div
+          ref={rightRef}
           className="w-full md:w-[40%] md:h-[35rem] lg:h-[42rem] rounded-3xl overflow-hidden flex-shrink-0"
           style={{ backgroundColor: "#c8b99a" }}
         >
           <div className="w-full h-full p-7 flex flex-col justify-between gap-5">
             <div className="flex flex-col gap-6">
-              {/* image clip-path container */}
               <div className="flex items-start justify-between gap-4">
                 <div
                   className="rounded-2xl overflow-hidden flex-shrink-0"
@@ -273,11 +362,10 @@ export default function PatientStories() {
                 </span>
               </div>
 
-              {/* name + age */}
               <div>
                 <p
                   ref={nameRef}
-                  className="font-bold text-lg"
+                  className="text-lg"
                   style={{ color: "#1a3a2a", willChange: "transform, opacity" }}
                 >
                   {current.name}
@@ -292,10 +380,9 @@ export default function PatientStories() {
               </div>
             </div>
 
-            {/* quote */}
             <p
               ref={quoteRef}
-              className="text-base md:text-xl font-semibold leading-snug md:max-w-xs"
+              className="text-base md:text-xl leading-snug md:max-w-xs"
               style={{
                 color: "#1a3a2a",
                 fontFamily: "Georgia, serif",
@@ -306,44 +393,11 @@ export default function PatientStories() {
             </p>
           </div>
         </div>
-        {/* Mobile nav — below card */}
-        <div className="flex justify-center md:hidden items-center gap-2">
-          <button
-            onClick={prev}
-            disabled={active === 0 || animating}
-            className="w-12 h-12 rounded-full border flex items-center justify-center disabled:opacity-25 transition-opacity"
-            style={{ borderColor: "#1a3a2a", color: "#1a3a2a" }}
-          >
-            <svg
-              className="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            >
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-          <button
-            onClick={next}
-            disabled={active === patients.length - 1 || animating}
-            className="w-12 h-12 rounded-full flex items-center justify-center text-white disabled:opacity-25 transition-opacity"
-            style={{ backgroundColor: "#1a3a2a" }}
-          >
-            <svg
-              className="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            >
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
+
+        <NavButtons mobile />
       </div>
+
+      <div className="stories-overlay absolute bottom-0 h-10 md:h-15 w-full" />
     </section>
   );
 }

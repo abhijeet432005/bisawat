@@ -1,11 +1,53 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CountUp from "./Counter/Countup";
 
+gsap.registerPlugin(ScrollTrigger);
+
+const stats = [
+  { to: 5, suffix: "K+", label: "Happy Patients" },
+  { to: 1, suffix: "K+", label: "Clinics Listed" },
+  { to: 10, suffix: "K+", label: "Procedures Done" },
+];
+
 const TrustNumbers = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(() => {
+    const q = gsap.utils.selector(sectionRef.current);
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+      },
+    });
+
+    // left block slides in from left
+    tl.from(q(".trust-left"), {
+      x: -40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    })
+    // stat items stagger up
+    .from(q(".stat-item"), {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: "power3.out",
+    }, "-=0.4");
+
+  }, []);
+
   return (
-    <div className="w-full flex justify-center items-center">
+    <div ref={sectionRef} className="w-full flex justify-center items-center pt-20">
       <div className="w-[90%] md:w-[80%] gap-[2rem] flex flex-col lg:flex-row justify-between items-start lg:items-center">
-        <div className="left">
+
+        <div className="trust-left left flex flex-col gap-5">
           <h1 className="text-4xl md:text-5xl capitalize">Trust & proven</h1>
           <p className="w-xs lg:text-[1.2rem]">
             Celebrating milestone that reflect our commitment to healthy,
@@ -14,45 +56,27 @@ const TrustNumbers = () => {
         </div>
 
         <div className="right text-4xl md:text-5xl flex justify-between w-full md:w-[70vh] lg:w-[40vw]">
-          <div>
-            <CountUp
-              from={0}
-              to={5}
-              separator=","
-              direction="up"
-              duration={1}
-              className="count-up-text"
-              delay={0}
-            />
-            K+
-          </div>
-
-          <div>
-            <CountUp
-              from={0}
-              to={1}
-              separator=","
-              direction="up"
-              duration={1}
-              className="count-up-text"
-              delay={0}
-            />
-            K+
-          </div>
-
-          <div>
-            <CountUp
-              from={0}
-              to={10}
-              separator=","
-              direction="up"
-              duration={1}
-              className="count-up-text"
-              delay={0}
-            />
-            K+
-          </div>
+          {stats.map((stat, i) => (
+            <div key={i} className="stat-item flex flex-col items-start">
+              <div className="flex items-end">
+                {
+                  <CountUp
+                    from={0}
+                    to={stat.to}
+                    separator=","
+                    direction="up"
+                    duration={1.5}
+                    className="count-up-text"
+                    delay={i * 0.12}
+                  />
+                }
+                <span>{stat.suffix}</span>
+              </div>
+              <span className="text-sm text-gray-400 mt-1">{stat.label}</span>
+            </div>
+          ))}
         </div>
+
       </div>
     </div>
   );
