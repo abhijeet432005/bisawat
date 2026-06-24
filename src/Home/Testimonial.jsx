@@ -31,9 +31,9 @@ const Testimonial = () => {
 
       // ✅ marquee titles run inside pin — no separate ScrollTrigger
       pinTl
-        .to("[data-title='first']", { xPercent: 40 }, 0)
-        .to("[data-title='sec']", { xPercent: 25 }, 0)
-        .to("[data-title='third']", { xPercent: -20 }, 0)
+        .to("[data-title='first']", { xPercent: -250 }, 0)
+        .to("[data-title='sec']", { xPercent: 150 }, 0)
+        .to("[data-title='third']", { xPercent: -250 }, 0)
         .from(
           "[data-card]",
           { yPercent: 180, xPercent: 100, stagger: 0.2, ease: "power1.inOut" },
@@ -102,13 +102,13 @@ const Testimonial = () => {
       className="testimonials-section relative w-full h-[110dvh] lg:h-[100dvh]"
     >
       {/* ✅ data attrs instead of class selectors — scoped, no bleed */}
-      <div className="absolute size-full flex flex-col items-center pt-[2vw] uppercase text-[19vw] leading-[15vw] tracking-[-.4vw] ml-[2vw] font-bold">
-        <h1 className="text-black" data-title="first">Real</h1>
-        <h1 className="text-[#E3A458]" data-title="sec">Smiles</h1>
+      <div className="absolute size-full flex flex-col items-center py-[2vw] uppercase text-[14vw] leading-[15vw] tracking-[-.4vw]  font-bold">
+        <h1 className="text-black" data-title="first">our</h1>
+        <h1 className="text-[#E3A458]" data-title="sec">People</h1>
         <h1 className="text-black" data-title="third">Stories</h1>
       </div>
 
-      <div className="pin-box flex items-center justify-center w-full ps-52 absolute 2xl:bottom-32 bottom-[50vh]">
+      <div className="pin-box flex items-center justify-center w-full ps-52 absolute 2xl:bottom-32 bottom-[60vh] md:bottom-[50vh]">
         {cards.map((card, index) => (
           <div
             key={index}

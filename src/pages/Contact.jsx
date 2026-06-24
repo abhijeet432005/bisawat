@@ -1,18 +1,24 @@
-import { useLayoutEffect } from "react";
 import BookingSection from "../Contact/BookingSection";
-import ContactHero from "../Contact/ContactHero";
-import { useLenis } from "lenis/react";
 import FAQSection from "../components/FAQSection";
+import Hero from "../components/common/Hero";
 
 const Contact = () => {
-  const lenis = useLenis()
+  const content = {
+    title: "Contact With Us",
+    img: "/image/contact-hero.avif",
+    heading: (
+      <>
+        We're Here to Help <br />
+        You Smile
+      </>
+    ),
+    para: "Your smile is more than just a feature—it's a reflection of your confidence, comfort, and well-being. We're committed to making every visit a step toward brighter.",
+    text: "Message Us"
+  };
 
-  useLayoutEffect(() => {
-    lenis?.scrollTo(0, { immediate: true })
-  }, [lenis])
   return (
     <>
-      <ContactHero />
+      <Hero content={content} />
       <BookingSection />
       <FAQSection />
     </>

@@ -1,14 +1,16 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(SplitText);
 
-const ContactHero = () => {
+const Hero = ({ content }) => {
   const imgRef = useRef(null);
   const sectionRef = useRef(null);
   const splitRef = useRef(null);
+
+  console.log(content.heading)
 
   useGSAP(() => {
     const q = gsap.utils.selector(sectionRef.current);
@@ -103,7 +105,7 @@ const ContactHero = () => {
     >
       <img
         ref={imgRef}
-        src="/image/contact-hero.avif"
+        src={content.img}
         alt="Dental clinic"
         className="w-full h-full object-cover"
         style={{ willChange: "transform", transformOrigin: "center" }}
@@ -127,20 +129,16 @@ const ContactHero = () => {
             <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
             <line x1="19.07" y1="4.93" x2="4.93" y2="19.07" />
           </svg>
-          <span className="tracking-wide">Contact with Us</span>
+          <span className="tracking-wide">{content.title}</span>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="max-w-2xl">
             <h1 className="ch-heading text-white text-5xl md:text-7xl leading-tight mb-5">
-              We're Here to Help
-              <br />
-              You Smile
+              {content.heading}
             </h1>
             <p className="ch-sub text-white/65 text-sm md:text-base leading-relaxed max-w-lg">
-              Your smile is more than just a feature—it's a reflection of your
-              confidence, comfort, and well-being. We're committed to making
-              every visit a step toward brighter.
+              {content.para}
             </p>
           </div>
 
@@ -164,7 +162,7 @@ const ContactHero = () => {
             </div>
             <div>
               <p className="text-white font-semibold text-sm leading-tight mb-0.5">
-                Message Us
+                {content.text}
               </p>
               <p className="text-white/55 text-xs">Get Started</p>
             </div>
@@ -188,4 +186,4 @@ const ContactHero = () => {
   );
 };
 
-export default ContactHero;
+export default Hero;
