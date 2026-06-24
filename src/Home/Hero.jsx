@@ -114,7 +114,7 @@ const Hero = () => {
           </div>
 
           <div>
-            <button className="hero-btn px-3 py-2 bg-[#bcdf9d] text-black rounded-full">
+            <button className="hero-btn px-4 py-2 bg-[#EAFF5D] text-black rounded-full">
               Book Now
             </button>
           </div>

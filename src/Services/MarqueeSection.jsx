@@ -12,82 +12,88 @@ const images = [
 
 const marqueeImages = [...images, ...images];
 
-const TRACK_DURATION = 15;
-const IMG_DRIFT_PX   = 50;
-const IMG_SCALE      = 1.35;
+const TRACK_DURATION = 22;
+const IMG_DRIFT_PX   = 40;
+const IMG_SCALE      = 1.2;
 
 const MarqueeSection = () => {
-  const trackRef   = useRef(null);
-  const imgRefs    = useRef([]);
-  const trackTween = useRef(null);
-  const imgTweens  = useRef([]);
+  const trackRef      = useRef(null);
+  const imgRefs        = useRef([]);
+  const trackTween     = useRef(null);
+  const parallaxTween  = useRef(null); // ← single master tween for ALL images
+  const halfWidthRef     = useRef(0);
+  const resizeTimeout    = useRef(null);
 
   useGSAP(() => {
     const track = trackRef.current;
-    const getHalfWidth = () => track.scrollWidth / 2;
-    let halfWidth = getHalfWidth();
+    const measure = () => track.scrollWidth / 2;
+    halfWidthRef.current = measure();
 
     const startTrack = (fromX = 0) => {
-      gsap.set(track, { x: fromX });
+      gsap.set(track, { x: fromX, force3D: true });
       trackTween.current = gsap.to(track, {
-        x: () => -halfWidth,
+        x: () => -halfWidthRef.current,
         duration: TRACK_DURATION,
         ease: "none",
         repeat: -1,
+        force3D: true,
       });
     };
 
-    const startImageParallax = () => {
-      imgRefs.current.forEach((img, i) => {
-        if (!img) return;
-        // each image gets a slightly different, non-integer-fraction duration
-        // so it never phase-locks with the track loop or with other images
-        const duration = TRACK_DURATION * (0.6 + (i % 5) * 0.03);
-
-        imgTweens.current[i] = gsap.fromTo(img,
-          { x: -IMG_DRIFT_PX },
-          {
-            x: IMG_DRIFT_PX,
-            duration,
-            ease: "sine.inOut",
-            repeat: -1,
-            yoyo: true,
-            // stagger each image's start slightly so the yoyo pivots don't align
-            delay: i * 0.15,
-          }
-        );
-      });
+    // ── ONE timeline drives every image's parallax — not N separate tweens ──
+    const startParallax = () => {
+      const tl = gsap.timeline({ repeat: -1, yoyo: true });
+      // batch all images into a single tween call — GSAP internally optimizes
+      // animating an array together far better than N independent tweens
+      tl.fromTo(imgRefs.current,
+        { x: -IMG_DRIFT_PX },
+        {
+          x: IMG_DRIFT_PX,
+          duration: TRACK_DURATION * 0.6,
+          ease: "sine.inOut",
+          stagger: {
+            each: 0.12,
+            from: "start",
+          },
+        }
+      );
+      parallaxTween.current = tl;
     };
 
     startTrack();
-    startImageParallax();
+    startParallax();
 
     const handleResize = () => {
-      const oldHalfWidth = halfWidth;
-      const currentX = gsap.getProperty(track, "x");
-      const progress = oldHalfWidth ? Math.abs(currentX) / oldHalfWidth : 0;
+      clearTimeout(resizeTimeout.current);
+      resizeTimeout.current = setTimeout(() => {
+        const oldHalfWidth = halfWidthRef.current;
+        const currentX = gsap.getProperty(track, "x");
+        const progress = oldHalfWidth ? Math.abs(currentX) / oldHalfWidth : 0;
 
-      halfWidth = getHalfWidth();
-      trackTween.current?.kill();
-      startTrack(-progress * halfWidth);
+        trackTween.current?.kill();
+        gsap.set(track, { x: 0 });
+        halfWidthRef.current = measure();
+        startTrack(-progress * halfWidthRef.current);
+      }, 200);
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => {
       trackTween.current?.kill();
-      imgTweens.current.forEach((t) => t?.kill());
+      parallaxTween.current?.kill();
+      clearTimeout(resizeTimeout.current);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   const pauseAll = () => {
     trackTween.current?.pause();
-    imgTweens.current.forEach((t) => t?.pause());
+    parallaxTween.current?.pause();
   };
   const playAll = () => {
     trackTween.current?.play();
-    imgTweens.current.forEach((t) => t?.play());
+    parallaxTween.current?.play();
   };
 
   return (
@@ -111,13 +117,13 @@ const MarqueeSection = () => {
       >
         <div
           ref={trackRef}
-          className="flex gap-4 md:gap-6 w-max overflow-hidden"
-          style={{ willChange: "transform" }}
+          className="flex gap-4 md:gap-6 w-max"
+          style={{ willChange: "transform", transform: "translateZ(0)" }}
         >
           {marqueeImages.map((src, i) => (
             <div
               key={i}
-              className="flex-shrink-0  lg:rounded-xl overflow-hidden relative"
+              className="flex-shrink-0 lg:rounded-xl overflow-hidden relative"
               style={{
                 width: "clamp(300px, 26vw, 380px)",
                 height: "clamp(350px, 32vw, 480px)",
@@ -127,9 +133,16 @@ const MarqueeSection = () => {
                 ref={(el) => (imgRefs.current[i] = el)}
                 src={src}
                 alt=""
-                className="w-full h-full object-cover absolute inset-0 "
-                style={{ transform: `scale(${IMG_SCALE})`, willChange: "transform" }}
+                className="w-full h-full object-cover absolute inset-0"
+                style={{
+                  // scale baked into a CSS custom property read once — never fights GSAP's x writes
+                  "--img-scale": IMG_SCALE,
+                  transform: `scale(var(--img-scale))`,
+                  willChange: "transform",
+                }}
                 draggable={false}
+                loading={i < 6 ? "eager" : "lazy"}
+                decoding="async"
               />
             </div>
           ))}

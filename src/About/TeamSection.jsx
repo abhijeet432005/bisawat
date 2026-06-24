@@ -10,133 +10,135 @@ const teamMembers = [
   {
     name: "Dr. Sarah Mitchell",
     role: "Lead Dentist",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
   },
   {
     name: "Dr. James Carter",
     role: "Orthodontist",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80",
   },
   {
     name: "Dr. Amelia Brooks",
     role: "Gynecologist",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80",
   },
 ];
 
 const TeamSection = () => {
   const containerRef = useRef(null);
 
-  useGSAP(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
+      const ctx = gsap.context(() => {
+        // Eyebrow fade up
+        gsap.fromTo(
+          ".team-eyebrow",
+          { y: 16, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power3.out",
+            scrollTrigger: { trigger: ".team-eyebrow", start: "top 88%" },
+          },
+        );
 
-      // Eyebrow fade up
-      gsap.fromTo(
-        ".team-eyebrow",
-        { y: 16, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".team-eyebrow", start: "top 88%" },
-        }
-      );
+        // Heading split reveal
+        const split = new SplitText(".team-heading", { type: "lines" });
+        split.lines.forEach((line) => {
+          const wrapper = document.createElement("div");
+          wrapper.style.overflow = "hidden";
+          line.parentNode.insertBefore(wrapper, line);
+          wrapper.appendChild(line);
+        });
 
-      // Heading split reveal
-      const split = new SplitText(".team-heading", { type: "lines" });
-      split.lines.forEach((line) => {
-        const wrapper = document.createElement("div");
-        wrapper.style.overflow = "hidden";
-        line.parentNode.insertBefore(wrapper, line);
-        wrapper.appendChild(line);
-      });
+        gsap.fromTo(
+          split.lines,
+          { y: "110%", opacity: 0 },
+          {
+            y: "0%",
+            opacity: 1,
+            duration: 1,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: { trigger: ".team-heading", start: "top 85%" },
+          },
+        );
 
-      gsap.fromTo(
-        split.lines,
-        { y: "110%", opacity: 0 },
-        {
-          y: "0%",
-          opacity: 1,
-          duration: 1,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".team-heading", start: "top 85%" },
-        }
-      );
+        // Team card images: clip-path top-to-bottom + blur + zoom, staggered
+        gsap.fromTo(
+          ".team-card-img img",
+          {
+            clipPath: "inset(0% 0% 100% 0%)",
+            scale: 1.15,
+            filter: "blur(10px)",
+          },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.1,
+            stagger: 0.15,
+            ease: "power2.inOut",
+            scrollTrigger: { trigger: ".team-grid", start: "top 82%" },
+          },
+        );
 
-      // Team card images: clip-path top-to-bottom + blur + zoom, staggered
-      gsap.fromTo(
-        ".team-card-img img",
-        {
-          clipPath: "inset(0% 0% 100% 0%)",
-          scale: 1.15,
-          filter: "blur(10px)",
-        },
-        {
-          clipPath: "inset(0% 0% 0% 0%)",
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 1.1,
-          stagger: 0.15,
-          ease: "power2.inOut",
-          scrollTrigger: { trigger: ".team-grid", start: "top 82%" },
-        }
-      );
+        // Card name + role fade up staggered
+        gsap.fromTo(
+          ".team-card-text",
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: { trigger: ".team-grid", start: "top 82%" },
+          },
+        );
 
-      // Card name + role fade up staggered
-      gsap.fromTo(
-        ".team-card-text",
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".team-grid", start: "top 82%" },
-        }
-      );
+        // Big group image: clip-path reveal + blur + zoom
+        gsap.fromTo(
+          ".team-group-img img",
+          {
+            clipPath: "inset(0% 0% 100% 0%)",
+            scale: 1.12,
+            filter: "blur(12px)",
+          },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.3,
+            ease: "power2.inOut",
+            scrollTrigger: { trigger: ".team-group-img", start: "top 80%" },
+          },
+        );
+      }, containerRef);
 
-      // Big group image: clip-path reveal + blur + zoom
-      gsap.fromTo(
-        ".team-group-img img",
-        {
-          clipPath: "inset(0% 0% 100% 0%)",
-          scale: 1.12,
-          filter: "blur(12px)",
-        },
-        {
-          clipPath: "inset(0% 0% 0% 0%)",
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 1.3,
-          ease: "power2.inOut",
-          scrollTrigger: { trigger: ".team-group-img", start: "top 80%" },
-        }
-      );
-
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, { scope: containerRef });
+      return () => ctx.revert();
+    },
+    { scope: containerRef },
+  );
 
   return (
     <section
       ref={containerRef}
-      className="w-full py-16 md:py-24 px-6 md:px-16"
-      style={{ background: "#faf8f4" }}
+      className="w-full py-16 md:py-24 px-6 md:px-16 relative overflow-hidden"
+      style={{ backgroundColor: "#f0ede8" }}
     >
+      <div className="stories-overlay-2 absolute top-0 h-10 md:h-15 w-full left-0" />
       <div className="max-w-6xl mx-auto">
-
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
           <p className="team-eyebrow text-xs sm:text-sm text-gray-500 tracking-wide mb-3">
             [ Our People ]
           </p>
-          <h2
-            className="team-heading text-3xl sm:text-4xl md:text-5xl text-[#1a1a1a] leading-tight overflow-hidden"
-          >
+          <h2 className="team-heading text-3xl sm:text-4xl md:text-5xl text-[#1a1a1a] leading-tight overflow-hidden">
             Meet the team behind{" "}
             <span className="font-normal" style={{ fontStyle: "italic" }}>
               your care
@@ -162,7 +164,9 @@ const TeamSection = () => {
               <h3 className="team-card-text text-lg md:text-xl text-[#1a1a1a] mb-1">
                 {member.name}
               </h3>
-              <p className="team-card-text text-sm text-gray-500">{member.role}</p>
+              <p className="team-card-text text-sm text-gray-500">
+                {member.role}
+              </p>
             </div>
           ))}
         </div>
@@ -179,7 +183,6 @@ const TeamSection = () => {
             loading="lazy"
           />
         </div>
-
       </div>
     </section>
   );
