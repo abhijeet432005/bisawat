@@ -8,23 +8,31 @@ gsap.registerPlugin(ScrollTrigger);
 const services = [
   {
     title: "Teeth Whitening",
-    description: "Brighten your smile safely with professional treatments designed for lasting, confident results.",
-    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
+    description:
+      "Brighten your smile safely with professional treatments designed for lasting, confident results.",
+    image:
+      "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
   },
   {
     title: "Dental Implants",
-    description: "Restore missing teeth with natural-looking implants that blend seamlessly with your smile.",
-    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80",
+    description:
+      "Restore missing teeth with natural-looking implants that blend seamlessly with your smile.",
+    image:
+      "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80",
   },
   {
     title: "Orthodontics",
-    description: "Straighten your teeth with modern braces and aligners tailored to your unique dental needs.",
-    image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80",
+    description:
+      "Straighten your teeth with modern braces and aligners tailored to your unique dental needs.",
+    image:
+      "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80",
   },
   {
     title: "Emergency Care",
-    description: "Fast, compassionate emergency dental services available when you need them most.",
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
+    description:
+      "Fast, compassionate emergency dental services available when you need them most.",
+    image:
+      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
   },
 ];
 
@@ -50,7 +58,9 @@ const ServicesSection = () => {
     });
 
     mm.add("(min-width: 768px)", () => {
-      gsap.set(q(".service-card-2, .service-card-3, .service-card-4"), { y: 900 });
+      gsap.set(q(".service-card-2, .service-card-3, .service-card-4"), {
+        y: 900,
+      });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -76,7 +86,9 @@ const ServicesSection = () => {
     });
 
     mm.add("(max-width: 767px)", () => {
-      const cards = q(".service-card-1, .service-card-2, .service-card-3, .service-card-4");
+      const cards = q(
+        ".service-card-1, .service-card-2, .service-card-3, .service-card-4",
+      );
 
       gsap.set(cards, { y: 40, opacity: 0 });
 
@@ -107,16 +119,11 @@ const ServicesSection = () => {
       ref={sectionRef}
       className="w-full py-20 md:h-[100svh] bg-white px-3 overflow-hidden"
     >
-      <div className="flex flex-col items-center text-center mb-10">
+      <div className="flex flex-col items-center text-center mb-15">
         <h2 className="text-5xl text-[#0d1b2a] leading-tight capitalize">
           The most popular{" "}
           <span className="font-normal font-[italic-font]">services</span>
         </h2>
-        <p className="header-p text-gray-400 mt-4 text-base leading-relaxed max-w-md">
-          From Essential Dentistry to Emergency Dental Services,
-          <br />
-          our Team is well-versed in all things oral care.
-        </p>
       </div>
 
       <div className="services-card-container max-w-5xl mx-auto relative min-h-[500px] md:min-h-[440px] flex flex-col gap-5">
@@ -133,7 +140,7 @@ const ServicesSection = () => {
                     key={j}
                     className={`text-sm font-semibold ${i === j ? "text-[#0d1b2a]" : "text-gray-300"}`}
                   >
-                    {i === j ? `-${j + 1}` : j + 1}
+                    {i === j ? `${j + 1}` : j + 1}
                   </span>
                 ))}
               </div>
@@ -149,7 +156,8 @@ const ServicesSection = () => {
                 <button
                   className="flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-full"
                   style={{
-                    background: "linear-gradient(135deg, #6ab0f5 0%, #3b82f6 60%, #2563eb 100%)",
+                    background:
+                      "var(--btn-color)",
                   }}
                 >
                   Book Now

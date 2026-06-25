@@ -36,6 +36,15 @@ const services = [
       "Personalized guidance to help individuals and couples plan pregnancies with confidence and informed medical support.",
   },
   {
+    index: "04",
+    title: ["Cosmetic", "Treatments"],
+    image:
+      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80",
+    includes: ["Teeth whitening", "Veneers consultation", "Smile makeovers"],
+    description:
+      "Modern aesthetic treatments designed to enhance your natural smile with safe, proven techniques and lasting results.",
+  },
+  {
     index: "03",
     title: ["Cosmetic", "Treatments"],
     image:
@@ -71,8 +80,8 @@ const ServicesCarousel = () => {
       ? isMobile
         ? containerW * 0.92
         : isTablet
-          ? containerW * 0.85
-          : containerW * 0.78
+          ? containerW * 0.7
+          : containerW * 0.6
       : 0;
 
   const getTranslateX = useCallback(
@@ -180,10 +189,7 @@ const ServicesCarousel = () => {
   );
 
   return (
-    <section
-      className="w-full my-10 mt-25 overflow-hidden"
-      style={{ background: "#faf8f4" }}
-    >
+    <section className="w-full my-10 mt-5 overflow-hidden">
       <div ref={containerRef} className="relative w-full px-4 sm:px-6 md:px-0">
         <div
           ref={trackRef}
@@ -227,28 +233,40 @@ const ServicesCarousel = () => {
               }}
             >
               <div
-                className="w-full rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2.5rem] bg-white"
-                style={{ padding: "clamp(1.25rem, 3.5vw, 2.5rem)" }}
+                className="w-full rounded-4xl bg-[#f7f7f7]"
+                style={{ padding: "clamp(1.25rem, 2vw, 1rem)" }}
               >
-                {/* ── 3-column flex layout, matches reference exactly ── */}
-                <div className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-12">
-                  {/* COLUMN 1 — index number, slim */}
-                  <div className="flex-shrink-0 md:w-auto">
-                    <p className="text-xs sm:text-sm text-gray-500 tracking-wide whitespace-nowrap">
-                      [ {s.index} / 0{total} ]
-                    </p>
+
+                <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-8 lg:gap-12">
+
+                  <div className="w-full md:flex-1 min-w-0 flex flex-col justify-between md:pt-2">
+                    <div className="flex-shrink-0">
+                      <p className="text-xs sm:text-sm text-gray-500 tracking-wide whitespace-nowrap">
+                        [ {s.index} / 0{total} ]
+                      </p>
+                    </div>
+
+                    <h2 className="mt-5 text-2xl sm:text-3xl md:text-4xl text-[#1a1a1a] leading-tight mb-4 sm:mb-5 md:mb-7 break-words">
+                      {s.title[0]} {s.title[1]}
+                    </h2>
+
+                    <div className="">
+                      <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-5 sm:mb-6 md:mb-8 max-w-sm">
+                        {s.description}
+                      </p>
+                      <button
+                        className="w-fit px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm font-semibold text-white transition-transform active:scale-95 whitespace-nowrap"
+                        style={{ background: "var(--btn-color)" }}
+                      >
+                        Get Started Now
+                      </button>
+                    </div>
                   </div>
 
-                  {/* COLUMN 2 — title + image, wide */}
                   <div className="w-full md:w-[42%] min-w-0 flex-shrink-0">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] leading-tight mb-4 sm:mb-5 md:mb-7 break-words">
-                      {s.title[0]}
-                      <br />
-                      {s.title[1]}
-                    </h2>
                     <div
-                      className="w-full rounded-xl sm:rounded-2xl overflow-hidden"
-                      style={{ aspectRatio: isMobile ? "16/10" : "4/3" }}
+                      className="w-full rounded-2xl  overflow-hidden"
+                      style={{ aspectRatio: isMobile ? "16/10" : "4/4" }}
                     >
                       <img
                         src={s.image}
@@ -260,34 +278,6 @@ const ServicesCarousel = () => {
                     </div>
                   </div>
 
-                  {/* COLUMN 3 — includes + description + CTA */}
-                  <div className="w-full md:flex-1 md:my-auto min-w-0 flex flex-col md:pt-2">
-                    <p
-                      className="text-sm font-medium mb-2.5 sm:mb-3 md:mb-4"
-                      style={{ color: "#c08552" }}
-                    >
-                      Includes
-                    </p>
-                    <ul className="flex flex-col gap-1.5 md:gap-2 mb-8 sm:mb-10 md:mb-16">
-                      {s.includes.map((item) => (
-                        <li
-                          key={item}
-                          className="text-sm sm:text-base md:text-xl text-[#1a1a1a] break-words"
-                        >
-                          - {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-5 sm:mb-6 md:mb-8 max-w-sm">
-                      {s.description}
-                    </p>
-                    <button
-                      className="w-fit px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm font-semibold text-[#1a1a1a] transition-transform active:scale-95 whitespace-nowrap"
-                      style={{ background: "#eaff5e" }}
-                    >
-                      Get Started Now
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>

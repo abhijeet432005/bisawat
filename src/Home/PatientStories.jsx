@@ -133,7 +133,7 @@ export default function PatientStories() {
               duration: 0.6,
               ease: "back.out(1.5)",
             },
-            "<=0.5"
+            "<=0.5",
           )
           .to(
             rightRef.current,
@@ -215,8 +215,8 @@ export default function PatientStories() {
       <button
         onClick={prev}
         disabled={animating}
-        className={`${mobile ? "w-12 h-12" : "w-9 h-9"} rounded-full border flex items-center justify-center disabled:opacity-25 transition-opacity flex-shrink-0`}
-        style={{ borderColor: "#1a3a2a", color: "#1a3a2a" }}
+        className={`text-[var(--btn-color)] border border-[var(--btn-color)] cursor-pointer  ${mobile ? "w-12 h-12" : "w-9 h-9"} rounded-full border flex items-center justify-center disabled:opacity-25 transition-opacity flex-shrink-0`}
+        // style={{ borderColor: "#1a3a2a", color: "#1a3a2a" }}
       >
         <svg
           className="w-4 h-4"
@@ -232,8 +232,8 @@ export default function PatientStories() {
       <button
         onClick={next}
         disabled={animating}
-        className={`${mobile ? "w-12 h-12" : "w-9 h-9"} rounded-full flex items-center justify-center text-white disabled:opacity-25 transition-opacity flex-shrink-0`}
-        style={{ backgroundColor: "#1a3a2a" }}
+        className={`bg-[var(--btn-color)] text-white text-[var(--btn-color)] border border-[var(--btn-color)] cursor-pointer ${mobile ? "w-12 h-12" : "w-9 h-9"} rounded-full flex items-center justify-center disabled:opacity-25 transition-opacity flex-shrink-0`}
+        // style={{ backgroundColor: "#1a3a2a" }}
       >
         <svg
           className="w-4 h-4"
@@ -253,9 +253,9 @@ export default function PatientStories() {
     <section
       ref={sectionRef}
       className="w-full py-10 min-h-screen flex justify-center items-center relative mt-10"
-      style={{ backgroundColor: "#f0ede8" }}
+      // style={{ backgroundColor: "#f5f5f5" }}
     >
-      <div className="stories-overlay-2 absolute top-0 h-10 md:h-15 w-full" />
+      {/* <div className="stories-overlay-2 absolute top-0 h-10 md:h-15 w-full" /> */}
 
       <div className="w-[90%] md:w-[95%] flex flex-col md:flex-row md:justify-between gap-10 md:gap-8">
         {/* LEFT */}
@@ -269,18 +269,18 @@ export default function PatientStories() {
               className="text-4xl md:text-5xl leading-tight mb-6"
               style={{ color: "#1a3a2a" }}
             >
+              Customer{" "}
               <span
                 className="italic"
-                style={{ color: "#b8942a", fontFamily: "font-italic" }}
+                style={{ fontFamily: "italic-font" }}
               >
-                Patient Stories{" "}
+                Testimonials{" "}
               </span>
-              That Speak for Themselves
             </h2>
             <button
               ref={btnRef}
-              className="text-sm font-medium text-white px-5 py-2.5 rounded-full"
-              style={{ backgroundColor: "#1a3a2a" }}
+              className="text-sm font-medium text-white px-5 py-2.5 rounded-full bg-[var(--btn-color)]"
+              // style={{ backgroundColor: "#1a3a2a" }}
             >
               View all testimonial
             </button>
@@ -316,9 +316,6 @@ export default function PatientStories() {
                       <p className="text-white text-xs md:text-[1rem] font-semibold leading-tight">
                         {p.name}
                       </p>
-                      <p className="text-white/70 text-xs md:text-[1rem]">
-                        {p.age}
-                      </p>
                     </div>
                   </div>
                 );
@@ -331,8 +328,8 @@ export default function PatientStories() {
         {/* RIGHT */}
         <div
           ref={rightRef}
-          className="w-full md:w-[40%] md:h-[35rem] lg:h-[42rem] rounded-3xl overflow-hidden flex-shrink-0"
-          style={{ backgroundColor: "#c8b99a" }}
+          className="w-full md:w-[40%] md:h-[30rem] lg:h-[40rem] rounded-3xl overflow-hidden flex-shrink-0 bg-[#f5f5f5]"
+          // style={{ backgroundColor: "white" }}
         >
           <div className="w-full h-full p-7 flex flex-col justify-between gap-5">
             <div className="flex flex-col gap-6">
@@ -351,9 +348,8 @@ export default function PatientStories() {
                 </div>
                 <span
                   ref={badgeRef}
-                  className="text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0"
+                  className="text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0 bg-gray-200"
                   style={{
-                    backgroundColor: "#e8ddd0",
                     color: "#1a3a2a",
                     willChange: "transform, opacity",
                   }}
@@ -372,8 +368,8 @@ export default function PatientStories() {
                 </p>
                 <p
                   ref={ageRef}
-                  className="text-sm"
-                  style={{ color: "#7a6a55", willChange: "transform, opacity" }}
+                  className="text-sm text-gray-500"
+                  style={{ willChange: "transform, opacity" }}
                 >
                   {current.age}
                 </p>
@@ -397,7 +393,7 @@ export default function PatientStories() {
         <NavButtons mobile />
       </div>
 
-      <div className="stories-overlay absolute bottom-0 h-10 md:h-15 w-full" />
+      {/* <div className="stories-overlay absolute bottom-0 h-10 md:h-15 w-full" /> */}
     </section>
   );
 }

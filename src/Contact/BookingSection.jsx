@@ -62,14 +62,11 @@ const BookingSection = () => {
           Let's make your smile{" "}
           <span className="font-normal font-[italic-font]">shine</span>
         </h2>
-        <p className="text-gray-400 mt-3 text-sm">
-          We're not just dental professionals we're smile architects.
-        </p>
       </div>
 
       {/* Form card */}
       <div
-        className="booking-card max-w-3xl mx-auto rounded-3xl p-8 pb-10 bg-gray-100"
+        className="booking-card max-w-5xl mx-auto rounded-3xl p-8 pb-10 bg-gray-100"
       >
         <form
           onSubmit={(e) => e.preventDefault()}
@@ -233,7 +230,7 @@ const BookingSection = () => {
               className="flex items-center gap-2 text-sm font-semibold text-white px-8 py-3 rounded-full"
               style={{
                 background:
-                  "linear-gradient(135deg, #6ab0f5 0%, #3b82f6 60%, #2563eb 100%)",
+                  "var(--btn-color)",
               }}
             >
               Book Now

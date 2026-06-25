@@ -55,8 +55,17 @@ const BeforeAfter = ({ beforeSrc, afterSrc }) => {
   return (
     <div
       ref={containerRef}
-      className="w-full flex flex-col justify-center items-center gap-4 pb-20"
+      className="w-full flex flex-col justify-center items-center gap-4 py-20 bg-gray-100 relative"
     >
+      <div
+        className="absolute top-0 h-10 w-full"
+        style={{
+          backgroundColor: "#F3F4F6",
+          backgroundImage:
+            "linear-gradient(0deg, rgba(243, 244, 246, 1) 0%, rgba(255, 255, 255, 0.9) 100%)",
+        }}
+      ></div>
+
       <div
         ref={wrapRef}
         onMouseMove={(e) => setPos(e.clientX)}
@@ -117,6 +126,15 @@ const BeforeAfter = ({ beforeSrc, afterSrc }) => {
           <span className="w-10 h-[1px] bg-gray-300 inline-block" />
         </div>
       </div>
+
+      <div
+        className="absolute bottom-0 h-10 w-full"
+        style={{
+          backgroundColor: "#F3F4F6",
+          backgroundImage:
+            "linear-gradient(180deg,rgba(243, 244, 246, 1) 0%, rgba(255, 255, 255, 0.9) 100%)",
+        }}
+      ></div>
     </div>
   );
 };

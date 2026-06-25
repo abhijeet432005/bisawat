@@ -34,15 +34,6 @@ const Hero = ({ content, className }) => {
         scale: 1,
         duration: 2.2,
         ease: "power3.out",
-        onComplete: () => {
-          gsap.to(imgRef.current, {
-            scale: 1.06,
-            duration: 8,
-            ease: "sine.inOut",
-            repeat: -1,
-            yoyo: true,
-          });
-        },
       },
       0,
     )
@@ -99,7 +90,7 @@ const Hero = ({ content, className }) => {
   return (
     <section
       ref={sectionRef}
-      className={`w-full flex justify-center rounded-b-[3rem] overflow-hidden relative ${className}`}
+      className={`w-full flex justify-center overflow-hidden relative ${className}`}
     >
       <img
         ref={imgRef}
@@ -114,7 +105,7 @@ const Hero = ({ content, className }) => {
       <div className="absolute bottom-0 flex flex-col w-[80%] mx-auto py-14 md:py-20">
         {content?.title && (
           <div className="ch-badge flex items-center gap-2 text-white/80 text-sm mb-6">
-            <svg
+            {/* <svg
               width="22"
               height="22"
               viewBox="0 0 24 24"
@@ -127,14 +118,14 @@ const Hero = ({ content, className }) => {
               <line x1="2" y1="12" x2="22" y2="12" />
               <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
               <line x1="19.07" y1="4.93" x2="4.93" y2="19.07" />
-            </svg>
+            </svg> */}
             <span className="tracking-wide">{content?.title}</span>
           </div>
         )}
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-          <div className="max-w-2xl">
-            <h1 className="ch-heading text-white text-5xl md:text-7xl leading-tight mb-5">
+          <div className="max-w-3xl">
+            <h1 className="ch-heading text-white text-5xl md:text-6xl leading-tight mb-5">
               {content?.heading}
             </h1>
             <p className="ch-sub text-white/65 text-sm md:text-base leading-relaxed max-w-lg">
@@ -142,8 +133,8 @@ const Hero = ({ content, className }) => {
             </p>
           </div>
 
-          {/* <div
-            className="ch-card flex items-center gap-4 rounded-2xl px-5 py-4 flex-shrink-0 w-fit"
+          <div
+            className="ch-card flex items-center gap-4 rounded-2xl px-5 py-4 flex-shrink-0 w-fit hover:bg-white cursor-pointer"
             style={{
               background: "rgba(255,255,255,0.15)",
               border: "1px solid rgba(255,255,255,0.25)",
@@ -179,7 +170,7 @@ const Hero = ({ content, className }) => {
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </section>

@@ -30,10 +30,11 @@ const Home = () => {
           "https://cdn.prod.website-files.com/6941011e592dac3331ac7edc/695626a50b7535cb2ca81c1f_Image%20(1)-p-800.png"
         }
       />
-      <PatientStories />
+
       <Testimonial />
       <FeaturedClinics />
       <Image_pin />
+      <PatientStories />
       <FAQSection />
     </div>
   );

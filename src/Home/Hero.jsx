@@ -2,80 +2,116 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const imageWrapRef = useRef(null);
 
   useGSAP(() => {
     const q = gsap.utils.selector(heroRef.current);
 
-    // split both heading chunks
     const split1 = new SplitText(q(".hero-heading"), {
       type: "lines",
-      mask: "lines", // clips each line so words reveal upward
+      mask: "lines",
     });
 
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-    // 1 — heading lines stagger up
     tl.from(split1.lines, {
       y: "110%",
       duration: 1,
       stagger: 0.1,
     })
 
-    // 2 — review row
-    .from(q(".hero-review"), {
-      y: 24,
-      opacity: 0,
-      duration: 0.7,
-    }, "-=0.4")
+      .from(
+        q(".hero-review"),
+        {
+          y: 24,
+          opacity: 0,
+          duration: 0.7,
+        },
+        "-=0.4"
+      )
 
-    // 3 — body copy
-    .from(q(".hero-body"), {
-      y: 20,
-      opacity: 0,
-      duration: 0.7,
-    }, "-=0.5")
+      .from(
+        q(".hero-body"),
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.7,
+        },
+        "-=0.5"
+      )
 
-    // 4 — button
-    .from(q(".hero-btn"), {
-      y: 16,
-      opacity: 0,
-      duration: 0.6,
-      ease: "back.out(1.7)",
-    }, "-=0.4")
+      .from(
+        q(".hero-btn"),
+        {
+          y: 16,
+          opacity: 0,
+          duration: 0.6,
+          ease: "back.out(1.7)",
+        },
+        "-=0.4"
+      )
 
-    // 5 — center image
-    .from(q(".hero-image"), {
-      // scale: 0.9,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power3.out",
-    }, 0.2) // starts near beginning, overlaps text
+      .from(
+        imageWrapRef.current,
+        {
+          opacity: 0,
+          scale: 1.08,
+          filter: "blur(14px)",
+          duration: 1.3,
+          ease: "power3.out",
+        },
+        0.2
+      )
 
-    // 6 — bottom tags
-    .from(q(".hero-tag"), {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.1,
-    }, "-=0.4");
+      .from(
+        q(".hero-tag"),
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.1,
+        },
+        "-=0.4"
+      );
 
-    return () => split1.revert();
+    // ── Minimal scroll parallax only ──
+    const scrollParallax = gsap.to(imageWrapRef.current, {
+      yPercent: 6,
+      ease: "none",
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    return () => {
+      split1.revert();
+      scrollParallax.scrollTrigger?.kill();
+      scrollParallax.kill();
+    };
   }, []);
 
   return (
-    <div ref={heroRef} className="w-full h-screen bg-[#608E8E] relative overflow-hidden">
+    <div
+      ref={heroRef}
+      className="w-full h-screen bg-[#6499c5] relative overflow-hidden"
+    >
       <div className="w-full flex-col md:flex-row flex gap-10 h-full justify-between py-10 md:pt-50 px-6 md:px-10 relative z-10">
-
         {/* LEFT — heading */}
         <div className="capitalize w-[30rem] pt-20 md:pt-0">
           <h1 className="hero-heading text-white text-4xl md:text-6xl max-w-xs md:max-w-lg">
             Find Your{" "}
-            <span className="text-[#EAFF5D]">Ideal Hair Transplant clinic</span>{" "}
+            <span className="text-[#EAFF5D]">
+              Ideal Hair Transplant clinic
+            </span>{" "}
             around the world
           </h1>
         </div>
@@ -114,35 +150,38 @@ const Hero = () => {
           </div>
 
           <div>
-            <button className="hero-btn px-4 py-2 bg-[#EAFF5D] text-black rounded-full">
+            <button className="hero-btn px-4 py-2 bg-[var(--btn-color)] text-white rounded-full">
               Book Now
             </button>
           </div>
         </div>
       </div>
 
-      {/* Bottom tags */}
+      {/* Bottom tags — white bg on hover */}
       <div className="w-full md:flex justify-center gap-10 z-20 absolute bottom-20 hidden">
-        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg inline-block">
+        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 hover:text-black rounded-full backdrop-blur-md bg-white/10 hover:bg-white border border-white/20 shadow-lg inline-block transition-colors duration-300 cursor-pointer">
           White Teeth
         </div>
-        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg inline-block">
+        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 hover:text-black rounded-full backdrop-blur-md bg-white/10 hover:bg-white border border-white/20 shadow-lg inline-block transition-colors duration-300 cursor-pointer">
           White Teeth
         </div>
-        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg inline-block">
+        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 hover:text-black rounded-full backdrop-blur-md bg-white/10 hover:bg-white border border-white/20 shadow-lg inline-block transition-colors duration-300 cursor-pointer">
           White Teeth
         </div>
       </div>
 
       {/* Center image */}
-      <div className="hero-image absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[42%] z-1">
+      <div
+        ref={imageWrapRef}
+        className="hero-image absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[42%] z-1"
+      >
         <img
           src="/image/5148-removebg-preview.png"
           alt=""
           className="min-w-[28rem] md:w-[45vw] h-[110vh]"
         />
-        <div className="overlay h-10 w-full absolute bottom-25 md:bottom-27" />
       </div>
+        <div className="overlay h-10 w-full absolute bottom-0 z-2" />
 
       <div className="overlay h-150 w-full absolute bottom-0" />
     </div>

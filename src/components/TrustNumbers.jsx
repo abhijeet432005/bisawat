@@ -45,11 +45,11 @@ const TrustNumbers = () => {
 
   return (
     <div ref={sectionRef} className="w-full flex justify-center items-center pt-20 pb-5">
-      <div className="w-[90%] md:w-[80%] gap-[2rem] flex flex-col lg:flex-row justify-between items-start lg:items-center">
+      <div className="w-[90%] md:w-[80%] gap-[2rem] flex flex-col lg:flex-row justify-between items-start lg:items-center border-b pb-20 border-gray-300">
 
         <div className="trust-left left flex flex-col gap-5">
-          <h1 className="text-4xl md:text-5xl capitalize">Trust & proven</h1>
-          <p className="w-xs lg:text-[1.2rem]">
+          <h1 className="text-4xl md:text-5xl capitalize">Trust & <span className="font-[italic-font]">proven</span></h1>
+          <p className="w-xs lg:text-[1rem] text-gray-500">
             Celebrating milestone that reflect our commitment to healthy,
             confident smiles.
           </p>

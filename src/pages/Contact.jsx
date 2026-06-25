@@ -4,21 +4,19 @@ import Hero from "../components/common/Hero";
 
 const Contact = () => {
   const content = {
-    title: "Contact With Us",
+    title: "Contact Us",
     img: "/image/contact-hero.avif",
     heading: (
       <>
-        We're Here to Help <br />
-        You Smile
+        Helping You <span className="font-[italic-font]">Smile</span>
       </>
     ),
-    para: "Your smile is more than just a feature—it's a reflection of your confidence, comfort, and well-being. We're committed to making every visit a step toward brighter.",
     text: "Message Us"
   };
 
   return (
     <>
-      <Hero content={content} className={"h-screen"}/>
+      <Hero content={content} className={"h-[80vh]"}/>
       <BookingSection />
       <FAQSection />
     </>

@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 
+:root {
+  --btn-color: #0076d7; /* global scope */
+}
+
+
 @font-face {
     font-family: font-1;
     src: url('/Fonts/font-1.woff2');
@@ -36,6 +41,8 @@ h2,
 h3, p {
     font-family: font-4;
 }
+
+
 
 
 /* img {

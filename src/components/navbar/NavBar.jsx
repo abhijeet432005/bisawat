@@ -68,6 +68,13 @@ const NavBar = () => {
   const rafId = useRef(null);
   const wasScrolled = useRef(false);
 
+  // pages where nav text should always render dark, regardless of scroll/transparency state
+  const forceDarkText =
+    location.pathname.startsWith("/about") ||
+    location.pathname.startsWith("/services");
+
+  const useDarkText = scrolled || dropdownOpen || forceDarkText;
+
   // ── scroll hide/show + smooth bg/shape transition ──────────
   useGSAP(() => {
     const measure = () => {
@@ -77,7 +84,6 @@ const NavBar = () => {
 
       setScrolled(isScrolled);
 
-      // ── animate the glass pill morph smoothly via GSAP, not CSS transition ──
       if (isScrolled !== wasScrolled.current) {
         wasScrolled.current = isScrolled;
 
@@ -361,7 +367,7 @@ const NavBar = () => {
       <header
         ref={navRef}
         className="w-full fixed top-0 left-0 z-40"
-        style={{ padding: "0px 20px", willChange: "transform, padding" }}
+        style={{ padding: "0px 30px", willChange: "transform, padding" }}
       >
         <div
           ref={navInnerRef}
@@ -381,59 +387,54 @@ const NavBar = () => {
             className="flex items-center gap-2 flex-shrink-0"
             onClick={() => dropdownOpen && closeDropdown()}
           >
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{
-                background: "linear-gradient(135deg, #6ab0f5, #2563eb)",
-              }}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              >
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-              </svg>
-            </div>
-            <span
-              className={`text-lg font-semibold tracking-tight transition-colors duration-500 ${scrolled || dropdownOpen ? "text-[#1a1a1a]" : "text-white"}`}
-            >
-              BrightSmile
-            </span>
+            <img src="/Logo.webp" alt="" className="w-fit h-8 md:h-11" />
           </Link>
 
           {/* DESKTOP CENTER LINKS */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) =>
               link.hasDropdown ? (
-                <button
+                <div
                   key={link.label}
-                  onClick={toggleDropdown}
-                  className={`flex items-center gap-1.5 text-base font-medium transition-colors duration-500 py-2 ${
-                    scrolled || dropdownOpen
-                      ? "text-[#1a1a1a] hover:text-blue-600"
-                      : "text-white hover:text-white/80"
-                  } ${isServicesActive ? "text-blue-600" : ""}`}
+                  className="flex items-center gap-1.5 py-2"
                 >
-                  {link.label}
-                  <svg
-                    ref={xIconRef}
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <NavLink
+                    to={link.to}
+                    onClick={() => dropdownOpen && closeDropdown()}
+                    className={({ isActive }) =>
+                      `text-base font-medium transition-colors duration-500 ${
+                        useDarkText
+                          ? "text-[#1a1a1a] hover:text-blue-600"
+                          : "text-white hover:text-white/80"
+                      } ${isActive ? "text-blue-600" : ""}`
+                    }
                   >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </button>
+                    {link.label}
+                  </NavLink>
+                  <button
+                    onClick={toggleDropdown}
+                    aria-label="Toggle services menu"
+                    className={`transition-colors duration-500 cursor-pointer ${
+                      useDarkText
+                        ? "text-[#1a1a1a] hover:text-blue-600"
+                        : "text-white hover:text-white/80"
+                    } ${isServicesActive ? "text-blue-600" : ""}`}
+                  >
+                    <svg
+                      ref={xIconRef}
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+                </div>
               ) : (
                 <NavLink
                   key={link.label}
@@ -441,7 +442,7 @@ const NavBar = () => {
                   onClick={() => dropdownOpen && closeDropdown()}
                   className={({ isActive }) =>
                     `text-base font-medium transition-colors duration-500 py-2 ${
-                      scrolled || dropdownOpen
+                      useDarkText
                         ? "text-[#1a1a1a] hover:text-blue-600"
                         : "text-white hover:text-white/80"
                     } ${isActive ? "text-blue-600" : ""}`
@@ -458,8 +459,8 @@ const NavBar = () => {
             <Link
               to="/contact"
               onClick={() => dropdownOpen && closeDropdown()}
-              className="px-5 py-2 rounded-full text-sm font-semibold transition-transform active:scale-95"
-              style={{ background: "#eaff5e", color: "#1a1a1a" }}
+              className="px-5 py-3 rounded-full text-sm font-semibold transition-transform active:scale-95 bg-[var(--btn-color)]"
+              style={{ color: "#fff" }}
             >
               Book Now
             </Link>
@@ -472,10 +473,10 @@ const NavBar = () => {
             aria-label="Open menu"
           >
             <span
-              className={`w-6 h-[2px] transition-colors duration-500 ${scrolled ? "bg-[#1a1a1a]" : "bg-white"}`}
+              className={`w-6 h-[2px] transition-colors duration-500 ${useDarkText ? "bg-[#1a1a1a]" : "bg-white"}`}
             />
             <span
-              className={`w-6 h-[2px] transition-colors duration-500 ${scrolled ? "bg-[#1a1a1a]" : "bg-white"}`}
+              className={`w-6 h-[2px] transition-colors duration-500 ${useDarkText ? "bg-[#1a1a1a]" : "bg-white"}`}
             />
           </button>
         </div>
@@ -545,7 +546,7 @@ const NavBar = () => {
       {/* MOBILE FULLSCREEN MENU */}
       <div
         ref={mobileMenuRef}
-        className="fixed inset-0 z-50 bg-white flex-col px-6 py-6 overflow-y-auto"
+        className="fixed inset-0 z-50 bg-white flex-col px-6 py-3 overflow-y-auto"
         style={{ overflowX: "hidden" }}
       >
         <div className="flex items-center justify-between mb-10">
@@ -554,27 +555,7 @@ const NavBar = () => {
             onClick={closeMobileMenu}
             className="flex items-center gap-2"
           >
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{
-                background: "linear-gradient(135deg, #6ab0f5, #2563eb)",
-              }}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              >
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-              </svg>
-            </div>
-            <span className="text-lg font-semibold text-[#1a1a1a]">
-              BrightSmile
-            </span>
+            <img src="/Logo.webp" alt="" className="w-fit h-8" />
           </Link>
           <button
             onClick={closeMobileMenu}
@@ -600,29 +581,42 @@ const NavBar = () => {
           {navLinks.map((link) =>
             link.hasDropdown ? (
               <div key={link.label} className="mobile-nav-item">
-                <button
-                  onClick={toggleMobileSub}
-                  className={`w-full flex items-center justify-between py-4 text-2xl border-b border-gray-100 transition-colors ${
-                    isServicesActive
-                      ? "text-blue-600 font-semibold"
-                      : "text-[#1a1a1a]"
-                  }`}
-                >
-                  {link.label}
-                  <svg
-                    ref={mobileSubIconRef}
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                <div className="w-full flex items-center justify-between py-4 border-b border-gray-100">
+                  <NavLink
+                    to={link.to}
+                    onClick={closeMobileMenu}
+                    className={({ isActive }) =>
+                      `text-2xl transition-colors ${
+                        isActive
+                          ? "text-blue-600 font-semibold"
+                          : "text-[#1a1a1a]"
+                      }`
+                    }
                   >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </button>
+                    {link.label}
+                  </NavLink>
+                  <button
+                    onClick={toggleMobileSub}
+                    aria-label="Toggle services submenu"
+                    className={`p-1 transition-colors ${
+                      isServicesActive ? "text-blue-600" : "text-[#1a1a1a]"
+                    }`}
+                  >
+                    <svg
+                      ref={mobileSubIconRef}
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+                </div>
 
                 <div ref={mobileSubRef}>
                   <div className="grid grid-cols-1 gap-4 pt-4 pb-3 pl-3">
@@ -663,7 +657,7 @@ const NavBar = () => {
             to="/contact"
             onClick={closeMobileMenu}
             className="block text-center w-full px-5 py-4 rounded-full text-base font-semibold"
-            style={{ background: "#eaff5e", color: "#1a1a1a" }}
+            style={{ background: "var(--btn-color)", color: "#1a1a1a" }}
           >
             Book Now
           </Link>

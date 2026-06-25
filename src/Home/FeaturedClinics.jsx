@@ -13,6 +13,12 @@ const clinics = [
   { id: 2, name: "Vera Clinic", location: "Istanbul, Turkey", price: "From $2,000 – $4,500", image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=900&q=80" },
   { id: 3, name: "Crown Restoration", location: "Greece", price: "From $1,800 – $4,000", image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=900&q=80" },
   { id: 4, name: "Elite Hair Center", location: "Spain", price: "From $2,200 – $5,000", image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=80" },
+  { id: 5, name: "Elite Hair Center", location: "Spain", price: "From $2,200 – $5,000", image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=80" },
+  { id: 6, name: "Elite Hair Center", location: "Spain", price: "From $2,200 – $5,000", image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=80" },
+  { id: 7, name: "Medart Hair Clinic", location: "Turkey", price: "From $1,500 – $3,750", image: "https://cdn.prod.website-files.com/6941011e592dac3331ac7edc/694ff20c591fbab7ba17de1f_Rectangle%20(5)-p-500.webp" },
+  { id: 8, name: "Vera Clinic", location: "Istanbul, Turkey", price: "From $2,000 – $4,500", image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=900&q=80" },
+  { id: 9, name: "Crown Restoration", location: "Greece", price: "From $1,800 – $4,000", image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=900&q=80" },
+  { id: 10, name: "Crown Restoration", location: "Greece", price: "From $1,800 – $4,000", image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=900&q=80" },
 ];
 
 const INITIAL_INDEX = 0;
@@ -224,21 +230,11 @@ export default function FeaturedClinics() {
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between px-5 py-5 gap-3">
                   <div className="text-white min-w-0">
-                    <div className="flex items-center gap-1 text-white/75 text-xs mb-1.5">
-                      <PinIcon />
-                      <span>{clinic.location}</span>
-                    </div>
-                    <p className="font-semibold text-sm md:text-base leading-snug truncate">{clinic.name}</p>
-                    <p className="text-xs text-white/70 mt-0.5">{clinic.price}</p>
+                    
+                    <p className="font-semibold text-sm md:text-base leading-snug truncate flex gap-2 items-center"><PinIcon />
+                      <span>Mumbai</span></p>
                   </div>
-                  {i === active && (
-                    <button
-                      className="flex-shrink-0 bg-white text-gray-900 text-xs md:text-sm font-medium rounded-full px-4 py-2.5 hover:bg-white/90 transition-colors active:scale-95"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      See details
-                    </button>
-                  )}
+                  
                 </div>
               </div>
             ))}
@@ -249,18 +245,18 @@ export default function FeaturedClinics() {
       <div ref={navRef} className="flex items-center justify-center gap-4 mt-6">
         <button
           onClick={() => goTo(active - 1)}
-          className="w-11 h-11 rounded-full border border-white/40 flex items-center justify-center text-white bg-[#1a3a2a]"
+          className="w-11 h-11 rounded-full border border-white/40 flex items-center justify-center text-white bg-[var(--btn-color)]"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
-        <button className="bg-[#f0ede8] text-gray-900 text-sm font-medium rounded-full px-8 py-3 hover:bg-white/90 transition-colors active:scale-95">
+        <button className="bg-[#f5f5f5] text-gray-900 text-sm font-medium rounded-full px-8 py-3 hover:bg-white/90 transition-colors active:scale-95">
           Find your clinic
         </button>
         <button
           onClick={() => goTo(active + 1)}
-          className="w-11 h-11 rounded-full border border-white/40 flex items-center justify-center text-white bg-[#1a3a2a]"
+          className="w-11 h-11 rounded-full border border-white/40 flex items-center justify-center text-white bg-[var(--btn-color)]"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <polyline points="9 18 15 12 9 6" />

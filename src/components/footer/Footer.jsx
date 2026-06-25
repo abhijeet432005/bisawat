@@ -13,27 +13,7 @@ const Footer = () => {
             {/* Logo + tagline */}
             <div className="md:w-[28%]">
               <div className="flex items-center gap-2 mb-4">
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "linear-gradient(135deg, #6ab0f5, #2563eb)",
-                  }}
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                  >
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                  </svg>
-                </div>
-                <span className="text-lg font-semibold tracking-tight">
-                  BrightSmile
-                </span>
+                <img src="/Logo.webp" alt="" className="w-fit h-15" />
               </div>
               <p className="text-sm text-white/40 leading-relaxed max-w-[220px]">
                 World-class dental care you can trust. Your smile is our
@@ -133,7 +113,7 @@ const Footer = () => {
                   Get Exclusive Dental{" "}
                   <span
                     className="font-[italic-font] font-normal"
-                    style={{ color: "#6ab0f5" }}
+                    style={{ color: "#ffff" }}
                   >
                     Offers,
                   </span>

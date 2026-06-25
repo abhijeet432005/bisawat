@@ -25,7 +25,7 @@ const About = () => {
   return (
     <div>
       {/* <Hero /> */}
-      <Hero content={content} className={'h-[70vh]'}/>
+      {/* <Hero content={content} className={'h-[70vh]'}/> */}
       <QuickFacts />
       {/* <Grid_3 /> */}
       <TeamSection />

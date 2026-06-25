@@ -118,11 +118,11 @@ const FAQSection = () => {
 
       <div className="faq-list max-w-4xl mx-auto flex flex-col gap-4">
         {faqs.map((faq, i) => (
-          <div key={i} className="faq-item bg-[#FAFAFA] rounded-2xl overflow-hidden">
+          <div key={i} className="faq-item bg-[#FAFAFA] rounded-2xl overflow-hidden ">
 
             <button
               onClick={() => toggle(i)}
-              className="w-full flex items-center justify-between px-7 py-6 text-left"
+              className="w-full flex items-center justify-between px-7 py-6 text-left cursor-pointer"
             >
               <span className="text-[#0d1b2a] font-semibold text-base font-[font-4]">
                 {faq.q}

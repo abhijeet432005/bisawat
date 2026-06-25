@@ -1,8 +1,9 @@
 import React from "react";
-import Hero from "../components/common/Hero";
+import Hero from "../Services/Hero";
 import ServicesParallax from "../Services/services";
 import CareSection from "../Services/CareSection";
 import MarqueeSection from "../components/common/MarqueeSection";
+import Line from "../components/Line";
 
 const Services = () => {
   const content = {
@@ -22,12 +23,19 @@ const Services = () => {
   };
 
   return (
-    <div style={{ background: "#faf8f4" }} className="w-full min-h-screen">
-      <Hero content={content} className={'h-screen'}/>
+    <>
+      {/* <Hero content={content} className={'h-screen'}/> */}
+      <Hero />
       <ServicesParallax />
       <CareSection />
+      <Line />
+      <CareSection className={"md:flex-row-reverse"}/>
+      <Line />
+      <CareSection />
+      <Line />
+      <CareSection className={"md:flex-row-reverse"}/>
       <MarqueeSection />
-    </div>
+    </>
   );
 };
 
