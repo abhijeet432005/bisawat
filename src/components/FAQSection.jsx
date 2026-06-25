@@ -108,9 +108,6 @@ const FAQSection = () => {
     <section ref={sectionRef} className="w-full bg-white py-20 px-6">
 
       <div className="faq-header flex flex-col items-center text-center mb-12">
-        <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 px-4 py-1.5 rounded-full mb-5 uppercase">
-          FAQs
-        </span>
         <h2 className="text-5xl text-[#0d1b2a] leading-tight capitalize">
           Frequently asked{" "}
           <span className="font-normal font-[italic-font]">

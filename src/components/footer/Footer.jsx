@@ -143,7 +143,7 @@ const Footer = () => {
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 w-full max-w-sm">
+              <div className="flex flex-col md:flex-row md:items-center gap-3 w-full max-w-sm">
                 <input
                   type="email"
                   value={email}
@@ -151,7 +151,7 @@ const Footer = () => {
                   placeholder="Your email address"
                   className="flex-1 bg-white/8 border border-white/10 rounded-full px-5 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-white/25 transition-colors"
                 />
-                <button className="flex-shrink-0 bg-white text-[#1a1a1a] text-sm font-semibold px-6 py-3 rounded-full hover:bg-white/90 transition-colors active:scale-95">
+                <button className="w-fit bg-white text-[#1a1a1a] text-sm font-semibold px-6 py-3 rounded-full hover:bg-white/90 transition-colors active:scale-95">
                   Subscribe
                 </button>
               </div>

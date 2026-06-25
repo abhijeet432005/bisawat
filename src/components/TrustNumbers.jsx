@@ -44,7 +44,7 @@ const TrustNumbers = () => {
   }, []);
 
   return (
-    <div ref={sectionRef} className="w-full flex justify-center items-center pt-20">
+    <div ref={sectionRef} className="w-full flex justify-center items-center pt-20 pb-5">
       <div className="w-[90%] md:w-[80%] gap-[2rem] flex flex-col lg:flex-row justify-between items-start lg:items-center">
 
         <div className="trust-left left flex flex-col gap-5">

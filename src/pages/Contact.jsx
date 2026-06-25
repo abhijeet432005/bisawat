@@ -18,7 +18,7 @@ const Contact = () => {
 
   return (
     <>
-      <Hero content={content} />
+      <Hero content={content} className={"h-screen"}/>
       <BookingSection />
       <FAQSection />
     </>

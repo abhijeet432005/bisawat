@@ -64,7 +64,7 @@ const ServicesCarousel = () => {
   const isMobile = containerW > 0 && containerW < 640;
   const isTablet = containerW >= 640 && containerW < 1024;
 
-  const GAP = isMobile ? 12 : 24;
+  const GAP = isMobile ? 12 : 0;
 
   const CARD_W =
     containerW > 0
@@ -181,7 +181,7 @@ const ServicesCarousel = () => {
 
   return (
     <section
-      className="w-full mt-30  overflow-hidden"
+      className="w-full my-10 mt-25 overflow-hidden"
       style={{ background: "#faf8f4" }}
     >
       <div ref={containerRef} className="relative w-full px-4 sm:px-6 md:px-0">
@@ -248,7 +248,7 @@ const ServicesCarousel = () => {
                     </h2>
                     <div
                       className="w-full rounded-xl sm:rounded-2xl overflow-hidden"
-                      style={{ aspectRatio: isMobile ? "16/10" : "4/4.6" }}
+                      style={{ aspectRatio: isMobile ? "16/10" : "4/3" }}
                     >
                       <img
                         src={s.image}

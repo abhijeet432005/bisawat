@@ -1,13 +1,8 @@
 import TrustNumbers from "../components/TrustNumbers";
-import Hero from "../About/Hero";
-import Hero_grid_2 from "../About/Hero_grid_2";
 import Image_pin from "../Home/Image_pin";
 import BeforeAfter from "../components/BeforeAfter";
-import Grid_3 from "../About/Grid_3";
-import ReviewCapsule from "../components/ReviewCapsule";
 import ServicesSection from "../Home/ServicesSection";
 import FAQSection from "../components/FAQSection";
-import BookingSection from "../Contact/BookingSection";
 import FeaturedClinics from "../Home/FeaturedClinics";
 import PatientStories from "../Home/PatientStories";
 import HeroSection from "../Home/Hero";
@@ -16,17 +11,16 @@ import { useLenis } from "lenis/react";
 import { useLayoutEffect } from "react";
 
 const Home = () => {
-  const lenis = useLenis()
+  const lenis = useLenis();
 
   useLayoutEffect(() => {
-    lenis?.scrollTo(0, { immediate: true })
-  }, [lenis])
-  
+    lenis?.scrollTo(0, { immediate: true });
+  }, [lenis]);
+
   return (
     <div className="overflow-hidden">
       <HeroSection />
       <TrustNumbers />
-      <PatientStories />
       <ServicesSection />
       <BeforeAfter
         beforeSrc={
@@ -36,6 +30,7 @@ const Home = () => {
           "https://cdn.prod.website-files.com/6941011e592dac3331ac7edc/695626a50b7535cb2ca81c1f_Image%20(1)-p-800.png"
         }
       />
+      <PatientStories />
       <Testimonial />
       <FeaturedClinics />
       <Image_pin />

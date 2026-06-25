@@ -75,7 +75,7 @@ const Hero = () => {
         <div className="capitalize w-[30rem] pt-20 md:pt-0">
           <h1 className="hero-heading text-white text-4xl md:text-6xl max-w-xs md:max-w-lg">
             Find Your{" "}
-            <span className="text-[#bcdf9d]">Ideal Hair Transplant clinic</span>{" "}
+            <span className="text-[#EAFF5D]">Ideal Hair Transplant clinic</span>{" "}
             around the world
           </h1>
         </div>
@@ -122,7 +122,7 @@ const Hero = () => {
       </div>
 
       {/* Bottom tags */}
-      <div className="w-full md:flex justify-center gap-10 z-100 absolute bottom-20 hidden">
+      <div className="w-full md:flex justify-center gap-10 z-20 absolute bottom-20 hidden">
         <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg inline-block">
           White Teeth
         </div>

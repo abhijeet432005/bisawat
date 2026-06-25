@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { cards } from "../constants/index";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -9,30 +10,28 @@ gsap.registerPlugin(ScrollTrigger);
 const Testimonial = () => {
   const sectionRef = useRef(null);
   const vdRef = useRef([]);
-  vdRef.current = []; // ✅ reset every render
+  vdRef.current = [];
 
   const modalRef = useRef(null);
   const [activeVideo, setActiveVideo] = useState(null);
 
   useGSAP(
     () => {
-      // ✅ ONE timeline, ONE ScrollTrigger — eliminates two-trigger conflict
       const pinTl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=200%",          // ✅ relative end
+          end: "+=200%",
           scrub: 1.5,
           pin: true,
           anticipatePin: 1,
-          invalidateOnRefresh: true, // ✅
+          invalidateOnRefresh: true,
         },
       });
 
-      // ✅ marquee titles run inside pin — no separate ScrollTrigger
       pinTl
         .to("[data-title='first']", { xPercent: -250 }, 0)
-        .to("[data-title='sec']", { xPercent: 150 }, 0)
+        .to("[data-title='sec']", { xPercent: 200 }, 0)
         .to("[data-title='third']", { xPercent: -250 }, 0)
         .from(
           "[data-card]",
@@ -40,14 +39,13 @@ const Testimonial = () => {
           0.3,
         );
 
-      // ✅ double rAF
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           ScrollTrigger.refresh();
         });
       });
     },
-    { scope: sectionRef, dependencies: [] }, // ✅ scoped
+    { scope: sectionRef, dependencies: [] },
   );
 
   const lockScroll = () => (document.body.style.overflow = "hidden");
@@ -96,13 +94,11 @@ const Testimonial = () => {
   }, []);
 
   return (
-    // ✅ no mt-10 — use spacer in Home if needed
     <section
       ref={sectionRef}
       className="testimonials-section relative w-full h-[110dvh] lg:h-[100dvh]"
     >
-      {/* ✅ data attrs instead of class selectors — scoped, no bleed */}
-      <div className="absolute size-full flex flex-col items-center py-[2vw] uppercase text-[14vw] leading-[15vw] tracking-[-.4vw]  font-bold">
+      <div className="absolute size-full flex flex-col items-center py-[2vw] uppercase text-[14vw] leading-[15vw] tracking-[-.4vw] font-bold">
         <h1 className="text-black" data-title="first">our</h1>
         <h1 className="text-[#E3A458]" data-title="sec">People</h1>
         <h1 className="text-black" data-title="third">Stories</h1>
@@ -112,7 +108,7 @@ const Testimonial = () => {
         {cards.map((card, index) => (
           <div
             key={index}
-            data-card // ✅ data attr instead of class selector
+            data-card
             className={`vd-card w-70 md:w-85 flex-none md:rounded-[2vw] rounded-3xl -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-[#F9EADE] ${card.translation} ${card.rotation} ${card.position}`}
             onMouseEnter={() => handlePlay(index)}
             onMouseLeave={() => handlePause(index)}
@@ -130,18 +126,26 @@ const Testimonial = () => {
         ))}
       </div>
 
-      {activeVideo && (
+      {/* ── Modal rendered via PORTAL — escapes pinned section's stacking context ── */}
+      {activeVideo && createPortal(
         <div
           ref={onModalMount}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm w-full h-screen flex items-center justify-center z-[1000]"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm w-full h-screen flex items-center justify-center"
+          style={{ zIndex: 99999 }}
         >
-          <button onClick={closeModal} aria-label="Close modal" className="absolute top-6 right-8 text-white text-4xl z-[1000] cursor-pointer">
+          <button
+            onClick={closeModal}
+            aria-label="Close modal"
+            className="fixed top-6 right-8 text-white text-4xl cursor-pointer"
+            style={{ zIndex: 100000 }}
+          >
             ✕
           </button>
           <div ref={onModalVideoMount} className="w-[85vw] max-w-[1000px] h-[80vh] flex items-center justify-center bg-gray-300/10">
             <video key={activeVideo} src={activeVideo} controls autoPlay className="w-full h-full object-contain" />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );

@@ -15,7 +15,7 @@ const clinics = [
   { id: 4, name: "Elite Hair Center", location: "Spain", price: "From $2,200 – $5,000", image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=80" },
 ];
 
-const INITIAL_INDEX = 1;
+const INITIAL_INDEX = 0;
 const ENABLE_ACTIVE_SCALE = false;
 const ACTIVE_SCALE = 1.08;
 const PARALLAX_AMOUNT = 60;

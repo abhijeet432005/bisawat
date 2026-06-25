@@ -1,6 +1,10 @@
 import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const images = [
   "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80",
@@ -12,23 +16,63 @@ const images = [
 
 const marqueeImages = [...images, ...images];
 
-const TRACK_DURATION = 22;
-const IMG_DRIFT_PX   = 40;
-const IMG_SCALE      = 1.2;
+const TRACK_DURATION = 20;
+const IMG_DRIFT_PX = 30;
+const IMG_SCALE = 1.3;
 
 const MarqueeSection = () => {
-  const trackRef      = useRef(null);
-  const imgRefs        = useRef([]);
-  const trackTween     = useRef(null);
-  const parallaxTween  = useRef(null); // ← single master tween for ALL images
-  const halfWidthRef     = useRef(0);
-  const resizeTimeout    = useRef(null);
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
+  const imgRefs = useRef([]);
+  const trackTween = useRef(null);
+  const parallaxTween = useRef(null);
+  const halfWidthRef = useRef(0);
+  const resizeTimeout = useRef(null);
 
   useGSAP(() => {
     const track = trackRef.current;
     const measure = () => track.scrollWidth / 2;
     halfWidthRef.current = measure();
 
+    // ── Reveal: heading split + marquee row fade/slide in on scroll ──
+    const split = new SplitText(".marquee-heading-line", { type: "lines" });
+    split.lines.forEach((line) => {
+      const wrapper = document.createElement("div");
+      wrapper.style.overflow = "hidden";
+      line.parentNode.insertBefore(wrapper, line);
+      wrapper.appendChild(line);
+    });
+
+    gsap.fromTo(
+      split.lines,
+      { y: "110%", opacity: 0 },
+      {
+        y: "0%",
+        opacity: 1,
+        duration: 1,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".marquee-heading-wrap", start: "top 85%" },
+      }
+    );
+
+    // Marquee track container reveal: fade up + clip-path wipe per card
+    gsap.fromTo(
+      ".marquee-card",
+      {
+        y: 40,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: "power2.out",
+        scrollTrigger: { trigger: ".marquee-row", start: "top 88%" },
+      }
+    );
+
+    // ── Existing marquee loop + parallax (unchanged) ──
     const startTrack = (fromX = 0) => {
       gsap.set(track, { x: fromX, force3D: true });
       trackTween.current = gsap.to(track, {
@@ -40,12 +84,10 @@ const MarqueeSection = () => {
       });
     };
 
-    // ── ONE timeline drives every image's parallax — not N separate tweens ──
     const startParallax = () => {
       const tl = gsap.timeline({ repeat: -1, yoyo: true });
-      // batch all images into a single tween call — GSAP internally optimizes
-      // animating an array together far better than N independent tweens
-      tl.fromTo(imgRefs.current,
+      tl.fromTo(
+        imgRefs.current,
         { x: -IMG_DRIFT_PX },
         {
           x: IMG_DRIFT_PX,
@@ -85,7 +127,7 @@ const MarqueeSection = () => {
       clearTimeout(resizeTimeout.current);
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, { scope: sectionRef });
 
   const pauseAll = () => {
     trackTween.current?.pause();
@@ -98,35 +140,34 @@ const MarqueeSection = () => {
 
   return (
     <section
-      className="w-full py-16 md:py-24 overflow-hidden"
+      ref={sectionRef}
+      className="w-full py-10 pb-20 overflow-hidden"
       style={{ background: "#faf8f4" }}
     >
-      <div className="max-w-4xl mx-auto text-center px-6 mb-12 md:mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl text-[#1a1a1a] leading-tight">
+      <div className="marquee-heading-wrap max-w-4xl mx-auto text-center px-6 mb-12 md:mb-16 capitalize">
+        <h2 className="marquee-heading-line text-3xl sm:text-4xl md:text-5xl text-[#1a1a1a] leading-tight overflow-hidden">
           Moments of care,<br />
-          <span className="font-normal" style={{ fontStyle: "italic" }}>
-            captured every day
-          </span>
+          <span className="font-[italic-font]">captured every day</span>
         </h2>
       </div>
 
       <div
-        className="relative w-full overflow-hidden"
+        className="marquee-row relative w-full overflow-hidden"
         onMouseEnter={pauseAll}
         onMouseLeave={playAll}
       >
         <div
           ref={trackRef}
-          className="flex gap-4 md:gap-6 w-max"
+          className="flex gap-4 w-max"
           style={{ willChange: "transform", transform: "translateZ(0)" }}
         >
           {marqueeImages.map((src, i) => (
             <div
               key={i}
-              className="flex-shrink-0 lg:rounded-xl overflow-hidden relative"
+              className="marquee-card flex-shrink-0 lg:rounded-xl overflow-hidden relative"
               style={{
-                width: "clamp(300px, 26vw, 380px)",
-                height: "clamp(350px, 32vw, 480px)",
+                width: "clamp(300px, 26vw, 350px)",
+                height: "clamp(350px, 32vw, 420px)",
               }}
             >
               <img
@@ -135,7 +176,6 @@ const MarqueeSection = () => {
                 alt=""
                 className="w-full h-full object-cover absolute inset-0"
                 style={{
-                  // scale baked into a CSS custom property read once — never fights GSAP's x writes
                   "--img-scale": IMG_SCALE,
                   transform: `scale(var(--img-scale))`,
                   willChange: "transform",

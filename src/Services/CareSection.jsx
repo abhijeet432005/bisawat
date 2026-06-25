@@ -109,10 +109,10 @@ const CareSection = () => {
 
   return (
     <section
-      className="w-full py-16 md:py-24 px-6 md:px-16 flex justify-center"
+      className="w-full py-16 md:py-10 px-6 md:px-16 flex justify-center"
       style={{ background: "#faf8f4" }}
     >
-      <div className="w-[85%] mx-auto flex flex-col md:flex-row gap-8 md:items-stretch">
+      <div className=" md:w-[85%] mx-auto flex flex-col md:flex-row gap-8 md:items-stretch">
         {/* LEFT — stretches to match right column's height, top to bottom */}
         <div className="w-full md:w-[50%] flex-shrink-0">
           <div className="w-full h-[380px] md:h-[700px] rounded-[2rem] overflow-hidden">
@@ -129,13 +129,6 @@ const CareSection = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl text-[#1a1a1a] leading-tight mb-5">
             Care that adapts to your body, life, and journey
           </h2>
-
-          <p className="text-gray-500 text-sm md:text-base leading-relaxed max-w-lg mb-10">
-            We don't follow one-size-fits-all treatment plans. Every service is
-            thoughtfully designed around your medical history, lifestyle, and
-            personal comfort.
-          </p>
-
           <div className="flex-1" />
 
           {/* Accordion */}

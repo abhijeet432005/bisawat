@@ -5,12 +5,10 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(SplitText);
 
-const Hero = ({ content }) => {
+const Hero = ({ content, className }) => {
   const imgRef = useRef(null);
   const sectionRef = useRef(null);
   const splitRef = useRef(null);
-
-  console.log(content.heading)
 
   useGSAP(() => {
     const q = gsap.utils.selector(sectionRef.current);
@@ -101,11 +99,11 @@ const Hero = ({ content }) => {
   return (
     <section
       ref={sectionRef}
-      className="w-full flex justify-center h-screen rounded-b-[3rem] overflow-hidden relative"
+      className={`w-full flex justify-center rounded-b-[3rem] overflow-hidden relative ${className}`}
     >
       <img
         ref={imgRef}
-        src={content.img}
+        src={content?.img}
         alt="Dental clinic"
         className="w-full h-full object-cover"
         style={{ willChange: "transform", transformOrigin: "center" }}
@@ -114,35 +112,37 @@ const Hero = ({ content }) => {
       <div className="absolute inset-0 bg-black/45" />
 
       <div className="absolute bottom-0 flex flex-col w-[80%] mx-auto py-14 md:py-20">
-        <div className="ch-badge flex items-center gap-2 text-white/80 text-sm mb-6">
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          >
-            <line x1="12" y1="2" x2="12" y2="22" />
-            <line x1="2" y1="12" x2="22" y2="12" />
-            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
-            <line x1="19.07" y1="4.93" x2="4.93" y2="19.07" />
-          </svg>
-          <span className="tracking-wide">{content.title}</span>
-        </div>
+        {content?.title && (
+          <div className="ch-badge flex items-center gap-2 text-white/80 text-sm mb-6">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              <line x1="12" y1="2" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+              <line x1="19.07" y1="4.93" x2="4.93" y2="19.07" />
+            </svg>
+            <span className="tracking-wide">{content?.title}</span>
+          </div>
+        )}
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="max-w-2xl">
             <h1 className="ch-heading text-white text-5xl md:text-7xl leading-tight mb-5">
-              {content.heading}
+              {content?.heading}
             </h1>
             <p className="ch-sub text-white/65 text-sm md:text-base leading-relaxed max-w-lg">
-              {content.para}
+              {content?.para}
             </p>
           </div>
 
-          <div
+          {/* <div
             className="ch-card flex items-center gap-4 rounded-2xl px-5 py-4 flex-shrink-0 w-fit"
             style={{
               background: "rgba(255,255,255,0.15)",
@@ -162,7 +162,7 @@ const Hero = ({ content }) => {
             </div>
             <div>
               <p className="text-white font-semibold text-sm leading-tight mb-0.5">
-                {content.text}
+                {content?.text}
               </p>
               <p className="text-white/55 text-xs">Get Started</p>
             </div>
@@ -179,7 +179,7 @@ const Hero = ({ content }) => {
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

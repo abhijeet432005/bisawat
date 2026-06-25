@@ -58,9 +58,6 @@ const BookingSection = () => {
     <section ref={sectionRef} className="w-full bg-white py-20 px-6">
       {/* Header */}
       <div className="booking-header flex flex-col items-center text-center mb-12">
-        <span className="text-xs font-semibold tracking-widest text-gray-500 bg-gray-100 px-4 py-1.5 rounded-full mb-5 uppercase">
-          Book Appointment
-        </span>
         <h2 className="text-5xl capitalize text-[#0d1b2a] leading-tight">
           Let's make your smile{" "}
           <span className="font-normal font-[italic-font]">shine</span>
@@ -72,11 +69,7 @@ const BookingSection = () => {
 
       {/* Form card */}
       <div
-        className="booking-card max-w-3xl mx-auto rounded-3xl p-8 pb-10"
-        style={{
-          background:
-            "linear-gradient(160deg, #c8e8f5 0%, #ddf0fa 40%, #eef8fd 100%)",
-        }}
+        className="booking-card max-w-3xl mx-auto rounded-3xl p-8 pb-10 bg-gray-100"
       >
         <form
           onSubmit={(e) => e.preventDefault()}
