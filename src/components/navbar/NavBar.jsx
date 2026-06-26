@@ -11,10 +11,10 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 
 const services = [
   {
-    label: "Esthetic Dentistry",
-    to: "/services#esthetic",
+    label: "Preventive Care",
+    to: "/services#preventive",
     image:
-      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80",
+      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80",
   },
   {
     label: "Restorative Dentistry",
@@ -23,10 +23,10 @@ const services = [
       "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80",
   },
   {
-    label: "Preventive Care",
-    to: "/services#preventive",
+    label: "Esthetic Dentistry",
+    to: "/services#esthetic",
     image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80",
+      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80",
   },
   {
     label: "Beyond the Smile",
@@ -387,7 +387,7 @@ const NavBar = () => {
             className="flex items-center gap-2 flex-shrink-0"
             onClick={() => dropdownOpen && closeDropdown()}
           >
-            <img src="/Logo.webp" alt="" className="w-fit h-8 md:h-11" />
+            <img src="/Logo.webp" alt="" className=" max-w-30 md:max-w-35 h-8 md:h-11" />
           </Link>
 
           {/* DESKTOP CENTER LINKS */}
@@ -555,7 +555,7 @@ const NavBar = () => {
             onClick={closeMobileMenu}
             className="flex items-center gap-2"
           >
-            <img src="/Logo.webp" alt="" className="w-fit h-8" />
+            <img src="/Logo.webp" alt="" className="max-w-30 h-8" />
           </Link>
           <button
             onClick={closeMobileMenu}

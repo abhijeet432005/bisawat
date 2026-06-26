@@ -2,40 +2,8 @@ import React, { useRef, useState, useCallback } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-const items = [
-  {
-    title: "Individual Care Plans",
-    description:
-      "Every patient receives a tailored approach based on medical needs, life stage, and personal goals.",
-    image:
-      "https://images.unsplash.com/photo-1609220136736-443150743cb4?w=300&q=80",
-    bigImage:
-      "https://images.unsplash.com/photo-1609220136736-443150743cb4?w=800&q=80",
-  },
-  {
-    title: "Clear Medical Communication",
-    description:
-      "We explain every step clearly, so you feel informed, confident, and involved in your care decisions.",
-    image:
-      "https://images.unsplash.com/photo-1612531386530-97286d97c2d2?w=300&q=80",
-    bigImage:
-      "https://images.unsplash.com/photo-1612531386530-97286d97c2d2?w=800&q=80",
-  },
-  {
-    title: "Emotional & Physical Well-Being",
-    description:
-      "We care for the whole person — supporting mental, emotional, and physical health at every stage.",
-    image:
-      "https://images.unsplash.com/photo-1576765608866-5b51046452be?w=300&q=80",
-    bigImage:
-      "https://images.unsplash.com/photo-1576765608866-5b51046452be?w=800&q=80",
-  },
-];
 
-const DEFAULT_IMAGE =
-  "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80";
-
-const CareSection = ({ className }) => {
+const CareSection = ({ className, items }) => {
   const [open, setOpen] = useState(null);
   const bodyRefs = useRef([]);
   const iconRefs = useRef([]);
@@ -43,6 +11,7 @@ const CareSection = ({ className }) => {
   const wrapperRefs = useRef([]);
   const imageRef = useRef(null);
   const imageWrapRef = useRef(null);
+  console.log(items);
 
   const swapImage = useCallback((src) => {
     const img = imageRef.current;
@@ -125,7 +94,7 @@ const CareSection = ({ className }) => {
         closeItem(i);
         openRef.current = null;
         setOpen(null);
-        swapImage(DEFAULT_IMAGE);
+        swapImage(items?.DEFAULT_IMAGE);
         return;
       }
 
@@ -136,7 +105,7 @@ const CareSection = ({ className }) => {
       openItem(i);
       openRef.current = i;
       setOpen(i);
-      swapImage(items[i].bigImage);
+      swapImage(items?.items[i]?.bigImage);
     },
     [closeItem, openItem, swapImage],
   );
@@ -158,9 +127,7 @@ const CareSection = ({ className }) => {
   }, []);
 
   return (
-    <section
-      className="w-full py-16 md:py-10 px-6 md:px-16 flex justify-center"
-    >
+    <section className="w-full py-16 md:py-10 px-6 md:px-16 flex justify-center">
       <div
         className={`md:w-[85%] mx-auto flex flex-col md:flex-row gap-8 md:gap-16 md:items-stretch p-3 md:p-5 rounded-[2rem] bg-gray-50 ${className}`}
       >
@@ -172,7 +139,7 @@ const CareSection = ({ className }) => {
           >
             <img
               ref={imageRef}
-              src={DEFAULT_IMAGE}
+              src={items?.DEFAULT_IMAGE}
               alt="Care illustration"
               className="w-full h-full object-cover"
               style={{ willChange: "transform, filter, opacity" }}
@@ -183,13 +150,13 @@ const CareSection = ({ className }) => {
         {/* RIGHT */}
         <div className="w-full md:w-[55%] flex flex-col">
           <h2 className="text-3xl sm:text-4xl  text-[#1a1a1a] leading-tight mb-5">
-            Care that adapts to your body, life, and journey
+            {items?.heading}
           </h2>
           <div className="flex-1" />
 
           {/* Accordion */}
           <div className="flex flex-col">
-            {items.map((item, i) => (
+            {items?.items?.map((item, i) => (
               <div
                 key={i}
                 className="border-t border-gray-200 first:border-t-0"

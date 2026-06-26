@@ -2,7 +2,8 @@
 
 
 :root {
-  --btn-color: #0076d7; /* global scope */
+    --btn-color: #0076d7;
+    /* global scope */
 }
 
 
@@ -38,7 +39,8 @@
 
 h1,
 h2,
-h3, p {
+h3,
+p {
     font-family: font-4;
 }
 
@@ -56,15 +58,22 @@ h3, p {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
-.stories-overlay-2{
+.stories-overlay-2 {
     background: #F1EDE8;
-background: linear-gradient(0deg, rgba(241, 237, 232, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
+    background: linear-gradient(0deg, rgba(241, 237, 232, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
 }
 
 .stories-overlay {
     background: #F1EDE8;
-background: linear-gradient(180deg, rgba(241, 237, 232, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
+    background: linear-gradient(180deg, rgba(241, 237, 232, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
 }
+
+/* .team-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 1rem;
+} */
 
 
 .grid-wrapper {
@@ -212,6 +221,13 @@ background: linear-gradient(180deg, rgba(241, 237, 232, 1) 0%, rgba(255, 255, 25
 
 
 @media (min-width: 768px) {
+
+    /* .team-grid {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, 320px);
+        gap: 1rem;
+    } */
 
     .grid-wrapper {
         width: 100%;

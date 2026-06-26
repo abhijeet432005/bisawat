@@ -368,7 +368,7 @@ export default function PatientStories() {
                 </p>
                 <p
                   ref={ageRef}
-                  className="text-sm text-gray-500"
+                  className="text-sm text-gray-500 mt-1"
                   style={{ willChange: "transform, opacity" }}
                 >
                   {current.age}

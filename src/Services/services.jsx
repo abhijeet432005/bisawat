@@ -11,47 +11,60 @@ import gsap from "gsap";
 const services = [
   {
     index: "01",
-    title: ["Gynecological", "Care"],
+    title: ["Preventive", "Care"],
     image:
-      "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=900&q=80",
+      "/random/15.webp",
     includes: [
-      "Annual check-ups",
-      "Hormonal balance evaluation",
-      "Pelvic exams & screenings",
+      "Routine checkups & cleanings",
+      "Digital X-rays",
+      "Fluoride treatments",
+      "Gum disease screening",
     ],
     description:
-      "Routine exams, hormonal assessments, and preventive screenings designed to support reproductive health at every life stage.",
+      "Protect your oral health with regular dental checkups, professional cleanings, digital imaging, and preventive treatments that help detect and stop problems before they develop.",
   },
   {
     index: "02",
-    title: ["Family Planning &", "Fertility"],
+    title: ["Restorative", "Dentistry"],
     image:
-      "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80",
+      "/random/10.webp",
     includes: [
-      "Contraception counseling",
-      "Fertility planning",
-      "Pre-pregnancy assessments",
+      "Tooth-colored fillings",
+      "Crowns & bridges",
+      "Dental implants",
+      "Root canal treatment",
+      "Dentures",
     ],
     description:
-      "Personalized guidance to help individuals and couples plan pregnancies with confidence and informed medical support.",
-  },
-  {
-    index: "04",
-    title: ["Cosmetic", "Treatments"],
-    image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80",
-    includes: ["Teeth whitening", "Veneers consultation", "Smile makeovers"],
-    description:
-      "Modern aesthetic treatments designed to enhance your natural smile with safe, proven techniques and lasting results.",
+      "Restore the function, strength, and appearance of damaged or missing teeth with advanced restorative treatments designed for long-lasting results.",
   },
   {
     index: "03",
-    title: ["Cosmetic", "Treatments"],
+    title: ["Esthetic", "Dentistry"],
     image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80",
-    includes: ["Teeth whitening", "Veneers consultation", "Smile makeovers"],
+      "/random/1.webp",
+    includes: [
+      "Professional teeth whitening",
+      "Porcelain veneers",
+      "Smile makeover",
+      "Tooth bonding",
+      "Clear aligners",
+    ],
     description:
-      "Modern aesthetic treatments designed to enhance your natural smile with safe, proven techniques and lasting results.",
+      "Enhance your smile with modern cosmetic dentistry solutions that improve tooth color, shape, alignment, and overall confidence.",
+  },
+  {
+    index: "04",
+    title: ["Beyond the", "Smile"],
+    image:
+      "/random/5.webp",
+    includes: [
+      "Sleep apnea devices",
+      "TMJ & jaw pain treatment",
+      "Sedation dentistry",
+    ],
+    description:
+      "Comprehensive dental care that goes beyond teeth, offering solutions for sleep disorders, jaw pain, and anxiety-free treatment through safe sedation options.",
   },
 ];
 
@@ -236,9 +249,7 @@ const ServicesCarousel = () => {
                 className="w-full rounded-4xl bg-[#f7f7f7]"
                 style={{ padding: "clamp(1.25rem, 2vw, 1rem)" }}
               >
-
                 <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-8 lg:gap-12">
-
                   <div className="w-full md:flex-1 min-w-0 flex flex-col justify-between md:pt-2">
                     <div className="flex-shrink-0">
                       <p className="text-xs sm:text-sm text-gray-500 tracking-wide whitespace-nowrap">
@@ -277,7 +288,6 @@ const ServicesCarousel = () => {
                       />
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>

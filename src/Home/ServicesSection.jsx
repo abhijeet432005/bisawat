@@ -7,32 +7,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    title: "Teeth Whitening",
+    title: "Preventive Care",
     description:
-      "Brighten your smile safely with professional treatments designed for lasting, confident results.",
+      "Protect your oral health with routine checkups, cleanings, digital X-rays, and preventive treatments.",
+    image:
+      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
+  },
+  {
+    title: "Restorative Dentistry",
+    description:
+      "Restore damaged or missing teeth with fillings, crowns, bridges, implants, root canals, and dentures.",
     image:
       "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
   },
   {
-    title: "Dental Implants",
+    title: "Esthetic Dentistry",
     description:
-      "Restore missing teeth with natural-looking implants that blend seamlessly with your smile.",
+      "Enhance your smile with teeth whitening, veneers, bonding, clear aligners, and complete smile makeovers.",
     image:
-      "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80",
+      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80",
   },
   {
-    title: "Orthodontics",
+    title: "Beyond the Smile",
     description:
-      "Straighten your teeth with modern braces and aligners tailored to your unique dental needs.",
+      "Comprehensive care including sleep apnea therapy, TMJ treatment, and comfortable sedation dentistry.",
     image:
       "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80",
-  },
-  {
-    title: "Emergency Care",
-    description:
-      "Fast, compassionate emergency dental services available when you need them most.",
-    image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
   },
 ];
 

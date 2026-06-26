@@ -8,11 +8,11 @@ import { useLocation } from "react-router";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const images = [
-  "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80",
-  "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80",
-  "https://images.unsplash.com/photo-1612531386530-97286d97c2d2?w=600&q=80",
-  "https://images.unsplash.com/photo-1576765608866-5b51046452be?w=600&q=80",
-  "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80",
+  "/marquee/4.webp",
+  "/marquee/1.webp",
+  "/marquee/2.webp",
+  "/marquee/5.webp",
+  "/marquee/3.webp",
 ];
 
 const marqueeImages = [...images, ...images];

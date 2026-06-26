@@ -44,8 +44,8 @@ const Hero = () => {
         className="hero-fact-heading text-center capitalize text-3xl sm:text-4xl md:text-5xl md:max-w-2xl leading-tight mb-12 md:mb-16 overflow-hidden mt-45"
         style={{ color: "#0d1b2a" }}
       >
-        Quick facts that highlight our journey, trust, and{" "}
-        <span className="font-[italic-font]">community impact</span>
+       Comprehensive dental services designed for healthier smiles and{" "}
+<span className="font-[italic-font]">lifelong confidence</span>
       </h2>
     </div>
   );

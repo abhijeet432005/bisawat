@@ -179,7 +179,7 @@ const QuickFacts = () => {
             style={{ aspectRatio: "3.5/4.8" }}
           >
             <img
-              src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80"
+              src="/Clinic/clinic8.webp"
               alt="Patient visit"
               className="w-full h-full object-cover"
             />
@@ -195,7 +195,7 @@ const QuickFacts = () => {
               <h3 className="text-white text-2xl md:text-3xl leading-tight">
                 5K+ Patient Visits
               </h3>
-              <p className="mt-93 font-semibold text-sm md:text-base leading-snug truncate flex gap-2 items-center text-white">
+              <p className=" mt-95 md:mt-93 font-semibold text-sm md:text-base leading-snug truncate flex gap-2 items-center text-white">
                 <PinIcon />
                 <span>Mumbai</span>
               </p>
@@ -245,7 +245,7 @@ const QuickFacts = () => {
             style={{ aspectRatio: "3.5/4.8" }}
           >
             <img
-              src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80"
+              src="/Clinic/clinic4.webp"
               alt="Dental procedure"
               className="w-full h-full object-cover"
             />

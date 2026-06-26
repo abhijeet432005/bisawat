@@ -12,21 +12,35 @@ const teamMembers = [
     name: "Dr. Sarah Mitchell",
     role: "Lead Dentist",
     image:
-      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
+      "/Doctor/d1.webp",
     intro: "Creative director shaping visual identity and brand language.",
   },
   {
     name: "Dr. James Carter",
     role: "Orthodontist",
     image:
-      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80",
+      "/Doctor/doc2.webp",
     intro: "Creative director shaping visual identity and brand language.",
   },
   {
     name: "Dr. Amelia Brooks",
     role: "Gynecologist",
     image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80",
+      "/Doctor/doc3.webp",
+    intro: "Creative director shaping visual identity and brand language.",
+  },
+  {
+    name: "Dr. Amelia Brooks",
+    role: "Gynecologist",
+    image:
+      "/Doctor/doc4.webp",
+    intro: "Creative director shaping visual identity and brand language.",
+  },
+  {
+    name: "Dr. Amelia Brooks",
+    role: "Gynecologist",
+    image:
+      "/Doctor/doc5.webp",
     intro: "Creative director shaping visual identity and brand language.",
   },
 ];
@@ -212,7 +226,7 @@ const TeamSection = () => {
   return (
     <section
       ref={containerRef}
-      className="w-full py-10 md:py-20 px-6 md:px-16 relative overflow-hidden"
+      className="w-full flex justify-center items-center py-10 md:py-20 relative overflow-hidden"
       style={{ backgroundColor: "#FAF8F4" }}
     >
       <div
@@ -223,7 +237,8 @@ const TeamSection = () => {
             "linear-gradient(0deg, rgba(250, 248, 244, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%)",
         }}
       />
-      <div className="max-w-6xl mx-auto">
+
+      <div className="w-[90%] md:w-[80%] flex flex-col justify-center">
         <div className="text-center mb-12 md:mb-16 capitalize">
           <h2 className="team-heading text-3xl sm:text-4xl md:text-5xl text-[#1a1a1a] leading-tight overflow-hidden">
             Meet the team behind{" "}
@@ -231,12 +246,12 @@ const TeamSection = () => {
           </h2>
         </div>
 
-        <div className="team-grid grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6 mb-6 md:mb-8">
+        <div className="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-8 mb-6 md:mb-8">
           {teamMembers.map((member, i) => (
             <div
               key={i}
               ref={(el) => (cardsRef.current[i] = el)}
-              className="relative min-w-[300px] w-[25vw] flex-shrink-0"
+              className="relative min-w-[300px] lg:w-[25vw] flex-shrink-0"
             >
               <div className="team-card-img relative h-[60vh] w-full overflow-hidden rounded-3xl">
                 <img
@@ -280,12 +295,12 @@ const TeamSection = () => {
         {/* Big group image with GSAP hover zoom */}
         <div
           ref={groupWrapRef}
-          className="team-group-img w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden mt-15"
+          className="team-group-img w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden mt-8"
           style={{ aspectRatio: "16/9", cursor: "pointer" }}
         >
           <img
             ref={groupImgRef}
-            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80"
+            src="/Doctor/docGroup.webp"
             alt="Our team"
             className="w-full h-full object-cover"
             loading="lazy"
