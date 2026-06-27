@@ -276,7 +276,6 @@ const Testimonial = () => {
                     src={card.src}
                     muted
                     playsInline
-                    preload="none"
                     style={{
                       width: "100%",
                       height: "100%",
