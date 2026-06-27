@@ -1,16 +1,33 @@
-import { useLenis } from "lenis/react";
-import { useLayoutEffect } from "react";
+// ScrollToTop.jsx
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  const lenis = useLenis()
+const ScrollToTop = () => {
+  const { pathname, hash } = useLocation();
 
-  useLayoutEffect(() => {
-    lenis?.scrollTo(0, { immediate: true });
-  }, [lenis, pathname]);
+  // disable browser's native scroll restoration on mount
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace("#", "");
+      const timeout = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+      return () => clearTimeout(timeout);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
   return null;
-}
+};
 
 export default ScrollToTop;

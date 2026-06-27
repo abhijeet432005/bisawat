@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 
-const CareSection = ({ className, items }) => {
+const CareSection = ({ className, items, id }) => {
   const [open, setOpen] = useState(null);
   const bodyRefs = useRef([]);
   const iconRefs = useRef([]);
@@ -127,9 +127,9 @@ const CareSection = ({ className, items }) => {
   }, []);
 
   return (
-    <section className="w-full py-16 md:py-10 px-6 md:px-16 flex justify-center">
+    <section id={id} className="w-full py-16 md:py-20 px-6 md:px-16 flex justify-center">
       <div
-        className={`md:w-[85%] mx-auto flex flex-col md:flex-row gap-8 md:gap-16 md:items-stretch p-3 md:p-5 rounded-[2rem] bg-gray-50 ${className}`}
+        className={`md:w-[95%] mx-auto flex flex-col md:flex-row gap-8 md:gap-16 md:items-stretch p-3 md:p-5 rounded-[2rem] bg-gray-50 ${className}`}
       >
         {/* LEFT — image swaps based on which accordion is open */}
         <div className="w-full md:w-[50%] flex-shrink-0">
@@ -155,7 +155,7 @@ const CareSection = ({ className, items }) => {
           <div className="flex-1" />
 
           {/* Accordion */}
-          <div className="flex flex-col">
+          <div className="flex flex-col mt-20 md:mt-0">
             {items?.items?.map((item, i) => (
               <div
                 key={i}
@@ -189,7 +189,7 @@ const CareSection = ({ className, items }) => {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-25 h-16 object-cover rounded-xl overflow-hidden"
+                        className="w-60 h-20 object-cover rounded-xl overflow-hidden"
                       />
                       <p className="text-gray-500 text-sm md:text-base leading-relaxed">
                         {item.description}

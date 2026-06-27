@@ -171,8 +171,8 @@ const MarqueeSection = () => {
               key={i}
               className="marquee-card flex-shrink-0 lg:rounded-xl overflow-hidden relative"
               style={{
-                width: "clamp(300px, 26vw, 300px)",
-                height: "clamp(350px, 32vw, 350px)",
+                width: "clamp(220px, 26vw, 300px)",
+                height: "clamp(300px, 32vw, 350px)",
               }}
             >
               <img

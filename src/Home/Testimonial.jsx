@@ -136,7 +136,7 @@ const Testimonial = () => {
           <div
             key={index}
             data-card
-            className={`vd-card w-70 md:w-85 flex-none md:rounded-[2vw] rounded-3xl -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-[#f5f5f5] ${card.translation} ${card.rotation} ${card.position}`}
+            className={`vd-card w-80 h-[50vh] md:w-85 md:h-[70vh] flex-none md:rounded-[2vw] rounded-3xl -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-[#f5f5f5] ${card.translation} ${card.rotation} ${card.position}`}
             style={{ zIndex: hoveredIndex === index ? 50 : 1, transition: "z-index 0s" }}
             onMouseEnter={() => {
               setHoveredIndex(index);

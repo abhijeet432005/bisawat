@@ -9,38 +9,37 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const teamMembers = [
   {
-    name: "Dr. Sarah Mitchell",
-    role: "Lead Dentist",
-    image:
-      "/Doctor/d1.webp",
+    name: "Dr. Amelia Brooks",
+    role: "Gynecologist",
+    image: "/Doctor/doc4.webp",
     intro: "Creative director shaping visual identity and brand language.",
   },
+  
+  {
+    name: "Dr. Sarah Mitchell",
+    role: "Lead Dentist",
+    image: "/Doctor/d1.webp",
+    intro: "Creative director shaping visual identity and brand language.",
+  },
+
+  {
+    name: "Dr. Amelia Brooks",
+    role: "Gynecologist",
+    image: "/Doctor/doc3.webp",
+    intro: "Creative director shaping visual identity and brand language.",
+  },
+
   {
     name: "Dr. James Carter",
     role: "Orthodontist",
-    image:
-      "/Doctor/doc2.webp",
+    image: "/Doctor/doc2.webp",
     intro: "Creative director shaping visual identity and brand language.",
   },
+
   {
     name: "Dr. Amelia Brooks",
     role: "Gynecologist",
-    image:
-      "/Doctor/doc3.webp",
-    intro: "Creative director shaping visual identity and brand language.",
-  },
-  {
-    name: "Dr. Amelia Brooks",
-    role: "Gynecologist",
-    image:
-      "/Doctor/doc4.webp",
-    intro: "Creative director shaping visual identity and brand language.",
-  },
-  {
-    name: "Dr. Amelia Brooks",
-    role: "Gynecologist",
-    image:
-      "/Doctor/doc5.webp",
+    image: "/Doctor/doc5.webp",
     intro: "Creative director shaping visual identity and brand language.",
   },
 ];

@@ -167,13 +167,13 @@ const Services = () => {
     <>
       <Hero />
       <ServicesParallax />
-      <CareSection items={CareSections[0]} />
+      <CareSection id="preventive" items={CareSections[0]} />
       <Line />
-      <CareSection items={CareSections[1]} className={"md:flex-row-reverse"} />
+      <CareSection id="restorative" items={CareSections[1]} className={"md:flex-row-reverse"} />
       <Line />
-      <CareSection items={CareSections[2]} />
+      <CareSection id="esthetic" items={CareSections[2]} />
       <Line />
-      <CareSection items={CareSections[3]} className={"md:flex-row-reverse"} />
+      <CareSection id="beyond" items={CareSections[3]} className={"md:flex-row-reverse"} />
       <MarqueeSection />
     </>
   );

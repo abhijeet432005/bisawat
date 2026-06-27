@@ -14,25 +14,25 @@ const services = [
     label: "Preventive Care",
     to: "/services#preventive",
     image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80",
+      "/random/4.webp",
   },
   {
     label: "Restorative Dentistry",
     to: "/services#restorative",
     image:
-      "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80",
+      "/random/5.webp",
   },
   {
     label: "Esthetic Dentistry",
     to: "/services#esthetic",
     image:
-      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80",
+      "/random/14.webp",
   },
   {
     label: "Beyond the Smile",
     to: "/services#beyond",
     image:
-      "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&q=80",
+        "/random/6.webp",
   },
 ];
 
@@ -43,7 +43,7 @@ const navLinks = [
   { label: "Contact", to: "/contact" },
 ];
 
-const BG_SWITCH_PX = 200;
+const BG_SWITCH_PX = 100;
 const HIDE_AFTER_PX = 500;
 const MIN_DELTA = 8;
 

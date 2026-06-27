@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useNavigate } from "react-router";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,32 +12,33 @@ const services = [
     description:
       "Protect your oral health with routine checkups, cleanings, digital X-rays, and preventive treatments.",
     image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80",
+      "/random/9.webp",
   },
   {
     title: "Restorative Dentistry",
     description:
       "Restore damaged or missing teeth with fillings, crowns, bridges, implants, root canals, and dentures.",
     image:
-      "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
+      "/random/14.webp",
   },
   {
     title: "Esthetic Dentistry",
     description:
       "Enhance your smile with teeth whitening, veneers, bonding, clear aligners, and complete smile makeovers.",
     image:
-      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80",
+      "/random/15.webp",
   },
   {
     title: "Beyond the Smile",
     description:
       "Comprehensive care including sleep apnea therapy, TMJ treatment, and comfortable sedation dentistry.",
     image:
-      "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=80",
+      "/random/12.webp",
   },
 ];
 
 const ServicesSection = () => {
+  const navigate = useNavigate()
   const sectionRef = useRef(null);
   const [active, setActive] = useState(0);
 
@@ -154,6 +156,7 @@ const ServicesSection = () => {
               </p>
               <div className="flex items-center gap-3">
                 <button
+                  onClick={() => navigate("/contact")}
                   className="flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-full"
                   style={{
                     background:
