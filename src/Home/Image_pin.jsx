@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,9 +16,10 @@ const Image_pin = () => {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const section = sectionRef.current;
+    // prevent scrollbar disappear/reappear width-jump when pinning
+    document.documentElement.style.overflowY = "scroll";
 
-    // scope all selectors to this section only
+    const section = sectionRef.current;
     const q = gsap.utils.selector(section);
 
     gsap.set(q(".img-2, .img-3, .img-4"), { y: 600 });
@@ -63,14 +64,32 @@ const Image_pin = () => {
         );
     });
 
-    // cleanup only this timeline — don't kill other components' ScrollTriggers
-    return () => tl.kill();
+    // single rAF refresh — double rAF is unnecessary extra reflow
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+    // cleanup — kill only this timeline's specific ScrollTrigger, not all triggers globally
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger === section) st.kill();
+      });
+    };
+  }, []);
+
+  // restore default overflow behavior on unmount
+  useEffect(() => {
+    return () => {
+      document.documentElement.style.overflowY = "";
+    };
   }, []);
 
   return (
     <div
       ref={sectionRef}
       className="w-full h-screen bg-gray-100 md:rounded-[5rem] flex flex-col md:flex-row justify-center items-center gap-12"
+      style={{ willChange: "transform" }}
     >
       <div
         className="absolute top-0 h-10 w-full"
@@ -79,7 +98,8 @@ const Image_pin = () => {
           backgroundImage:
             "linear-gradient(0deg, rgba(243, 244, 246, 1) 0%, rgba(255, 255, 255, 0.9) 100%)",
         }}
-      ></div>
+      />
+
       <div className="left-text relative w-40 h-12 overflow-hidden">
         {slides.map((s, i) => (
           <h1
@@ -97,9 +117,9 @@ const Image_pin = () => {
             src="/random/3.webp"
             alt="Patient receiving dental care at Birawat Dental Studio"
             className="w-full h-full object-cover"
-            loading="lazy"
+            loading="eager"
             decoding="async"
-            aria-hidden="true"
+            fetchpriority="high"
           />
         </div>
         <div className="img-2 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12">
@@ -109,7 +129,6 @@ const Image_pin = () => {
             className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"
-            aria-hidden="true"
           />
         </div>
         <div className="img-3 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12">
@@ -119,7 +138,6 @@ const Image_pin = () => {
             className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"
-            aria-hidden="true"
           />
         </div>
         <div className="img-4 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12">
@@ -129,7 +147,6 @@ const Image_pin = () => {
             className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"
-            aria-hidden="true"
           />
         </div>
       </div>
@@ -152,7 +169,7 @@ const Image_pin = () => {
           backgroundImage:
             "linear-gradient(180deg,rgba(243, 244, 246, 1) 0%, rgba(255, 255, 255, 0.9) 100%)",
         }}
-      ></div>
+      />
     </div>
   );
 };
