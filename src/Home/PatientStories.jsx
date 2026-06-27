@@ -270,10 +270,7 @@ export default function PatientStories() {
               style={{ color: "#1a3a2a" }}
             >
               Customer{" "}
-              <span
-                className="italic"
-                style={{ fontFamily: "italic-font" }}
-              >
+              <span className="italic" style={{ fontFamily: "italic-font" }}>
                 Testimonials{" "}
               </span>
             </h2>
@@ -303,6 +300,8 @@ export default function PatientStories() {
                     <img
                       src={p.thumb}
                       alt={p.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-top"
                     />
                     <div
@@ -342,6 +341,8 @@ export default function PatientStories() {
                     ref={imgRef}
                     src={current.image}
                     alt={current.name}
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover object-top"
                     style={{ willChange: "transform, filter, clip-path" }}
                   />

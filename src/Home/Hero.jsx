@@ -7,8 +7,10 @@ import { useNavigate } from "react-router";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
+const tags = ["Teeth Whitening", "White Teeth", "Dental Implants"];
+
 const Hero = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const heroRef = useRef(null);
   const imageWrapRef = useRef(null);
   const mobileCardRef = useRef(null); // ← new ref for the blur card wrapper
@@ -38,37 +40,35 @@ const Hero = () => {
           backdropFilter: "blur(0px)",
           duration: 0.8,
         },
-        "-=0.5"
+        "-=0.5",
       )
 
-      .from(
-        q(".hero-review"),
-        { y: 24, opacity: 0, duration: 0.7 },
-        "-=0.4"
-      )
+      .from(q(".hero-review"), { y: 24, opacity: 0, duration: 0.7 }, "-=0.4")
 
-      .from(
-        q(".hero-body"),
-        { y: 20, opacity: 0, duration: 0.7 },
-        "-=0.5"
-      )
+      .from(q(".hero-body"), { y: 20, opacity: 0, duration: 0.7 }, "-=0.5")
 
       .from(
         q(".hero-btn"),
         { y: 16, opacity: 0, duration: 0.6, ease: "back.out(1.7)" },
-        "-=0.4"
+        "-=0.4",
       )
 
       .from(
         imageWrapRef.current,
-        { opacity: 0, scale: 1.08, filter: "blur(14px)", duration: 1.3, ease: "power3.out" },
-        0.2
+        {
+          opacity: 0,
+          scale: 1.08,
+          filter: "blur(14px)",
+          duration: 1.3,
+          ease: "power3.out",
+        },
+        0.2,
       )
 
       .from(
         q(".hero-tag"),
         { y: 20, opacity: 0, duration: 0.5, stagger: 0.1 },
-        "-=0.4"
+        "-=0.4",
       );
 
     const scrollParallax = gsap.to(imageWrapRef.current, {
@@ -90,9 +90,11 @@ const Hero = () => {
   }, []);
 
   return (
-    <div ref={heroRef} className="w-full h-screen bg-[#6499c5] relative overflow-hidden">
+    <div
+      ref={heroRef}
+      className="w-full h-screen bg-[#6499c5] relative overflow-hidden"
+    >
       <div className="w-full flex-col md:flex-row flex gap-10 h-full justify-between py-10 md:pt-50 px-6 md:px-10 relative z-10">
-
         <div className="capitalize w-[80vw] md:w-[30rem] pt-20 md:pt-0">
           <h1 className="hero-heading text-white text-4xl md:text-[4vw] md:leading-[4.5vw] min-w-xs md:max-w-lg">
             Experience Your{" "}
@@ -109,9 +111,33 @@ const Hero = () => {
           <div className="hero-review review w-full flex items-center justify-between gap-3 text-white">
             <div className="flex items-center">
               <div className="flex -space-x-6">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" className="max-w-10 max-h-10 rounded-full object-cover border-1 border-white shadow-md" />
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" className="max-w-10 max-h-10 rounded-full object-cover border-1 border-white shadow-md" />
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" className="max-w-10 max-h-10 rounded-full object-cover border-1 border-white shadow-md" />
+                <img
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="Happy patient"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                />
+                <img
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="Happy patient"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                />
+                <img
+                  src="https://randomuser.me/api/portraits/women/68.jpg"
+                  alt="Happy patient"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                />
               </div>
             </div>
             <div className="text-left w-full">
@@ -128,7 +154,10 @@ const Hero = () => {
           </div>
 
           <div>
-            <button onClick={() => navigate("/contact")} className="hero-btn px-4 py-2 bg-[var(--btn-color)] text-white rounded-full">
+            <button
+              onClick={() => navigate("/contact")}
+              className="hero-btn px-4 py-2 bg-[var(--btn-color)] text-white rounded-full"
+            >
               Book Now
             </button>
           </div>
@@ -136,19 +165,28 @@ const Hero = () => {
       </div>
 
       <div className="w-full md:flex justify-center gap-10 z-20 absolute bottom-20 hidden">
-        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 hover:text-black rounded-full backdrop-blur-md bg-white/10 hover:bg-white border border-white/20 shadow-lg inline-block transition-colors duration-300 cursor-pointer">
-          Teeth Whitening
-        </div>
-        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 hover:text-black rounded-full backdrop-blur-md bg-white/10 hover:bg-white border border-white/20 shadow-lg inline-block transition-colors duration-300 cursor-pointer">
-          White Teeth
-        </div>
-        <div className="hero-tag px-5 py-2 text-sm font-medium text-black/50 hover:text-black rounded-full backdrop-blur-md bg-white/10 hover:bg-white border border-white/20 shadow-lg inline-block transition-colors duration-300 cursor-pointer">
-          Dental Implants
-        </div>
+        {tags.map((tag) => (
+          <div
+            key={tag}
+            className="hero-tag px-5 py-2 text-sm font-medium text-black/50 hover:text-black rounded-full backdrop-blur-md bg-white/10 hover:bg-white border border-white/20 shadow-lg transition-colors duration-300 cursor-pointer"
+          >
+            {tag}
+          </div>
+        ))}
       </div>
 
-      <div ref={imageWrapRef} className="hero-image absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[42%] z-1">
-        <img src="/image/5148-removebg-preview.png" alt="" className="min-w-[28rem] md:w-[45vw] h-[110vh]" />
+      <div
+        ref={imageWrapRef}
+        className="hero-image absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[42%] z-1"
+      >
+        <img
+          src="/image/hero.webp"
+          alt="Smiling patient"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+          className="min-w-[28rem] md:w-[45vw] h-[110vh]"
+        />
       </div>
       <div className="overlay h-10 w-full absolute bottom-0 z-2" />
       <div className="overlay h-150 w-full absolute bottom-0" />

@@ -77,13 +77,20 @@ const BeforeAfter = ({ beforeSrc, afterSrc }) => {
       >
         <img
           src={beforeSrc}
+          alt="Before dental treatment"
           className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
         />
+
         <img
           ref={afterRef}
           src={afterSrc}
+          alt="After dental treatment"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ clipPath: "inset(0 0 0 50%)" }}
+          loading="lazy"
+          decoding="async"
         />
         <div
           ref={dividerRef}

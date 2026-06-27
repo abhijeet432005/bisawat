@@ -15,72 +15,42 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 const clinics = [
   {
     id: 1,
-    name: "Medart Hair Clinic",
-    location: "Turkey",
-    price: "From $1,500 – $3,750",
     image: "/Clinic/clinic1.webp",
   },
   {
     id: 2,
-    name: "Vera Clinic",
-    location: "Istanbul, Turkey",
-    price: "From $2,000 – $4,500",
     image: "/Clinic/clinic2.webp",
   },
   {
     id: 3,
-    name: "Crown Restoration",
-    location: "Greece",
-    price: "From $1,800 – $4,000",
     image: "/Clinic/clinic3.webp",
   },
   {
     id: 4,
-    name: "Elite Hair Center",
-    location: "Spain",
-    price: "From $2,200 – $5,000",
     image: "/Clinic/clinic4.webp",
   },
   {
     id: 5,
-    name: "Elite Hair Center",
-    location: "Spain",
-    price: "From $2,200 – $5,000",
     image: "/Clinic/clinic5.webp",
   },
   {
     id: 6,
-    name: "Elite Hair Center",
-    location: "Spain",
-    price: "From $2,200 – $5,000",
     image: "/Clinic/clinic6.webp",
   },
   {
     id: 7,
-    name: "Medart Hair Clinic",
-    location: "Turkey",
-    price: "From $1,500 – $3,750",
     image: "/Clinic/clinic7.webp",
   },
   {
     id: 8,
-    name: "Vera Clinic",
-    location: "Istanbul, Turkey",
-    price: "From $2,000 – $4,500",
     image: "/Clinic/clinic8.webp",
   },
   {
     id: 9,
-    name: "Crown Restoration",
-    location: "Greece",
-    price: "From $1,800 – $4,000",
     image: "/Clinic/clinic9.webp",
   },
   {
     id: 10,
-    name: "Crown Restoration",
-    location: "Greece",
-    price: "From $1,800 – $4,000",
     image: "/Clinic/clinic10.webp",
   },
 ];
@@ -334,7 +304,9 @@ export default function FeaturedClinics() {
                 <img
                   ref={(el) => (imgRefs.current[i] = el)}
                   src={clinic.image}
-                  alt={clinic.name}
+                  alt={`Birawat Dental Studio clinic ${clinic.id}`}
+                  loading="lazy"
+                  decoding="async"
                   draggable={false}
                   className="w-full h-full object-cover"
                   style={{

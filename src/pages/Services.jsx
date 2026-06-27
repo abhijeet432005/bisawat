@@ -4,6 +4,7 @@ import ServicesParallax from "../Services/services";
 import CareSection from "../Services/CareSection";
 import MarqueeSection from "../components/common/MarqueeSection";
 import Line from "../components/Line";
+import Seo from "../components/Seo";
 
 const CareSections = [
   {
@@ -141,22 +142,22 @@ const CareSections = [
         title: "Sleep Apnea Devices",
         description:
           "Custom oral appliances designed to improve airflow, reduce snoring, and support better quality sleep.",
-        image: "public/random/6.webp",
-        bigImage: "public/random/6.webp",
+        image: "/random/6.webp",
+        bigImage: "/random/6.webp",
       },
       {
         title: "TMJ & Jaw Pain Treatment",
         description:
           "Comprehensive evaluation and treatment options to relieve jaw discomfort, headaches, and TMJ-related symptoms.",
-        image: "public/random/7.webp",
-        bigImage: "public/random/7.webp",
+        image: "/random/7.webp",
+        bigImage: "/random/7.webp",
       },
       {
         title: "Sedation Dentistry",
         description:
           "Relax throughout your appointment with safe sedation options that make dental visits comfortable and stress-free.",
-        image: "public/random/14.webp",
-        bigImage: "public/random/14.webp",
+        image: "/random/14.webp",
+        bigImage: "/random/14.webp",
       },
     ],
   },
@@ -165,15 +166,28 @@ const CareSections = [
 const Services = () => {
   return (
     <>
+      <Seo
+        title="Our Dental Services"
+        description="Explore Birawat Dental Studio's full range of services — preventive care, restorative dentistry, esthetic treatments, and more. Personalized care for every smile."
+        path="/services"
+      />
       <Hero />
       <ServicesParallax />
       <CareSection id="preventive" items={CareSections[0]} />
       <Line />
-      <CareSection id="restorative" items={CareSections[1]} className={"md:flex-row-reverse"} />
+      <CareSection
+        id="restorative"
+        items={CareSections[1]}
+        className={"md:flex-row-reverse"}
+      />
       <Line />
       <CareSection id="esthetic" items={CareSections[2]} />
       <Line />
-      <CareSection id="beyond" items={CareSections[3]} className={"md:flex-row-reverse"} />
+      <CareSection
+        id="beyond"
+        items={CareSections[3]}
+        className={"md:flex-row-reverse"}
+      />
       <MarqueeSection />
     </>
   );

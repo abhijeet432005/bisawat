@@ -166,9 +166,7 @@ const QuickFacts = () => {
           style={{ color: "#0d1b2a" }}
         >
           Quick facts that highlight our journey, trust, and{" "}
-          <span className="font-[italic-font]">
-            community impact
-          </span>
+          <span className="font-[italic-font]">community impact</span>
         </h2>
 
         {/* Grid */}
@@ -180,8 +178,11 @@ const QuickFacts = () => {
           >
             <img
               src="/Clinic/clinic8.webp"
-              alt="Patient visit"
+              alt="Modern treatment room at Birawat Dental Studio"
               className="w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
             <div
               className="fact-overlay absolute inset-0"
@@ -246,8 +247,11 @@ const QuickFacts = () => {
           >
             <img
               src="/Clinic/clinic4.webp"
-              alt="Dental procedure"
+              alt="Modern treatment room at Birawat Dental Studio"
               className="w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
             <div
               className="fact-overlay absolute inset-0"
@@ -261,19 +265,34 @@ const QuickFacts = () => {
               <div className="hero-review review w-full flex items-center justify-between gap-3 text-white mb-5">
                 <div className="flex items-center">
                   <div className="flex -space-x-3">
-                    <img
-                      src="https://randomuser.me/api/portraits/women/44.jpg"
-                      className="max-w-7 max-h-7 rounded-full object-cover border-1 border-white shadow-md"
-                    />
-                    <img
-                      src="https://randomuser.me/api/portraits/men/32.jpg"
-                      className="max-w-7 max-h-7 rounded-full object-cover border-1 border-white shadow-md"
-                    />
-                    <img
-                      src="https://randomuser.me/api/portraits/women/68.jpg"
-                      className="max-w-7 max-h-7 rounded-full object-cover border-1 border-white shadow-md"
-                    />
-                  </div>
+                <img
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="Happy patient"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                />
+                <img
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="Happy patient"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                />
+                <img
+                  src="https://randomuser.me/api/portraits/women/68.jpg"
+                  alt="Happy patient"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                />
+              </div>
                 </div>
                 <div className="text-left w-full">
                   <p className="text-sm leading-relaxed">

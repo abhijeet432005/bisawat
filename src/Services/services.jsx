@@ -284,6 +284,7 @@ const ServicesCarousel = () => {
                         alt={s.title.join(" ")}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        decoding="async"
                         draggable={false}
                       />
                     </div>

@@ -32,10 +32,12 @@ const Testimonial = () => {
         },
       });
 
-      pinTl.from(
-        "[data-card]",
-        { yPercent: 180, xPercent: 100, stagger: 0.2, ease: "power1.inOut" }
-      );
+      pinTl.from("[data-card]", {
+        yPercent: 180,
+        xPercent: 100,
+        stagger: 0.2,
+        ease: "power1.inOut",
+      });
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -137,7 +139,10 @@ const Testimonial = () => {
             key={index}
             data-card
             className={`vd-card w-80 h-[50vh] md:w-85 md:h-[70vh] flex-none md:rounded-[2vw] rounded-3xl -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-[#f5f5f5] ${card.translation} ${card.rotation} ${card.position}`}
-            style={{ zIndex: hoveredIndex === index ? 50 : 1, transition: "z-index 0s" }}
+            style={{
+              zIndex: hoveredIndex === index ? 50 : 1,
+              transition: "z-index 0s",
+            }}
             onMouseEnter={() => {
               setHoveredIndex(index);
               handlePlay(index);
@@ -165,15 +170,31 @@ const Testimonial = () => {
                 transition: "opacity 0.25s ease",
               }}
             >
-              <div className="bg-white/90 rounded-full flex items-center justify-center"
-                style={{ width: 32, height: 32 }}>
+              <div
+                className="bg-white/90 rounded-full flex items-center justify-center"
+                style={{ width: 32, height: 32 }}
+              >
                 {/* Triangle play icon */}
-                <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L11 7L1 13V1Z" fill="#1a1a1a" stroke="#1a1a1a" strokeWidth="1.5" strokeLinejoin="round" />
+                <svg
+                  width="12"
+                  height="14"
+                  viewBox="0 0 12 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1L11 7L1 13V1Z"
+                    fill="#1a1a1a"
+                    stroke="#1a1a1a"
+                    strokeWidth="1.5"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
-              <span className="text-white text-xs font-semibold drop-shadow"
-                style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}>
+              <span
+                className="text-white text-xs font-semibold drop-shadow"
+                style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
+              >
                 Play
               </span>
             </div>
@@ -182,90 +203,103 @@ const Testimonial = () => {
       </div>
 
       {/* ── Modal rendered via PORTAL — escapes pinned section's stacking context ── */}
-      {activeVideo && createPortal(
-        <div
-          ref={onModalMount}
-          className="fixed inset-0 bg-black/85 backdrop-blur-sm w-full h-screen flex flex-col items-center justify-center gap-5"
-          style={{ zIndex: 99999 }}
-        >
-          {/* Close button */}
-          <button
-            onClick={closeModal}
-            aria-label="Close modal"
-            className="fixed top-6 right-8 text-white text-4xl cursor-pointer hover:opacity-70 transition-opacity"
-            style={{ zIndex: 100000 }}
-          >
-            ✕
-          </button>
-
-          {/* ── Video — 80vh, width auto ── */}
+      {activeVideo &&
+        createPortal(
           <div
-            ref={onModalVideoMount}
-            className="flex items-center justify-center"
-            style={{ height: "80vh" }}
+            ref={onModalMount}
+            className="fixed inset-0 bg-black/85 backdrop-blur-sm w-full h-screen flex flex-col items-center justify-center gap-5"
+            style={{ zIndex: 99999 }}
           >
-            <video
-              key={activeVideo}
-              ref={modalVideoRef}
-              src={activeVideo}
-              controls
-              autoPlay
-              style={{ height: "80vh", width: "auto", maxWidth: "90vw", borderRadius: "12px" }}
-            />
-          </div>
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              aria-label="Close modal"
+              className="fixed top-6 right-8 text-white text-4xl cursor-pointer hover:opacity-70 transition-opacity"
+              style={{ zIndex: 100000 }}
+            >
+              ✕
+            </button>
 
-          {/* ── Carousel strip — all n cards visible ── */}
-          <div
-            className="flex items-center gap-3 overflow-x-auto px-6 pb-2"
-            style={{
-              maxWidth: "90vw",
-              scrollbarWidth: "thin",
-              scrollbarColor: "#E3A458 transparent",
-            }}
-          >
-            {cards.map((card, idx) => (
-              <button
-                key={idx}
-                onClick={() => goTo(idx)}
+            {/* ── Video — 80vh, width auto ── */}
+            <div
+              ref={onModalVideoMount}
+              className="flex items-center justify-center"
+              style={{ height: "80vh" }}
+            >
+              <video
+                key={activeVideo}
+                ref={modalVideoRef}
+                src={activeVideo}
+                controls
+                autoPlay
                 style={{
-                  flexShrink: 0,
-                  width: 72,
-                  height: 90,
-                  borderRadius: 10,
-                  overflow: "hidden",
-                  border: activeIndex === idx
-                    ? "2.5px solid #E3A458"
-                    : "2px solid rgba(255,255,255,0.2)",
-                  cursor: "pointer",
-                  position: "relative",
-                  transition: "border-color 0.2s",
-                  background: "transparent",
-                  padding: 0,
+                  height: "80vh",
+                  width: "auto",
+                  maxWidth: "90vw",
+                  borderRadius: "12px",
                 }}
-                aria-label={`Go to video ${idx + 1}`}
-              >
-                <video
-                  src={card.src}
-                  muted
-                  playsInline
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                />
-                {/* Active indicator overlay */}
-                {activeIndex === idx && (
-                  <div
+              />
+            </div>
+
+            {/* ── Carousel strip — all n cards visible ── */}
+            <div
+              className="flex items-center gap-3 overflow-x-auto px-6 pb-2"
+              style={{
+                maxWidth: "90vw",
+                scrollbarWidth: "thin",
+                scrollbarColor: "#E3A458 transparent",
+              }}
+            >
+              {cards.map((card, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => goTo(idx)}
+                  style={{
+                    flexShrink: 0,
+                    width: 72,
+                    height: 90,
+                    borderRadius: 10,
+                    overflow: "hidden",
+                    border:
+                      activeIndex === idx
+                        ? "2.5px solid #E3A458"
+                        : "2px solid rgba(255,255,255,0.2)",
+                    cursor: "pointer",
+                    position: "relative",
+                    transition: "border-color 0.2s",
+                    background: "transparent",
+                    padding: 0,
+                  }}
+                  aria-label={`Go to video ${idx + 1}`}
+                >
+                  <video
+                    src={card.src}
+                    muted
+                    playsInline
+                    preload="none"
                     style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "rgba(227,164,88,0.18)",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
                     }}
                   />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>,
-        document.body,
-      )}
+                  {/* Active indicator overlay */}
+                  {activeIndex === idx && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "rgba(227,164,88,0.18)",
+                      }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>,
+          document.body,
+        )}
     </section>
   );
 };

@@ -9,34 +9,37 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 const Hero = () => {
   const containerRef = useRef(null);
 
-  useGSAP(() => {
-    const split = new SplitText(".hero-fact-heading", { type: "lines" });
+  useGSAP(
+    () => {
+      const split = new SplitText(".hero-fact-heading", { type: "lines" });
 
-    split.lines.forEach((line) => {
-      const wrapper = document.createElement("div");
-      wrapper.style.overflow = "hidden";
-      line.parentNode.insertBefore(wrapper, line);
-      wrapper.appendChild(line);
-    });
+      split.lines.forEach((line) => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+      });
 
-    gsap.fromTo(
-      split.lines,
-      { y: "110%", opacity: 0 },
-      {
-        y: "0%",
-        opacity: 1,
-        duration: 1,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".hero-fact-heading",
-          start: "top 85%",
+      gsap.fromTo(
+        split.lines,
+        { y: "110%", opacity: 0 },
+        {
+          y: "0%",
+          opacity: 1,
+          duration: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".hero-fact-heading",
+            start: "top 85%",
+          },
         },
-      }
-    );
+      );
 
-    return () => split.revert();
-  }, { scope: containerRef });
+      return () => split.revert();
+    },
+    { scope: containerRef },
+  );
 
   return (
     <div ref={containerRef} className="flex justify-center">
@@ -44,8 +47,8 @@ const Hero = () => {
         className="hero-fact-heading text-center capitalize text-3xl sm:text-4xl md:text-5xl md:max-w-2xl leading-tight mb-12 md:mb-16 overflow-hidden mt-45"
         style={{ color: "#0d1b2a" }}
       >
-       Comprehensive dental services designed for healthier smiles and{" "}
-<span className="font-[italic-font]">lifelong confidence</span>
+        Comprehensive dental services designed for healthier smiles and{" "}
+        <span className="font-[italic-font]">lifelong confidence</span>
       </h2>
     </div>
   );

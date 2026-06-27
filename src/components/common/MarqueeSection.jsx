@@ -186,24 +186,25 @@ const MarqueeSection = () => {
                   willChange: "transform",
                 }}
                 draggable={false}
-                loading={i < 6 ? "eager" : "lazy"}
+                loading={i < 3 ? "eager" : "lazy"}
                 decoding="async"
+                fetchpriority={i < 3 ? "high" : "auto"}
               />
             </div>
           ))}
         </div>
       </div>
 
-      {
-        pathname === "/about" && <div
-        className=" absolute bottom-0 w-full h-10 z-20"
-        style={{
-          background: "#FAF8F4",
-          backgroundImage:
-            "linear-gradient(180deg,rgba(250, 248, 244, 1) 0%, rgba(255, 255, 255, 0.9) 100%)",
-        }}
-      ></div>
-      }
+      {pathname === "/about" && (
+        <div
+          className=" absolute bottom-0 w-full h-10 z-20"
+          style={{
+            background: "#FAF8F4",
+            backgroundImage:
+              "linear-gradient(180deg,rgba(250, 248, 244, 1) 0%, rgba(255, 255, 255, 0.9) 100%)",
+          }}
+        ></div>
+      )}
     </section>
   );
 };

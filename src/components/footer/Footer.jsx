@@ -24,7 +24,6 @@ const Footer = () => {
         {/* ── TOP ── */}
         <div className="mx-auto pt-16 pb-10">
           <div className="flex flex-col md:flex-row md:justify-between gap-12 md:gap-8">
-
             {/* Logo + tagline */}
             <div className="md:w-[28%]">
               <div className="flex items-center gap-2 mb-4">
@@ -33,13 +32,13 @@ const Footer = () => {
                 </Link>
               </div>
               <p className="text-sm text-white/40 leading-relaxed max-w-[220px]">
-                World-class dental care you can trust. Your smile is our mission.
+                World-class dental care you can trust. Your smile is our
+                mission.
               </p>
             </div>
 
             {/* Links grid */}
             <div className="flex flex-col sm:flex-row gap-10 md:gap-30">
-
               {/* Company */}
               <div>
                 <p className="text-sm font-semibold text-white mb-4">Company</p>
@@ -76,7 +75,9 @@ const Footer = () => {
 
               {/* Follow */}
               <div>
-                <p className="text-sm font-semibold text-white mb-4">Follow Us</p>
+                <p className="text-sm font-semibold text-white mb-4">
+                  Follow Us
+                </p>
                 <ul className="flex flex-col gap-3">
                   {[
                     { name: "Facebook", href: "#" },
@@ -109,7 +110,7 @@ const Footer = () => {
         {/* ── MIDDLE — newsletter + image ── */}
         <div className="mx-auto py-10">
           <div
-            className="relative rounded-3xl overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 p-8 md:p-10"
+            className="relative rounded-3xl overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 p-8"
             style={{ background: "#242424" }}
           >
             <div className="flex flex-col gap-5 w-full md:w-[55%] z-10">
@@ -119,7 +120,10 @@ const Footer = () => {
                 </p>
                 <h3 className="text-2xl md:text-3xl leading-snug">
                   Get Exclusive Dental{" "}
-                  <span className="font-[italic-font] font-normal" style={{ color: "#ffff" }}>
+                  <span
+                    className="font-[italic-font] font-normal"
+                    style={{ color: "#ffff" }}
+                  >
                     Offers,
                   </span>
                 </h3>
@@ -144,9 +148,11 @@ const Footer = () => {
 
             <div className="w-full md:w-[38%] h-[220px] md:h-[200px] rounded-2xl overflow-hidden flex-shrink-0">
               <img
-                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80"
-                alt="Dental treatment"
+                src="/Clinic/clinic8.webp"
+                alt="Dental treatment at Birawat Dental Studio"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -156,7 +162,10 @@ const Footer = () => {
         <div className="mx-auto pb-8">
           <div className="h-px bg-white/8 mb-6" />
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/30">
-            <p>© {new Date().getFullYear()} BrightSmile Dental. All rights reserved.</p>
+            <p>
+              © {new Date().getFullYear()} BrightSmile Dental. All rights
+              reserved.
+            </p>
             <div className="flex items-center gap-1">
               <span>Designed & developed by</span>
               <a
@@ -169,10 +178,16 @@ const Footer = () => {
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <Link to="/privacy-policy" className="hover:text-white/60 transition-colors">
+              <Link
+                to="/privacy-policy"
+                className="hover:text-white/60 transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link to="/terms-of-service" className="hover:text-white/60 transition-colors">
+              <Link
+                to="/terms-of-service"
+                className="hover:text-white/60 transition-colors"
+              >
                 Terms of Service
               </Link>
             </div>

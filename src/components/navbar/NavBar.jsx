@@ -13,26 +13,22 @@ const services = [
   {
     label: "Preventive Care",
     to: "/services#preventive",
-    image:
-      "/random/4.webp",
+    image: "/random/4.webp",
   },
   {
     label: "Restorative Dentistry",
     to: "/services#restorative",
-    image:
-      "/random/5.webp",
+    image: "/random/5.webp",
   },
   {
     label: "Esthetic Dentistry",
     to: "/services#esthetic",
-    image:
-      "/random/14.webp",
+    image: "/random/14.webp",
   },
   {
     label: "Beyond the Smile",
     to: "/services#beyond",
-    image:
-        "/random/6.webp",
+    image: "/random/6.webp",
   },
 ];
 
@@ -387,7 +383,16 @@ const NavBar = () => {
             className="flex items-center gap-2 flex-shrink-0"
             onClick={() => dropdownOpen && closeDropdown()}
           >
-            <img src="/Logo.webp" alt="" className=" max-w-30 md:max-w-35 h-8 md:h-11" />
+            <img
+              src="/Logo.webp"
+              alt="Birawat Dental Studio"
+              className="max-w-30 md:max-w-35 h-8 md:h-11"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width="140"
+              height="44"
+            />
           </Link>
 
           {/* DESKTOP CENTER LINKS */}
@@ -555,7 +560,16 @@ const NavBar = () => {
             onClick={closeMobileMenu}
             className="flex items-center gap-2"
           >
-            <img src="/Logo.webp" alt="" className="max-w-30 h-8" />
+            <img
+              src="/Logo.webp"
+              alt="Birawat Dental Studio"
+              className="max-w-30 h-8"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width="120"
+              height="32"
+            />
           </Link>
           <button
             onClick={closeMobileMenu}

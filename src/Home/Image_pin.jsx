@@ -94,30 +94,42 @@ const Image_pin = () => {
       <div className="center-images relative w-[25rem] h-[18rem] z-10">
         <div className="img-1 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12">
           <img
-            src="https://images.unsplash.com/photo-1606811856475-5e6fcdc6e509?w=900&auto=format&fit=crop&q=60"
-            alt=""
+            src="/random/3.webp"
+            alt="Patient receiving dental care at Birawat Dental Studio"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
           />
         </div>
         <div className="img-2 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12">
           <img
-            src="https://images.unsplash.com/photo-1593022356769-11f762e25ed9?w=900&auto=format&fit=crop&q=60"
-            alt=""
+            src="/random/6.webp"
+            alt="Patient receiving dental care at Birawat Dental Studio"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
           />
         </div>
         <div className="img-3 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12">
           <img
-            src="https://images.unsplash.com/photo-1564420228450-d9a5bc8d6565?w=900&auto=format&fit=crop&q=60"
-            alt=""
+            src="/random/9.webp"
+            alt="Patient receiving dental care at Birawat Dental Studio"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
           />
         </div>
         <div className="img-4 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12">
           <img
-            src="https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=900&auto=format&fit=crop&q=60"
-            alt=""
+            src="/random/15.webp"
+            alt="Patient receiving dental care at Birawat Dental Studio"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
           />
         </div>
       </div>

@@ -2,7 +2,6 @@ import React, { useRef, useState, useCallback } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-
 const CareSection = ({ className, items, id }) => {
   const [open, setOpen] = useState(null);
   const bodyRefs = useRef([]);
@@ -127,7 +126,10 @@ const CareSection = ({ className, items, id }) => {
   }, []);
 
   return (
-    <section id={id} className="w-full py-16 md:py-20 px-6 md:px-16 flex justify-center">
+    <section
+      id={id}
+      className="w-full py-16 md:py-20 px-6 md:px-16 flex justify-center"
+    >
       <div
         className={`md:w-[95%] mx-auto flex flex-col md:flex-row gap-8 md:gap-16 md:items-stretch p-3 md:p-5 rounded-[2rem] bg-gray-50 ${className}`}
       >
@@ -140,9 +142,11 @@ const CareSection = ({ className, items, id }) => {
             <img
               ref={imageRef}
               src={items?.DEFAULT_IMAGE}
-              alt="Care illustration"
+              alt="Dental care consultation at Birawat Dental Studio"
               className="w-full h-full object-cover"
               style={{ willChange: "transform, filter, opacity" }}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -190,6 +194,8 @@ const CareSection = ({ className, items, id }) => {
                         src={item.image}
                         alt={item.title}
                         className="w-60 h-20 object-cover rounded-xl overflow-hidden"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <p className="text-gray-500 text-sm md:text-base leading-relaxed">
                         {item.description}

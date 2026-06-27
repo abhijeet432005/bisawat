@@ -1,11 +1,12 @@
-// ScrollToTop.jsx
+// components/ScrollToTop.jsx
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useLenis } from "lenis/react";
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
+  const lenis = useLenis();
 
-  // disable browser's native scroll restoration on mount
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
@@ -18,14 +19,22 @@ const ScrollToTop = () => {
       const timeout = setTimeout(() => {
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (lenis) {
+            lenis.scrollTo(el, { offset: -100 });
+          } else {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         }
-      }, 100);
+      }, 150); // slightly longer delay — Lenis needs the lazy page to mount first
       return () => clearTimeout(timeout);
     } else {
-      window.scrollTo(0, 0);
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
     }
-  }, [pathname, hash]);
+  }, [pathname, hash, lenis]);
 
   return null;
 };

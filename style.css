@@ -8,33 +8,39 @@
 
 
 @font-face {
-    font-family: font-1;
-    src: url('/Fonts/font-1.woff2');
+  font-family: "font-1";
+  src: url("/Fonts/font-1.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: italic-font;
-    src: url('/Fonts/font-2.woff2');
+  font-family: "italic-font";
+  src: url("/Fonts/font-2.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: font-3;
-    src: url('/Fonts/font-3.woff2');
+  font-family: "font-3";
+  src: url("/Fonts/font-3.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: font-4;
-    src: url('/Fonts/font-4.woff2');
+  font-family: "font-4";
+  src: url("/Fonts/font-4.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: font-5;
-    src: url('/Fonts/font-5.woff2');
+  font-family: "font-5";
+  src: url("/Fonts/font-5.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: font-6;
-    src: url('/Fonts/font-6.woff2');
+  font-family: "font-6";
+  src: url("/Fonts/font-6.woff2") format("woff2");
+  font-display: swap;
 }
 
 h1,

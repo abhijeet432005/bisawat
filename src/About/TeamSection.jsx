@@ -14,7 +14,7 @@ const teamMembers = [
     image: "/Doctor/doc4.webp",
     intro: "Creative director shaping visual identity and brand language.",
   },
-  
+
   {
     name: "Dr. Sarah Mitchell",
     role: "Lead Dentist",
@@ -255,8 +255,10 @@ const TeamSection = () => {
               <div className="team-card-img relative h-[60vh] w-full overflow-hidden rounded-3xl">
                 <img
                   src={member.image}
-                  alt={member.name}
+                  alt={`${member.name}, ${member.role} at Birawat Dental Studio`}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 <div className="team-info-bg absolute inset-0 bg-[#f6f6f6] p-8 flex flex-col justify-start">
@@ -303,6 +305,7 @@ const TeamSection = () => {
             alt="Our team"
             className="w-full h-full object-cover"
             loading="lazy"
+            decoding="async"
             style={{ willChange: "transform" }}
           />
         </div>
