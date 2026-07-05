@@ -6,10 +6,10 @@ import { useRef, useEffect } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const slides = [
-  { left: "Fresh Start", right: "Begin Here" },
-  { left: "Bold Move", right: "Take Risks" },
-  { left: "Deep Dive", right: "Go Further" },
-  { left: "Full Circle", right: "You're Here" },
+  { left: "Healthy Smile", right: "Starts Here" },
+  { left: "Gentle Care", right: "Every Visit" },
+  { left: "Advanced Dentistry", right: "Modern Technology" },
+  { left: "Confident Smile", right: "Lasts Forever" },
 ];
 
 const Image_pin = () => {
@@ -100,7 +100,7 @@ const Image_pin = () => {
         }}
       />
 
-      <div className="left-text relative w-40 h-12 overflow-hidden">
+      <div className="left-text relative w-50 h-12 overflow-hidden">
         {slides.map((s, i) => (
           <h1
             key={i}
@@ -122,7 +122,18 @@ const Image_pin = () => {
             fetchpriority="high"
           />
         </div>
-        <div className="img-2 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12">
+
+        <div className="img-2 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12" >
+          <img
+            src="/services/dentist-examining-female-patient-teeth_107420-65309.avif"
+            alt="Patient receiving dental care at Birawat Dental Studio"
+            className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div className="img-3 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12">
           <img
             src="/random/6.webp"
             alt="Patient receiving dental care at Birawat Dental Studio"
@@ -130,19 +141,11 @@ const Image_pin = () => {
             loading="lazy"
             decoding="async"
           />
-        </div>
-        <div className="img-3 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12">
-          <img
-            src="/random/9.webp"
-            alt="Patient receiving dental care at Birawat Dental Studio"
-            className="w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+        </div>  
+
         <div className="img-4 img w-[15rem] h-[18rem] overflow-hidden bg-rose-400 rounded-4xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12">
           <img
-            src="/random/15.webp"
+            src="/services/3.jpeg"
             alt="Patient receiving dental care at Birawat Dental Studio"
             className="w-full h-full object-cover"
             loading="lazy"
@@ -151,7 +154,7 @@ const Image_pin = () => {
         </div>
       </div>
 
-      <div className="right-text relative w-40 h-12 overflow-hidden">
+      <div className="right-text relative w-50 h-12 overflow-hidden">
         {slides.map((s, i) => (
           <h1
             key={i}

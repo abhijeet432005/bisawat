@@ -7,13 +7,14 @@ import React, {
 } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useNavigate } from "react-router";
 
 const services = [
   {
     index: "01",
     title: ["Preventive", "Care"],
     image:
-      "/random/15.webp",
+      "/services/preventive-dentistry-patient.webp",
     includes: [
       "Routine checkups & cleanings",
       "Digital X-rays",
@@ -27,7 +28,7 @@ const services = [
     index: "02",
     title: ["Restorative", "Dentistry"],
     image:
-      "/random/10.webp",
+      "/services/restorative.webp",
     includes: [
       "Tooth-colored fillings",
       "Crowns & bridges",
@@ -42,7 +43,7 @@ const services = [
     index: "03",
     title: ["Esthetic", "Dentistry"],
     image:
-      "/random/1.webp",
+      "/services/Esthetic.webp",
     includes: [
       "Professional teeth whitening",
       "Porcelain veneers",
@@ -57,7 +58,7 @@ const services = [
     index: "04",
     title: ["Beyond the", "Smile"],
     image:
-      "/random/5.webp",
+      "/services/3.jpeg",
     includes: [
       "Sleep apnea devices",
       "TMJ & jaw pain treatment",
@@ -73,6 +74,7 @@ const total = services.length;
 const ServicesCarousel = () => {
   const [active, setActive] = useState(0);
   const [containerW, setContainerW] = useState(0);
+  const navigate = useNavigate()
 
   const containerRef = useRef(null);
   const trackRef = useRef(null);
@@ -86,7 +88,7 @@ const ServicesCarousel = () => {
   const isMobile = containerW > 0 && containerW < 640;
   const isTablet = containerW >= 640 && containerW < 1024;
 
-  const GAP = isMobile ? 12 : 0;
+  const GAP = isMobile ? 12 : 40;
 
   const CARD_W =
     containerW > 0
@@ -120,7 +122,7 @@ const ServicesCarousel = () => {
         if (!card) return;
         const isActive = i === index;
         const props = {
-          scale: isActive ? 1 : 0.85,
+          scale: isActive ? 1 : 1,
           opacity: isActive ? 1 : 0.85,
           filter: isActive ? "blur(0px)" : "blur(1px)",
           duration: instant ? 0 : 0.7,
@@ -268,6 +270,7 @@ const ServicesCarousel = () => {
                       <button
                         className="w-fit px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm font-semibold text-white transition-transform active:scale-95 whitespace-nowrap"
                         style={{ background: "var(--btn-color)" }}
+                        onClick={() => navigate("/contact")}
                       >
                         Get Started Now
                       </button>

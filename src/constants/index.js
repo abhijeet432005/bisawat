@@ -38,7 +38,7 @@ const cards = [
     position: "md:left-[60vw]"
   },
   {
-    src: "/videos/6.mp4",
+    src: "/videos/8.mp4",
     rotation: "rotate-z-[4deg]",
     name: "Devante",
     img: "/images/p6.png",

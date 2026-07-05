@@ -9,6 +9,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useNavigate } from "react-router";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -23,7 +24,7 @@ const clinics = [
   },
   {
     id: 3,
-    image: "/Clinic/clinic3.webp",
+    image: "/random/12.webp",
   },
   {
     id: 4,
@@ -39,18 +40,14 @@ const clinics = [
   },
   {
     id: 7,
-    image: "/Clinic/clinic7.webp",
-  },
-  {
-    id: 8,
     image: "/Clinic/clinic8.webp",
   },
   {
-    id: 9,
-    image: "/Clinic/clinic9.webp",
+    id: 8,
+    image: "/random/8.webp",
   },
   {
-    id: 10,
+    id: 9,
     image: "/Clinic/clinic10.webp",
   },
 ];
@@ -77,6 +74,7 @@ const PinIcon = () => (
 
 export default function FeaturedClinics() {
   const [active, setActive] = useState(INITIAL_INDEX);
+  const navigate = useNavigate()
   const [containerW, setContainerW] = useState(0);
 
   const sectionRef = useRef(null);
@@ -352,8 +350,8 @@ export default function FeaturedClinics() {
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
-        <button className="bg-[#f5f5f5] text-gray-900 text-sm font-medium rounded-full px-8 py-3 hover:bg-white/90 transition-colors active:scale-95">
-          Find your clinic
+        <button onClick={() => navigate("/contact")} className="bg-[#f5f5f5] text-gray-900 text-sm font-medium rounded-full px-8 py-3 hover:bg-[var(--btn-color)] hover:text-white transition-colors active:scale-95">
+          Visit Us
         </button>
         <button
           onClick={() => goTo(active + 1)}

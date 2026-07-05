@@ -9,38 +9,55 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const teamMembers = [
   {
-    name: "Dr. Amelia Brooks",
-    role: "Gynecologist",
+    name: "Dr. Krunal Birawat",
     image: "/Doctor/doc4.webp",
-    intro: "Creative director shaping visual identity and brand language.",
+    intro: (
+      <>
+        Dental surgeon and{" "}
+        <span className="font-[italic-font]">implantologist</span>
+      </>
+    ),
   },
 
   {
-    name: "Dr. Sarah Mitchell",
-    role: "Lead Dentist",
+    name: "Dr. Sanika Birawat",
     image: "/Doctor/d1.webp",
-    intro: "Creative director shaping visual identity and brand language.",
+    intro: (
+      <>
+        Aesthetic and cosmetic{" "}
+        <span className="font-[italic-font]">dentist</span>
+      </>
+    ),
   },
 
   {
-    name: "Dr. Amelia Brooks",
-    role: "Gynecologist",
+    name: "Dipti Gugdeya",
     image: "/Doctor/doc3.webp",
-    intro: "Creative director shaping visual identity and brand language.",
+    intro: (
+      <>
+        Friendly <span className="font-[italic-font]">front desk</span> support
+      </>
+    ),
   },
 
   {
-    name: "Dr. James Carter",
-    role: "Orthodontist",
+    name: "Sakshi Das",
     image: "/Doctor/doc2.webp",
-    intro: "Creative director shaping visual identity and brand language.",
+    intro: (
+      <>
+        Skilled <span className="font-[italic-font]">dental assistant</span>
+      </>
+    ),
   },
 
   {
-    name: "Dr. Amelia Brooks",
-    role: "Gynecologist",
+    name: "Mihika",
     image: "/Doctor/doc5.webp",
-    intro: "Creative director shaping visual identity and brand language.",
+    intro: (
+      <>
+        Dental <span className="font-[italic-font]">assistant</span>
+      </>
+    ),
   },
 ];
 
@@ -264,7 +281,7 @@ const TeamSection = () => {
                 <div className="team-info-bg absolute inset-0 bg-[#f6f6f6] p-8 flex flex-col justify-start">
                   <div className="info-text team-card-text">
                     <h1 className="text-2xl">{member.head}</h1>
-                    <p className="text-gray-600 text-lg leading-relaxed mt-4">
+                    <p className="text-gray-600 text-2xl leading-relaxed mt-4">
                       {member.intro}
                     </p>
                   </div>

@@ -6,7 +6,7 @@ import Hero from "../components/common/Hero";
 const Contact = () => {
   const content = {
     title: "Contact Us",
-    img: "/image/contact-hero.avif",
+    img: "/Doctor/Krunal.webp",
     heading: (
       <>
         Helping You <span className="font-[italic-font]">Smile</span>

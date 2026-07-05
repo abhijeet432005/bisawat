@@ -28,7 +28,7 @@ const Footer = () => {
             <div className="md:w-[28%]">
               <div className="flex items-center gap-2 mb-4">
                 <Link to="/">
-                  <img src="/Logo.webp" alt="" className="w-fit h-15" />
+                  <img src="/Logo.webp" alt="" className="max-w-40 h-15" />
                 </Link>
               </div>
               <p className="text-sm text-white/40 leading-relaxed max-w-[220px]">
@@ -41,7 +41,7 @@ const Footer = () => {
             <div className="flex flex-col sm:flex-row gap-10 md:gap-30">
               {/* Company */}
               <div>
-                <p className="text-sm font-semibold text-white mb-4">Company</p>
+                <p className="text-sm font-semibold text-white mb-4">Links</p>
                 <ul className="flex flex-col gap-3">
                   {companyLinks.map((l) => (
                     <li key={l.label}>
@@ -119,17 +119,17 @@ const Footer = () => {
                   Newsletter
                 </p>
                 <h3 className="text-2xl md:text-3xl leading-snug">
-                  Get Exclusive Dental{" "}
+                  Get latest update on your {" "}
                   <span
                     className="font-[italic-font] font-normal"
                     style={{ color: "#ffff" }}
                   >
-                    Offers,
+                    emails,
                   </span>
                 </h3>
-                <p className="text-sm text-white/40 mt-2">
+                {/* <p className="text-sm text-white/40 mt-2">
                   Subscribe for tips, discounts, and clinic updates.
-                </p>
+                </p> */}
               </div>
 
               <div className="flex flex-col md:flex-row md:items-center gap-3 w-full max-w-sm">

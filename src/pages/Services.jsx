@@ -8,7 +8,7 @@ import Seo from "../components/Seo";
 
 const CareSections = [
   {
-    DEFAULT_IMAGE: "/marquee/5.webp",
+    DEFAULT_IMAGE: "/services/preventive-dentistry-patient.webp",
 
     heading: "Preventive Care",
 
@@ -17,35 +17,35 @@ const CareSections = [
         title: "Routine Checkups & Cleanings",
         description:
           "Regular dental exams and professional cleanings help prevent cavities, gum disease, and other oral health issues before they become serious.",
-        image: "/Clinic/clinic1.webp",
-        bigImage: "/Clinic/clinic1.webp",
+        image: "/services/S11.webp",
+        bigImage: "/services/S11.webp",
       },
       {
         title: "Digital X-Rays",
         description:
           "Advanced digital imaging allows for accurate diagnosis while using minimal radiation, helping detect hidden dental concerns early.",
-        image: "/Clinic/clinic5.webp",
-        bigImage: "/Clinic/clinic5.webp",
+        image: "/services/S12.webp",
+        bigImage: "/services/S12.webp",
       },
       {
         title: "Fluoride Treatments",
         description:
           "Strengthen tooth enamel and reduce the risk of cavities with quick, safe, and effective fluoride applications.",
-        image: "/Clinic/clinic3.webp",
-        bigImage: "/Clinic/clinic3.webp",
+        image: "/services/S13.webp",
+        bigImage: "/services/S13.webp",
       },
       {
         title: "Gum Disease Screening",
         description:
           "Routine periodontal evaluations help identify early signs of gum disease and keep your gums healthy for the long term.",
-        image: "/marquee/5.webp",
-        bigImage: "/marquee/5.webp",
+        image: "/services/S14.webp",
+        bigImage: "/services/S14.webp",
       },
     ],
   },
 
   {
-    DEFAULT_IMAGE: "/Clinic/clinic6.webp",
+    DEFAULT_IMAGE: "/services/restorative.webp",
 
     heading: "Restorative Dentistry",
 
@@ -54,42 +54,46 @@ const CareSections = [
         title: "Tooth-Colored Fillings",
         description:
           "Restore decayed or damaged teeth with durable, natural-looking fillings that blend seamlessly with your smile.",
-        image: "/random/1.webp",
-        bigImage: "/random/1.webp",
+        image: "/services/S21.webp",
+        bigImage: "/services/S21.webp",
       },
+
       {
         title: "Crowns & Bridges",
         description:
           "Repair damaged teeth or replace missing ones with custom-made restorations designed for strength and aesthetics.",
-        image: "/random/3.webp",
-        bigImage: "/random/3.webp",
+        image: "/services/S22.webp",
+        bigImage: "/services/S22.webp",
       },
+
       {
         title: "Dental Implants",
         description:
           "A permanent solution for missing teeth that restores function, appearance, and confidence with a natural feel.",
-        image: "/random/5.webp",
-        bigImage: "/random/5.webp",
+        image: "/services/implants.webp",
+        bigImage: "/services/implants.webp",
       },
+
       {
         title: "Root Canal Treatment",
         description:
           "Save infected teeth by removing damaged pulp while preserving the natural tooth structure and relieving pain.",
-        image: "/random/8.webp",
-        bigImage: "/random/8.webp",
+        image: "/services/root canal.webp",
+        bigImage: "/services/root canal.webp",
       },
+
       {
         title: "Dentures",
         description:
           "Comfortable, custom-fit full and partial dentures designed to restore your smile and improve daily function.",
-        image: "/random/4.webp",
-        bigImage: "/random/4.webp",
+        image: "/services/S25.webp",
+        bigImage: "/services/S25.webp",
       },
     ],
   },
 
   {
-    DEFAULT_IMAGE: "/Clinic/clinic1.webp",
+    DEFAULT_IMAGE: "/services/Esthetic.webp",
 
     heading: "Esthetic Dentistry",
 
@@ -126,14 +130,14 @@ const CareSections = [
         title: "Clear Aligners",
         description:
           "Straighten teeth comfortably and discreetly with nearly invisible aligners tailored to your smile.",
-        image: "/random/7.webp",
-        bigImage: "/random/7.webp",
+        image: "/services/aligner.webp",
+        bigImage: "/services/aligner.webp",
       },
     ],
   },
 
   {
-    DEFAULT_IMAGE: "/marquee/5.webp",
+    DEFAULT_IMAGE: "/services/3.jpeg",
 
     heading: "Beyond the Smile",
 
@@ -149,8 +153,8 @@ const CareSections = [
         title: "TMJ & Jaw Pain Treatment",
         description:
           "Comprehensive evaluation and treatment options to relieve jaw discomfort, headaches, and TMJ-related symptoms.",
-        image: "/random/7.webp",
-        bigImage: "/random/7.webp",
+        image: "/services/jaw.webp",
+        bigImage: "/services/jaw.webp",
       },
       {
         title: "Sedation Dentistry",

@@ -7,24 +7,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
-    q: "What services are included in my plan?",
-    a: "Our plans include routine checkups, cleanings, X-rays, and discounts on major procedures like fillings, crowns, and orthodontics depending on your tier.",
+    q: "Do I need to book an appointment before visiting?",
+    a: "Yes, we recommend booking an appointment to ensure minimal waiting time and dedicated attention from our dental team. Walk-ins are accommodated based on availability.",
   },
   {
-    q: "How do I book an appointment?",
-    a: "You can book online through our website, call our front desk directly, or use our mobile app to schedule at your convenience.",
+    q: "How often should I visit the dentist?",
+    a: "For most people, a dental checkup and professional cleaning every six months is recommended. However, the frequency may vary depending on your oral health and specific dental needs.",
   },
   {
-    q: "Do you accept emergency visits?",
-    a: "Yes, we offer same-day emergency appointments. Call us and we'll do our best to see you within hours.",
+    q: "What dental services do you offer?",
+    a: "We provide comprehensive dental care, including routine checkups, teeth cleaning, fillings, root canal treatment, crowns and bridges, dental implants, cosmetic dentistry, teeth whitening, orthodontics, pediatric dentistry, and emergency dental care.",
   },
   {
-    q: "Can I upgrade or change my plan anytime?",
-    a: "Absolutely. You can upgrade, downgrade, or switch plans at any time from your account dashboard with no penalty.",
+    q: "Are dental treatments painful?",
+    a: "Modern dental techniques and advanced equipment help make treatments as comfortable as possible. We use effective anesthesia and gentle procedures to ensure a smooth, pain-free experience for our patients.",
   },
   {
-    q: "Are the treatments safe and professional?",
-    a: "All treatments are performed by certified dental professionals using the latest sterilized equipment and evidence-based techniques.",
+    q: "How can I maintain good oral health at home?",
+    a: "Brush your teeth twice a day using fluoride toothpaste, floss daily, limit sugary foods and drinks, stay hydrated, and visit your dentist regularly for preventive checkups and professional cleanings. These simple habits go a long way in maintaining a healthy smile.",
   },
 ];
 

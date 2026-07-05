@@ -126,9 +126,9 @@ const Testimonial = () => {
       <div className="absolute inset-0 flex items-center justify-center">
         <h1
           style={{ fontSize: "30px", lineHeight: "1.3" }}
-          className="text-center font-bold uppercase tracking-wide text-black"
+          className="text-center font-medium uppercase tracking-wide text-black"
         >
-          Patient <span className="text-[#E3A458]">Stories</span>
+          Patient <span className="text-[#E3A458] font-[italic-font]">Stories</span>
         </h1>
       </div>
 

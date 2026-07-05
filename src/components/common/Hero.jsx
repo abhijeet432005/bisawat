@@ -100,7 +100,7 @@ const Hero = ({ content, className }) => {
         style={{ willChange: "transform", transformOrigin: "center" }}
       />
 
-      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 bg-black/15" />
 
       <div className="absolute bottom-0 flex flex-col w-[80%] mx-auto py-14 md:py-20">
         {content?.title && (

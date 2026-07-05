@@ -8,37 +8,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    title: "Preventive Care",
+    title: "Aligners",
     description:
-      "Protect your oral health with routine checkups, cleanings, digital X-rays, and preventive treatments.",
-    image:
-      "/random/9.webp",
+      "Straighten your teeth comfortably with clear, nearly invisible aligners designed for a confident smile.",
+    image: "/services/aligner.webp",
   },
   {
-    title: "Restorative Dentistry",
+    title: "Microscopic Root Canal Treatments",
     description:
-      "Restore damaged or missing teeth with fillings, crowns, bridges, implants, root canals, and dentures.",
-    image:
-      "/random/14.webp",
+      "Advanced microscope-assisted root canal treatment for precise, painless, and effective tooth preservation.",
+    image: "/services/root canal.webp",
   },
   {
-    title: "Esthetic Dentistry",
+    title: "Dental Implants",
     description:
-      "Enhance your smile with teeth whitening, veneers, bonding, clear aligners, and complete smile makeovers.",
-    image:
-      "/random/15.webp",
+      "Replace missing teeth with durable, natural-looking implants that restore function and confidence.",
+    image: "/services/implants.webp",
   },
   {
-    title: "Beyond the Smile",
+    title: "Teeth Whitening",
     description:
-      "Comprehensive care including sleep apnea therapy, TMJ treatment, and comfortable sedation dentistry.",
-    image:
-      "/random/12.webp",
+      "Brighten your smile safely with professional whitening treatments for long-lasting, noticeable results.",
+    image: "/services/whitning.webp",
+  },
+  {
+    title: "Smile Designing",
+    description:
+      "Transform your smile with personalized cosmetic treatments tailored to your facial features and goals.",
+    image: "/services/designing.webp",
   },
 ];
 
 const ServicesSection = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const sectionRef = useRef(null);
   const [active, setActive] = useState(0);
 
@@ -60,15 +62,18 @@ const ServicesSection = () => {
     });
 
     mm.add("(min-width: 768px)", () => {
-      gsap.set(q(".service-card-2, .service-card-3, .service-card-4"), {
-        y: 900,
-      });
+      gsap.set(
+        q(".service-card-2, .service-card-3, .service-card-4, .service-card-5"),
+        {
+          y: 900,
+        },
+      );
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=300%",
+          end: "+=400%",
           scrub: 1,
           pin: true,
           anticipatePin: 1,
@@ -82,7 +87,9 @@ const ServicesSection = () => {
         .to(q(".service-card-3"), { y: 0, duration: 1 }, 1)
         .add(() => setActive(2), 1.9)
         .to(q(".service-card-4"), { y: 0, duration: 1 }, 2)
-        .add(() => setActive(3), 2.9);
+        .add(() => setActive(3), 2.9)
+        .to(q(".service-card-5"), { y: 0, duration: 1 }, 3)
+        .add(() => setActive(4), 3.9);
 
       return () => tl.kill();
     });
@@ -159,8 +166,7 @@ const ServicesSection = () => {
                   onClick={() => navigate("/contact")}
                   className="flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-full"
                   style={{
-                    background:
-                      "var(--btn-color)",
+                    background: "var(--btn-color)",
                   }}
                 >
                   Book Now

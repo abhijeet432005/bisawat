@@ -97,9 +97,7 @@ const Hero = () => {
       <div className="w-full flex-col md:flex-row flex gap-10 h-full justify-between py-10 md:pt-50 px-6 md:px-10 relative z-10">
         <div className="capitalize w-[80vw] md:w-[30rem] pt-20 md:pt-0">
           <h1 className="hero-heading text-white text-4xl md:text-[4vw] md:leading-[4.5vw] min-w-xs md:max-w-lg">
-            Experience Your{" "}
-            <span className="text-[#EAFF5D]">Best Dental Care Journey</span>{" "}
-            Starting Today
+            Precision Dental Care for <span className="font-[italic-font]">Every Smile</span>
           </h1>
         </div>
 

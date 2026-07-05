@@ -131,7 +131,7 @@ const CareSection = ({ className, items, id }) => {
       className="w-full py-16 md:py-20 px-6 md:px-16 flex justify-center"
     >
       <div
-        className={`md:w-[95%] mx-auto flex flex-col md:flex-row gap-8 md:gap-16 md:items-stretch p-3 md:p-5 rounded-[2rem] bg-gray-50 ${className}`}
+        className={`md:w-[95%] mx-auto flex flex-col md:flex-row gap-8 md:gap-10 md:items-stretch p-3 md:p-5 rounded-[2rem] bg-gray-50 ${className}`}
       >
         {/* LEFT — image swaps based on which accordion is open */}
         <div className="w-full md:w-[50%] flex-shrink-0">
@@ -152,7 +152,7 @@ const CareSection = ({ className, items, id }) => {
         </div>
 
         {/* RIGHT */}
-        <div className="w-full md:w-[55%] flex flex-col">
+        <div className="w-full md:w-[55%] flex flex-col p-3">
           <h2 className="text-3xl sm:text-4xl  text-[#1a1a1a] leading-tight mb-5">
             {items?.heading}
           </h2>
@@ -208,12 +208,12 @@ const CareSection = ({ className, items, id }) => {
           </div>
 
           {/* CTA */}
-          <button
+          {/* <button
             className="mt-8 w-fit px-7 py-3.5 rounded-full text-sm font-semibold text-[#ffff] transition-transform active:scale-95"
             style={{ background: "var(--btn-color)" }}
           >
             Get Started Now
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

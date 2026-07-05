@@ -7,9 +7,9 @@ import CountUp from "./Counter/Countup";
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { to: 5, suffix: "K+", label: "Happy Patients" },
-  { to: 1, suffix: "K+", label: "Clinics Listed" },
-  { to: 10, suffix: "K+", label: "Procedures Done" },
+  { to: 13, suffix: "+" , label: "Year of clinical excellence" },
+  { to: 1000, suffix: "+", label: "Smiles Restored" },
+  { to: 360, suffix: "+", label: "Google Reviews" },
 ];
 
 const TrustNumbers = () => {

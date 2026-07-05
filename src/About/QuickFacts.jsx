@@ -194,7 +194,7 @@ const QuickFacts = () => {
             />
             <div className="absolute top-6 left-6 flex flex-col justify-between">
               <h3 className="text-white text-2xl md:text-3xl leading-tight">
-                5K+ Patient Visits
+                1K+ Patient Visits
               </h3>
               <p className=" mt-95 md:mt-93 font-semibold text-sm md:text-base leading-snug truncate flex gap-2 items-center text-white">
                 <PinIcon />
@@ -210,12 +210,11 @@ const QuickFacts = () => {
               style={{ background: "var(--btn-color)", minHeight: "220px" }}
             >
               <h3 className="text-white text-2xl md:text-3xl leading-tight mb-4">
-                10+ Community
-                <br />
-                Programs
+                Dedicated Team
               </h3>
               <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                Actively giving back through health camps & awareness drives.
+                Our skilled dental team provides personalized care, ensuring
+                every patient feels comfortable and confident.
               </p>
             </div>
 
@@ -227,15 +226,14 @@ const QuickFacts = () => {
                 className="text-2xl md:text-3xl leading-tight mb-4"
                 style={{ color: "#0d1b2a" }}
               >
-                12 Specialists on
-                <br />
-                Board
+                Advanced Technology
               </h3>
               <p
                 className="text-sm md:text-base leading-relaxed"
                 style={{ color: "#6b6b6b" }}
               >
-                A multi-disciplinary team ready to care for every need.
+                We use advanced technology to deliver accurate, comfortable, and
+                effective dental care.
               </p>
             </div>
           </div>
@@ -265,34 +263,34 @@ const QuickFacts = () => {
               <div className="hero-review review w-full flex items-center justify-between gap-3 text-white mb-5">
                 <div className="flex items-center">
                   <div className="flex -space-x-3">
-                <img
-                  src="https://randomuser.me/api/portraits/women/44.jpg"
-                  alt="Happy patient"
-                  width="40"
-                  height="40"
-                  loading="lazy"
-                  decoding="async"
-                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
-                />
-                <img
-                  src="https://randomuser.me/api/portraits/men/32.jpg"
-                  alt="Happy patient"
-                  width="40"
-                  height="40"
-                  loading="lazy"
-                  decoding="async"
-                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
-                />
-                <img
-                  src="https://randomuser.me/api/portraits/women/68.jpg"
-                  alt="Happy patient"
-                  width="40"
-                  height="40"
-                  loading="lazy"
-                  decoding="async"
-                  className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
-                />
-              </div>
+                    <img
+                      src="https://randomuser.me/api/portraits/women/44.jpg"
+                      alt="Happy patient"
+                      width="40"
+                      height="40"
+                      loading="lazy"
+                      decoding="async"
+                      className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                    />
+                    <img
+                      src="https://randomuser.me/api/portraits/men/32.jpg"
+                      alt="Happy patient"
+                      width="40"
+                      height="40"
+                      loading="lazy"
+                      decoding="async"
+                      className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                    />
+                    <img
+                      src="https://randomuser.me/api/portraits/women/68.jpg"
+                      alt="Happy patient"
+                      width="40"
+                      height="40"
+                      loading="lazy"
+                      decoding="async"
+                      className="max-w-10 max-h-10 rounded-full object-cover border border-white shadow-md"
+                    />
+                  </div>
                 </div>
                 <div className="text-left w-full">
                   <p className="text-sm leading-relaxed">
@@ -301,11 +299,7 @@ const QuickFacts = () => {
                 </div>
               </div>
               <h3 className="text-white text-2xl md:text-3xl leading-tight flex items-center gap-1">
-                4.9
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-                Google
+                300+ Google
               </h3>
               <h3 className="text-white text-2xl md:text-3xl leading-tight">
                 Rating

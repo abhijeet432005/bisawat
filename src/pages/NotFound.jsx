@@ -1,369 +1,145 @@
-import { useCallback, useRef, useState, useEffect, useLayoutEffect } from "react";
-import { createPortal } from "react-dom";
-import { cards } from "../constants/index";
-import gsap from "gsap";
+// pages/NotFound.jsx
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import gsap from "gsap";
+import Seo from "../components/Seo";
 
-gsap.registerPlugin(ScrollTrigger);
+const NotFound = () => {
+  const containerRef = useRef(null);
 
-const Testimonial = () => {
-  const sectionRef = useRef(null);
-  const vdRef = useRef([]);
-  vdRef.current = [];
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  const modalRef = useRef(null);
-  const modalVideoRef = useRef(null);
-  const [activeVideo, setActiveVideo] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [sectionVisible, setSectionVisible] = useState(false);
-
-  // ── sirf section visible hone pe videos ke src assign karo, no network calls before ──
-  useEffect(() => {
-    if (!sectionRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSectionVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // ── pin setup — overflowY:scroll prevents scrollbar-jump, single ScrollTrigger, proper cleanup ──
-  useGSAP(
-    () => {
-      document.documentElement.style.overflowY = "scroll";
-
-      const pinTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=200%",
-          scrub: 1.5,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      pinTl.from("[data-card]", {
-        yPercent: 180,
-        xPercent: 100,
-        stagger: 0.2,
-        ease: "power1.inOut",
-      });
-
-      // single rAF refresh — double rAF causes extra reflow, not needed
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-      });
-
-      return () => {
-        pinTl.kill();
-        ScrollTrigger.getAll().forEach((st) => {
-          if (st.trigger === sectionRef.current) st.kill();
-        });
-      };
-    },
-    { scope: sectionRef, dependencies: [] },
-  );
-
-  // restore default overflow on unmount
-  useEffect(() => {
-    return () => {
-      document.documentElement.style.overflowY = "";
-    };
-  }, []);
-
-  const lockScroll = () => (document.body.style.overflow = "hidden");
-  const unlockScroll = () => (document.body.style.overflow = "");
-
-  const openModal = useCallback((src, index) => {
-    setActiveVideo(src);
-    setActiveIndex(index);
-    lockScroll();
-  }, []);
-
-  const onModalMount = useCallback((node) => {
-    if (!node) return;
-    modalRef.current = node;
-    gsap.fromTo(node, { opacity: 0 }, { opacity: 1, duration: 0.4 });
-  }, []);
-
-  const onModalVideoMount = useCallback((node) => {
-    if (!node) return;
-    gsap.fromTo(
-      node,
-      { scale: 0.95, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.5, ease: "power3.out" },
-    );
-  }, []);
-
-  const closeModal = useCallback(() => {
-    const node = modalRef.current;
-    if (!node) {
-      setActiveVideo(null);
-      setActiveIndex(null);
-      unlockScroll();
-      return;
-    }
-    gsap.to(node, {
-      opacity: 0,
-      duration: 0.3,
-      onComplete: () => {
-        setActiveVideo(null);
-        setActiveIndex(null);
-        unlockScroll();
-      },
-    });
-  }, []);
-
-  const goTo = useCallback((index) => {
-    const target = cards[index];
-    if (!target) return;
-    setActiveVideo(target.src);
-    setActiveIndex(index);
-    if (modalVideoRef.current) {
-      gsap.fromTo(
-        modalVideoRef.current,
-        { opacity: 0, x: 30 },
-        { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" },
+    tl
+      .fromTo(
+        ".notfound-404",
+        { y: 40, opacity: 0, filter: "blur(10px)" },
+        { y: 0, opacity: 1, filter: "blur(0px)", duration: 1 },
+        0
+      )
+      .fromTo(
+        ".notfound-desc",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7 },
+        0.4
+      )
+      .fromTo(
+        ".notfound-cta",
+        { y: 16, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6 },
+        0.6
+      )
+      .fromTo(
+        ".notfound-decor",
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.2, ease: "elastic.out(1, 0.6)" },
+        0.2
       );
-    }
-  }, []);
 
-  const handlePlay = useCallback((index) => {
-    const video = vdRef.current[index];
-    if (!video) return;
-    video.play().catch(() => {});
-  }, []);
+    // Subtle floating loop on decorative shapes
+    gsap.to(".notfound-decor-1", {
+      y: -16,
+      duration: 3.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+    gsap.to(".notfound-decor-2", {
+      y: 14,
+      duration: 4,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 0.3,
+    });
+  }, { scope: containerRef });
 
-  const handlePause = useCallback((index) => {
-    const video = vdRef.current[index];
-    if (!video) return;
-    video.pause();
-  }, []);
+  const handleBtnEnter = (e) => {
+    gsap.to(e.currentTarget, {
+      scale: 1.05,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+  const handleBtnLeave = (e) => {
+    gsap.to(e.currentTarget, {
+      scale: 1,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
 
   return (
-    <section
-      ref={sectionRef}
-      className="testimonials-section relative w-full h-[110dvh] lg:h-[100dvh]"
-      style={{ willChange: "transform" }}
-    >
-      {/* ── Static centered heading — no animation ── */}
-      <div className="absolute inset-0 flex items-center justify-center">
+    <>
+      <Seo
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or has been moved. Return to Birawat Dental Studio's homepage to continue exploring our dental services."
+        path="/404"
+      />
+      <section
+        ref={containerRef}
+        className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 text-center overflow-hidden"
+        style={{ background: "#faf8f4" }}
+      >
+        {/* Decorative floating shapes */}
+        <div
+          className="notfound-decor notfound-decor-1 absolute rounded-full"
+          style={{
+            width: "280px",
+            height: "280px",
+            background: "radial-gradient(circle, rgba(0,0,0,0.04), transparent 70%)",
+            top: "10%",
+            left: "8%",
+          }}
+        />
+        <div
+          className="notfound-decor notfound-decor-2 absolute rounded-full"
+          style={{
+            width: "220px",
+            height: "220px",
+            background: "radial-gradient(circle, rgba(0,0,0,0.03), transparent 70%)",
+            bottom: "12%",
+            right: "10%",
+          }}
+        />
+
         <h1
-          style={{ fontSize: "30px", lineHeight: "1.3" }}
-          className="text-center font-bold uppercase tracking-wide text-black"
+          className="notfound-404 relative font-bold leading-none mb-4"
+          style={{
+            fontSize: "clamp(4rem, 14vw, 9rem)",
+            color: "#1a1a1a",
+            letterSpacing: "-0.02em",
+          }}
         >
-          Patient <span className="text-[#E3A458]">Stories</span>
+          404
         </h1>
-      </div>
 
-      {/* ── Outer cards — only 7 visible (slice first 7) ── */}
-      <div className="pin-box flex items-center justify-center w-full ps-52 absolute 2xl:bottom-32 bottom-[60vh] md:bottom-[50vh]">
-        {cards.slice(0, 7).map((card, index) => (
-          <div
-            key={index}
-            data-card
-            className={`vd-card w-70 h-[55vh] md:w-85 md:h-[70vh] flex-none md:rounded-[2vw] rounded-3xl -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-[#f5f5f5] ${card.translation} ${card.rotation} ${card.position}`}
-            style={{
-              zIndex: hoveredIndex === index ? 50 : 1,
-              transition: "z-index 0s",
-            }}
-            onMouseEnter={() => {
-              setHoveredIndex(index);
-              handlePlay(index);
-            }}
-            onMouseLeave={() => {
-              setHoveredIndex(null);
-              handlePause(index);
-            }}
-            onClick={() => openModal(card.src, index)}
-          >
-            {/* fallback thumbnail — shows until video src is assigned/loaded */}
-            {card.img && (
-              <img
-                src={card.img}
-                alt={card.name || "Patient testimonial"}
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ zIndex: 0 }}
-              />
-            )}
+        <p className="notfound-desc relative text-gray-500 mb-10 max-w-sm text-base md:text-lg leading-relaxed">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
 
-            {/* video src is undefined until section is near viewport — no network request before that */}
-            <video
-              ref={(el) => (vdRef.current[index] = el)}
-              src={sectionVisible ? card.src : undefined}
-              playsInline
-              muted
-              loop
-              preload="none"
-              className="size-full object-cover relative"
-              style={{ zIndex: 1 }}
+        <Link
+          to="/"
+          className="notfound-cta relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white transition-shadow"
+          style={{ background: "var(--btn-color)" }}
+          onMouseEnter={handleBtnEnter}
+          onMouseLeave={handleBtnLeave}
+        >
+          Back to Home
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M3 11L11 3M11 3H5M11 3V9"
+              stroke="white"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
-
-            {/* ── Play icon — visible on hover ── */}
-            <div
-              className="absolute bottom-3 left-3 flex items-center gap-1.5 pointer-events-none"
-              style={{
-                opacity: hoveredIndex === index ? 1 : 0,
-                transition: "opacity 0.25s ease",
-                zIndex: 2,
-              }}
-            >
-              <div
-                className="bg-white/90 rounded-full flex items-center justify-center"
-                style={{ width: 32, height: 32 }}
-              >
-                <svg
-                  width="12"
-                  height="14"
-                  viewBox="0 0 12 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L11 7L1 13V1Z"
-                    fill="#1a1a1a"
-                    stroke="#1a1a1a"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <span
-                className="text-white text-xs font-semibold drop-shadow"
-                style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
-              >
-                Play
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Modal rendered via PORTAL — escapes pinned section's stacking context ── */}
-      {activeVideo &&
-        createPortal(
-          <div
-            ref={onModalMount}
-            className="fixed inset-0 bg-black/85 backdrop-blur-sm w-full h-screen flex flex-col items-center justify-center gap-5"
-            style={{ zIndex: 99999 }}
-          >
-            <button
-              onClick={closeModal}
-              aria-label="Close modal"
-              className="fixed top-6 right-8 text-white text-4xl cursor-pointer hover:opacity-70 transition-opacity"
-              style={{ zIndex: 100000 }}
-            >
-              ✕
-            </button>
-
-            <div
-              ref={onModalVideoMount}
-              className="flex items-center justify-center"
-              style={{ height: "80vh" }}
-            >
-              <video
-                key={activeVideo}
-                ref={modalVideoRef}
-                src={activeVideo}
-                controls
-                autoPlay
-                style={{
-                  height: "80vh",
-                  width: "auto",
-                  maxWidth: "90vw",
-                  borderRadius: "12px",
-                }}
-              />
-            </div>
-
-            {/* ── Carousel strip — thumbnails use poster/img, not autoplay video ── */}
-            <div
-              className="flex items-center gap-3 overflow-x-auto px-6 pb-2"
-              style={{
-                maxWidth: "90vw",
-                scrollbarWidth: "thin",
-                scrollbarColor: "#E3A458 transparent",
-              }}
-            >
-              {cards.map((card, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => goTo(idx)}
-                  style={{
-                    flexShrink: 0,
-                    width: 72,
-                    height: 90,
-                    borderRadius: 10,
-                    overflow: "hidden",
-                    border:
-                      activeIndex === idx
-                        ? "2.5px solid #E3A458"
-                        : "2px solid rgba(255,255,255,0.2)",
-                    cursor: "pointer",
-                    position: "relative",
-                    transition: "border-color 0.2s",
-                    background: "transparent",
-                    padding: 0,
-                  }}
-                  aria-label={`Go to video ${idx + 1}`}
-                >
-                  {/* static thumbnail instead of <video> for the strip — avoids N extra video loads */}
-                  {card.img ? (
-                    <img
-                      src={card.img}
-                      alt={card.name || `Video ${idx + 1}`}
-                      loading="lazy"
-                      decoding="async"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                      }}
-                    />
-                  ) : (
-                    <video
-                      src={activeVideo ? card.src : undefined}
-                      muted
-                      playsInline
-                      preload="none"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                      }}
-                    />
-                  )}
-                  {activeIndex === idx && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        background: "rgba(227,164,88,0.18)",
-                      }}
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>,
-          document.body,
-        )}
-    </section>
+          </svg>
+        </Link>
+      </section>
+    </>
   );
 };
 
-export default Testimonial;
+export default NotFound;
