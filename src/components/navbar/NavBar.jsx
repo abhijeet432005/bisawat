@@ -65,9 +65,11 @@ const NavBar = () => {
   const wasScrolled = useRef(false);
 
   // pages where nav text should always render dark, regardless of scroll/transparency state
+
   const forceDarkText =
     location.pathname.startsWith("/about") ||
-    location.pathname.startsWith("/services");
+    location.pathname.startsWith("/services") ||
+    !["/", "/contact", "/about", "/services"].includes(location.pathname);
 
   const useDarkText = scrolled || dropdownOpen || forceDarkText;
 
